@@ -1,0 +1,61 @@
+# Licensing R code
+
+_Checklist about what to think about when defining your R code license_.
+
+## R-package 
+
+### Code 
+
+#### Defining your code reusability
+
+Reminder here about how the license you choose impact the way people can reuse your code.
+
+#### Contribution 
+
+Discussion here about contribution to your package. 
+
+-asking people to sign a CLA - https://github.com/ropensci/unconf17/issues/32#issuecomment-294038058
+
+- implication for changing license ({covr} example)
+
+### Dependancies
+
+License compatibility questions when it comes to using dependencies in a package.
+
+### Data Package
+
+How to license a data package?
+
+- https://github.com/ropensci/unconf17/issues/61
+
+- https://github.com/ropenscilabs/data-packages
+
+Examples: 
+
+- https://github.com/igraph/igraphdata : 
+
+{igraphdata} has a file LICENSE with each licenses listed : https://github.com/igraph/igraphdata/blob/master/LICENSE
+
+### Library wrappers
+
+#### Including non R code (JavaScript, C++, CSS...)
+
+How should a code wrapper be licensed? 
+
+Exemple: include others as `role="ctb"` with `LICENSE.note`: see for example `{leaflet}` https://github.com/rstudio/leaflet / https://github.com/rstudio/crosstalk 
+
+## Documentation 
+
+### Software documentation 
+
+Discussion about code documentation (vignette, bookdown, blog articles...)
+
+### Publication 
+
+Overview of license requirements (if any) for publication in journals. 
+
+Example: JSS 
+
+> "Code needs to include the GNU General Public Licence (GPL), versions GPL-2 or GPL-3, or a GPL-compatible license for publication in JSS."
+
+> https://www.jstatsoft.org/pages/view/authors

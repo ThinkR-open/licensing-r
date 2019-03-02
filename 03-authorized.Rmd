@@ -1,0 +1,94 @@
+# CRAN licenses
+
+## "Officially Authorized" Licenses
+
+From [R Licenses](https://www.r-project.org/Licenses/).
+
++ The “GNU Affero General Public License” version 3
++ The “Artistic License” version 2.0
++ The “BSD 2-clause License”
++ The “BSD 3-clause License”
++ The “GNU General Public License” version 2
++ The “GNU General Public License” version 3
++ The “GNU Library General Public License” version 2
++ The “GNU Lesser General Public License” version 2.1
++ The “GNU Lesser General Public License” version 3
++ The “MIT License”
++ The “Creative Commons Attribution-ShareAlike International License” version 4.0
+
+## About R license 
+
+```{r}
+licence()
+```
+
+### GPL 2 & 3
+
+#### GPL 2
+
+- https://www.r-project.org/Licenses/GPL-2
+
+#### GPL 3
+
+- https://www.r-project.org/Licenses/GPL-3
+
+
+### LGPL 2.1 or later
+
+#### LGPL
+
+- https://www.r-project.org/Licenses/LGPL-2
+
+- https://www.r-project.org/Licenses/LGPL-2.1
+
+- https://www.r-project.org/Licenses/LGPL-3
+
+## The ten most used 
+
+```{r}
+db %>%
+  count(license, sort = TRUE) %>%
+  top_n(10)
+```
+
+#### AGPL
+
+- https://www.r-project.org/Licenses/AGPL-3
+
+### MIT
+
+- https://www.r-project.org/Licenses/MIT
+
+### CC0
+
+- https://creativecommons.org/publicdomain/zero/1.0/
+
+### Apache License
+
+### BSD3 clause
+
+- https://www.r-project.org/Licenses/BSD_3_clause
+
+## Region-based licenses
+
+Example: CeCILL - http://www.cecill.info/
+
+```{r}
+db$clean_license %>%
+  grep(pattern = "cecill", x = ., value = TRUE) %>%
+  length()
+```
+
+## Restrictive licenses
+
+```{r}
+db %>% 
+  filter(license_restricts_use == "yes") %>%
+  select(package, license)
+```
+
+- ACM 
+
+- CC BY-NC-SA 4.0
+
+- Artistic-2.0

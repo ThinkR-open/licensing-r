@@ -1,0 +1,49 @@
+# What is a license (and why you should care)
+
+Intro:
+
+- why is license important? Potential pitfalls: commercial reuse, license incompatibility, potential issues with changing licenses.
+
+Exemples : 
+
+- Bootstrap: https://github.com/twbs/bootstrap/issues/2054)
+
+-  `{covr}`: https://github.com/ropensci/unconf17/issues/32
+
+But first, some definitions.
+
+## Definition 
+
+### License
+
+Defining what is a license. 
+
+### Distribute
+
+What does "distributing a software" means?
+
+=> Code you bundle (distribute) VS code you depend on.
+
+### Free software
+
+Defining what is a free software (free beer vs free speech, https://www.gnu.org/philosophy/free-sw.en.html )
+
+
+### Copyleft
+
+https://www.gnu.org/licenses/licenses.en.html
+
+
+## Classification 
+
+Find a good way to classify licenses, maybe inspired by: https://www.gnu.org/licenses/license-list.en.html#Introduction
+
+
+## Implication
+
+What are the implications of choosing a license? 
+
+## License compatibility
+
+Not all licenses are compatible, see for example Apache & GPL which have a one way compatibility: http://www.apache.org/licenses/GPL-compatibility.html
+

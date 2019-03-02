@@ -1,0 +1,28 @@
+--- 
+title: "Licensing R"
+author: "Colin Fay"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Documenting current state of licensing in the R world."
+---
+
+[WORK IN PROGRESS]
+
+# Licensing R 
+
+## Disclaimer
+
+This book is by no mean a legal book and should not be used as such. 
+
+This book aims at helping you decipher the complexity of open source licenses, but if you have legal concerns and questions about open source licenses, please refer to a professional lawyer.
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

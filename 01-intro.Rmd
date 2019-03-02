@@ -1,0 +1,138 @@
+# Introduction {#intro}
+
+## Diving into the CRAN database
+
+- Getting all the database 
+
+```{r}
+# Done on
+Sys.time()
+# Getting the DB
+db <- tools::CRAN_package_db()
+```
+ 
+Doing a little bit of cleaning
+
+```{r}
+library(tidyverse)
+
+# Cleaning the colnames 
+db <- thinkr::clean_names(db)
+```
+
+How many different licenses?
+
+```{r}
+db %>%
+  distinct(license) %>% 
+  count()
+```
+
+Counting the number of package with a licence file:
+
+```{r}
+db$has_file_licence <- str_detect(db$license, "file")
+
+# How many have a li
+db %>% 
+  count(has_file_licence)
+```
+
+Counting the `license_is_foss`:
+
+```{r}
+# Not that much information
+db %>% 
+  count(license_is_foss)
+```
+
+How many package have a license with restrictive use?
+
+```{r}
+db %>% 
+  count(license_restricts_use)
+
+db %>% 
+  filter(license_restricts_use == "yes") %>%
+  select(package, license)
+
+db %>% 
+  filter(license_restricts_use == "yes") %>%
+  count(license, sort = TRUE)
+```
+
+Cleaning the license name because to get a more global idea
+
+```{r}
+cleaner <- compose(
+  # Removing the file licence elements
+  ~ gsub("filelicense", "", .x),
+  ~ gsub("filelicence", "", .x),
+  # Removing empty spaces
+  ~ gsub(" ", "", .x),
+  # Removing all non-alpha numeric character
+  proustr::pr_keep_only_alnum, 
+  # Removing the .0 at the end of numbers
+   ~ gsub("\\.0", "", .x), 
+  tolower
+)
+db <- db %>%
+ mutate(clean_license = cleaner(license)) 
+
+db %>%
+  count(clean_license, sort = TRUE)
+```
+
+How many GPL related licenses?
+
+```{r}
+# How many GPL based licenses ? 
+n_gpl <- str_detect(db$clean_license, "gpl") %>%
+  sum()
+n_gpl
+
+(n_gpl / nrow(db)) * 100
+```
+
+How may licenses are used just once? 
+
+```{r}
+db %>%
+  count(clean_license) %>%
+  filter(n == 1)
+```
+
+What are the 10 most frequent licenses?
+
+```{r}
+db %>%
+  count(clean_license, sort = TRUE) %>%
+  top_n(10)
+```
+
+
+```{r}
+db %>%
+  count(clean_license, sort = TRUE) %>%
+  top_n(10) %>%
+  ggplot(aes(reorder(clean_license, n), n )) + 
+  geom_col() + 
+  coord_flip() +
+  labs(
+    title = "10 most used licenses on the CRAN",
+    substile = glue::glue("Made on the {Sys.Date()}"), 
+    x = "License", 
+    y = "Volume"
+  ) + 
+  theme_minimal()
+```
+
+## Bioconductor 
+
+> To Do
+
+## GitHub
+
+> Maybe search the top 1000 ? 
+  
+
