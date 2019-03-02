@@ -134,9 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#what-is-this-book-about"><i class="fa fa-check"></i><b>1.2</b> What is this book about</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#diving-into-the-cran-database"><i class="fa fa-check"></i><b>2.1</b> Diving into the CRAN database</a></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#bioconductor"><i class="fa fa-check"></i><b>2.2</b> Bioconductor</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#github"><i class="fa fa-check"></i><b>2.3</b> GitHub</a></li>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#diving-into-the-cran-bioconductor-database"><i class="fa fa-check"></i><b>2.1</b> Diving into the CRAN &amp; BioConductor database</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="what-is-a-license-and-why-you-should-care.html"><a href="what-is-a-license-and-why-you-should-care.html"><i class="fa fa-check"></i><b>3</b> What is a license (and why you should care)</a><ul>
 <li class="chapter" data-level="3.1" data-path="what-is-a-license-and-why-you-should-care.html"><a href="what-is-a-license-and-why-you-should-care.html#definition"><i class="fa fa-check"></i><b>3.1</b> Definition</a><ul>
@@ -203,187 +201,204 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Introduction</h1>
-<div id="diving-into-the-cran-database" class="section level2">
-<h2><span class="header-section-number">2.1</span> Diving into the CRAN database</h2>
+<div id="diving-into-the-cran-bioconductor-database" class="section level2">
+<h2><span class="header-section-number">2.1</span> Diving into the CRAN &amp; BioConductor database</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<pre><code>## ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.1.0       ✔ purrr   0.3.0  
+## ✔ tibble  2.0.1       ✔ dplyr   0.8.0.1
+## ✔ tidyr   0.8.2       ✔ stringr 1.3.1  
+## ✔ readr   1.3.1       ✔ forcats 0.3.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <ul>
-<li>Getting all the database</li>
+<li>Getting all the packages</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Done on</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">Sys.time</span>()</a></code></pre></div>
-<pre><code>## [1] &quot;2019-03-02 18:40:14 CET&quot;</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Getting the DB</span></a>
-<a class="sourceLine" id="cb3-2" title="2">db &lt;-<span class="st"> </span>tools<span class="op">::</span><span class="kw">CRAN_package_db</span>()</a></code></pre></div>
-<p>Doing a little bit of cleaning</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb4-2" title="2"></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="co"># Cleaning the colnames </span></a>
-<a class="sourceLine" id="cb4-4" title="4">db &lt;-<span class="st"> </span>thinkr<span class="op">::</span><span class="kw">clean_names</span>(db)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># Done on</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">Sys.time</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;2019-03-02 19:41:52 CET&quot;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Getting the DB</span></a>
+<a class="sourceLine" id="cb7-2" title="2">cran_db &lt;-<span class="st"> </span>tools<span class="op">::</span><span class="kw">CRAN_package_db</span>() <span class="op">%&gt;%</span><span class="st"> </span>thinkr<span class="op">::</span><span class="kw">clean_names</span>()</a>
+<a class="sourceLine" id="cb7-3" title="3"></a>
+<a class="sourceLine" id="cb7-4" title="4">bioc_db &lt;-<span class="st"> </span><span class="kw">read.dcf</span>(<span class="kw">url</span>(<span class="st">&quot;https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span>thinkr<span class="op">::</span><span class="kw">clean_names</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">cran_small &lt;-<span class="st"> </span>cran_db <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="st">  </span><span class="kw">select</span>(package, <span class="kw">contains</span>(<span class="st">&quot;license&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">src =</span> <span class="st">&quot;cran&quot;</span>)</a>
+<a class="sourceLine" id="cb8-4" title="4">bioc_small &lt;-<span class="st"> </span>bioc_db <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="st">  </span><span class="kw">select</span>(package, <span class="kw">contains</span>(<span class="st">&quot;license&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">src =</span> <span class="st">&quot;bioc&quot;</span>)</a>
+<a class="sourceLine" id="cb8-7" title="7">db &lt;-<span class="st"> </span><span class="kw">rbind</span>(cran_small, bioc_small)</a></code></pre></div>
 <p>How many different licenses?</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">db <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="st">  </span><span class="kw">distinct</span>(license) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="st">  </span><span class="kw">count</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">db <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw">distinct</span>(license) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span><span class="kw">count</span>()</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##       n
 ##   &lt;int&gt;
-## 1   154</code></pre>
+## 1   172</code></pre>
 <p>Counting the number of package with a licence file:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">db<span class="op">$</span>has_file_licence &lt;-<span class="st"> </span><span class="kw">str_detect</span>(db<span class="op">$</span>license, <span class="st">&quot;file&quot;</span>)</a>
-<a class="sourceLine" id="cb7-2" title="2"></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="co"># How many have a li</span></a>
-<a class="sourceLine" id="cb7-4" title="4">db <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="st">  </span><span class="kw">count</span>(has_file_licence)</a></code></pre></div>
-<pre><code>## # A tibble: 2 x 2
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">db<span class="op">$</span>has_file_licence &lt;-<span class="st"> </span><span class="kw">str_detect</span>(db<span class="op">$</span>license, <span class="st">&quot;file&quot;</span>)</a>
+<a class="sourceLine" id="cb11-2" title="2"></a>
+<a class="sourceLine" id="cb11-3" title="3"><span class="co"># How many have a li</span></a>
+<a class="sourceLine" id="cb11-4" title="4">db <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-5" title="5"><span class="st">  </span><span class="kw">count</span>(has_file_licence)</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
 ##   has_file_licence     n
 ##   &lt;lgl&gt;            &lt;int&gt;
-## 1 FALSE            11560
-## 2 TRUE              2228</code></pre>
+## 1 FALSE            13008
+## 2 TRUE              2419
+## 3 NA                   2</code></pre>
 <p>Counting the <code>license_is_foss</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Not that much information</span></a>
-<a class="sourceLine" id="cb9-2" title="2">db <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span><span class="kw">count</span>(license_is_foss)</a></code></pre></div>
-<pre><code>## # A tibble: 2 x 2
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Not that much information</span></a>
+<a class="sourceLine" id="cb13-2" title="2">db <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="st">  </span><span class="kw">count</span>(license_is_foss)</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
 ##   license_is_foss     n
 ##   &lt;chr&gt;           &lt;int&gt;
-## 1 &lt;NA&gt;            13778
-## 2 yes                10</code></pre>
+## 1 &lt;NA&gt;            15417
+## 2 no                  1
+## 3 yes                11</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">db <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="st">  </span><span class="kw">filter</span>(license_is_foss <span class="op">==</span><span class="st"> &quot;no&quot;</span>)</a></code></pre></div>
+<pre><code>##   package                     license license_is_foss
+## 1 MotifDb Artistic-2.0 | file LICENSE              no
+##   license_restricts_use  src has_file_licence
+## 1                   yes bioc             TRUE</code></pre>
 <p>How many package have a license with restrictive use?</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">db <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="st">  </span><span class="kw">count</span>(license_restricts_use)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">db <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="st">  </span><span class="kw">count</span>(license_restricts_use)</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   license_restricts_use     n
 ##   &lt;chr&gt;                 &lt;int&gt;
-## 1 &lt;NA&gt;                  13767
-## 2 no                        9
-## 3 yes                      12</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">db <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="st">  </span><span class="kw">filter</span>(license_restricts_use <span class="op">==</span><span class="st"> &quot;yes&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="st">  </span><span class="kw">select</span>(package, license)</a></code></pre></div>
-<pre><code>##                 package            license
-## 1                 akima ACM | file LICENSE
-## 2             alphahull       file LICENSE
-## 3                asypow ACM | file LICENSE
-## 4                gpclib       file LICENSE
-## 5                  momr       Artistic-2.0
-## 6  PredictiveRegression       file LICENSE
-## 7               regtest       file LICENSE
-## 8                rindex       file LICENSE
-## 9          rngwell19937       file LICENSE
-## 10                sfdct    CC BY-NC-SA 4.0
-## 11                sigQC       file LICENSE
-## 12              tripack ACM | file LICENSE</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">db <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb15-2" title="2"><span class="st">  </span><span class="kw">filter</span>(license_restricts_use <span class="op">==</span><span class="st"> &quot;yes&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-3" title="3"><span class="st">  </span><span class="kw">count</span>(license, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## # A tibble: 4 x 2
-##   license                n
-##   &lt;chr&gt;              &lt;int&gt;
-## 1 file LICENSE           7
-## 2 ACM | file LICENSE     3
-## 3 Artistic-2.0           1
-## 4 CC BY-NC-SA 4.0        1</code></pre>
+## 1 &lt;NA&gt;                  15401
+## 2 no                       10
+## 3 yes                      18</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">db <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="st">  </span><span class="kw">filter</span>(license_restricts_use <span class="op">==</span><span class="st"> &quot;yes&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb19-3" title="3"><span class="st">  </span><span class="kw">select</span>(package, license)</a></code></pre></div>
+<pre><code>##                 package                     license
+## 1                 akima          ACM | file LICENSE
+## 2             alphahull                file LICENSE
+## 3                asypow          ACM | file LICENSE
+## 4                gpclib                file LICENSE
+## 5                  momr                Artistic-2.0
+## 6  PredictiveRegression                file LICENSE
+## 7               regtest                file LICENSE
+## 8                rindex                file LICENSE
+## 9          rngwell19937                file LICENSE
+## 10                sfdct             CC BY-NC-SA 4.0
+## 11                sigQC                file LICENSE
+## 12              tripack          ACM | file LICENSE
+## 13                 CNEr        GPL-2 | file LICENSE
+## 14             genArise                file LICENSE
+## 15       GraphAlignment                file LICENSE
+## 16              MotifDb Artistic-2.0 | file LICENSE
+## 17             RankProd                file LICENSE
+## 18                 SPIA                file LICENSE</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">db <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="st">  </span><span class="kw">filter</span>(license_restricts_use <span class="op">==</span><span class="st"> &quot;yes&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="st">  </span><span class="kw">count</span>(license, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##   license                         n
+##   &lt;chr&gt;                       &lt;int&gt;
+## 1 file LICENSE                   11
+## 2 ACM | file LICENSE              3
+## 3 Artistic-2.0                    1
+## 4 Artistic-2.0 | file LICENSE     1
+## 5 CC BY-NC-SA 4.0                 1
+## 6 GPL-2 | file LICENSE            1</code></pre>
 <p>Cleaning the license name because to get a more global idea</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">cleaner &lt;-<span class="st"> </span><span class="kw">compose</span>(</a>
-<a class="sourceLine" id="cb17-2" title="2">  <span class="co"># Removing the file licence elements</span></a>
-<a class="sourceLine" id="cb17-3" title="3">  <span class="op">~</span><span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;filelicense&quot;</span>, <span class="st">&quot;&quot;</span>, .x),</a>
-<a class="sourceLine" id="cb17-4" title="4">  <span class="op">~</span><span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;filelicence&quot;</span>, <span class="st">&quot;&quot;</span>, .x),</a>
-<a class="sourceLine" id="cb17-5" title="5">  <span class="co"># Removing empty spaces</span></a>
-<a class="sourceLine" id="cb17-6" title="6">  <span class="op">~</span><span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, .x),</a>
-<a class="sourceLine" id="cb17-7" title="7">  <span class="co"># Removing all non-alpha numeric character</span></a>
-<a class="sourceLine" id="cb17-8" title="8">  proustr<span class="op">::</span>pr_keep_only_alnum, </a>
-<a class="sourceLine" id="cb17-9" title="9">  <span class="co"># Removing the .0 at the end of numbers</span></a>
-<a class="sourceLine" id="cb17-10" title="10">   <span class="op">~</span><span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.0&quot;</span>, <span class="st">&quot;&quot;</span>, .x), </a>
-<a class="sourceLine" id="cb17-11" title="11">  tolower</a>
-<a class="sourceLine" id="cb17-12" title="12">)</a>
-<a class="sourceLine" id="cb17-13" title="13">db &lt;-<span class="st"> </span>db <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-14" title="14"><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">clean_license =</span> <span class="kw">cleaner</span>(license)) </a>
-<a class="sourceLine" id="cb17-15" title="15"></a>
-<a class="sourceLine" id="cb17-16" title="16">db <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb17-17" title="17"><span class="st">  </span><span class="kw">count</span>(clean_license, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## # A tibble: 89 x 2
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">cleaner &lt;-<span class="st"> </span><span class="kw">compose</span>(</a>
+<a class="sourceLine" id="cb23-2" title="2">  <span class="co"># Removing the file licence elements</span></a>
+<a class="sourceLine" id="cb23-3" title="3">  <span class="op">~</span><span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;filelicense&quot;</span>, <span class="st">&quot;&quot;</span>, .x),</a>
+<a class="sourceLine" id="cb23-4" title="4">  <span class="op">~</span><span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;filelicence&quot;</span>, <span class="st">&quot;&quot;</span>, .x),</a>
+<a class="sourceLine" id="cb23-5" title="5">  <span class="co"># Removing empty spaces</span></a>
+<a class="sourceLine" id="cb23-6" title="6">  <span class="op">~</span><span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;&quot;</span>, .x),</a>
+<a class="sourceLine" id="cb23-7" title="7">  <span class="co"># Removing all non-alpha numeric character</span></a>
+<a class="sourceLine" id="cb23-8" title="8">  proustr<span class="op">::</span>pr_keep_only_alnum, </a>
+<a class="sourceLine" id="cb23-9" title="9">  <span class="co"># Removing the .0 at the end of numbers</span></a>
+<a class="sourceLine" id="cb23-10" title="10">   <span class="op">~</span><span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.0&quot;</span>, <span class="st">&quot;&quot;</span>, .x), </a>
+<a class="sourceLine" id="cb23-11" title="11">  tolower</a>
+<a class="sourceLine" id="cb23-12" title="12">)</a>
+<a class="sourceLine" id="cb23-13" title="13">db &lt;-<span class="st"> </span>db <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-14" title="14"><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">clean_license =</span> <span class="kw">cleaner</span>(license)) </a>
+<a class="sourceLine" id="cb23-15" title="15"></a>
+<a class="sourceLine" id="cb23-16" title="16">db <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb23-17" title="17"><span class="st">  </span><span class="kw">count</span>(clean_license, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 96 x 2
 ##    clean_license      n
 ##    &lt;chr&gt;          &lt;int&gt;
-##  1 gpl2            6647
-##  2 gpl3            3372
-##  3 mit             1556
-##  4 gpl              525
-##  5 gpl2gpl3         301
-##  6 apachelicense2   176
-##  7 lgpl3            163
-##  8 cc0              133
-##  9 bsd3clause       118
-## 10 agpl3             95
-## # … with 79 more rows</code></pre>
+##  1 gpl2            7206
+##  2 gpl3            3696
+##  3 mit             1644
+##  4 gpl              547
+##  5 artistic2        490
+##  6 gpl2gpl3         302
+##  7 lgpl3            196
+##  8 apachelicense2   184
+##  9 cc0              133
+## 10 bsd3clause       126
+## # … with 86 more rows</code></pre>
 <p>How many GPL related licenses?</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># How many GPL based licenses ? </span></a>
-<a class="sourceLine" id="cb19-2" title="2">n_gpl &lt;-<span class="st"> </span><span class="kw">str_detect</span>(db<span class="op">$</span>clean_license, <span class="st">&quot;gpl&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-3" title="3"><span class="st">  </span><span class="kw">sum</span>()</a>
-<a class="sourceLine" id="cb19-4" title="4">n_gpl</a></code></pre></div>
-<pre><code>## [1] 11333</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">(n_gpl <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(db)) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
-<pre><code>## [1] 82.19466</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co"># How many GPL based licenses ? </span></a>
+<a class="sourceLine" id="cb25-2" title="2">n_gpl &lt;-<span class="st"> </span><span class="kw">str_detect</span>(db<span class="op">$</span>clean_license, <span class="st">&quot;gpl&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb25-3" title="3"><span class="st">  </span><span class="kw">sum</span>(<span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb25-4" title="4">n_gpl</a></code></pre></div>
+<pre><code>## [1] 12393</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">(n_gpl <span class="op">/</span><span class="st"> </span><span class="kw">nrow</span>(db)) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<pre><code>## [1] 80.32277</code></pre>
 <p>How may licenses are used just once?</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">db <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-2" title="2"><span class="st">  </span><span class="kw">count</span>(clean_license) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-3" title="3"><span class="st">  </span><span class="kw">filter</span>(n <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
-<pre><code>## # A tibble: 28 x 2
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">db <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-2" title="2"><span class="st">  </span><span class="kw">count</span>(clean_license) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-3" title="3"><span class="st">  </span><span class="kw">filter</span>(n <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 31 x 2
 ##    clean_license             n
 ##    &lt;chr&gt;                 &lt;int&gt;
 ##  1 apachelicenseversion2     1
-##  2 ccbysa2                   1
-##  3 cecill2gpl2               1
-##  4 cpl1                      1
-##  5 epl1                      1
-##  6 eupl11                    1
-##  7 freebsdgpl2               1
-##  8 gpl1                      1
-##  9 gpl210                    1
-## 10 gpl215                    1
-## # … with 18 more rows</code></pre>
+##  2 artistic2gpl2             1
+##  3 ccbysa2                   1
+##  4 cecill2gpl2               1
+##  5 cpl                       1
+##  6 cpl1                      1
+##  7 eupl11                    1
+##  8 freebsdgpl2               1
+##  9 gpl1                      1
+## 10 gpl210                    1
+## # … with 21 more rows</code></pre>
 <p>What are the 10 most frequent licenses?</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">db <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-2" title="2"><span class="st">  </span><span class="kw">count</span>(clean_license, <span class="dt">sort =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb25-3" title="3"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">db <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="st">  </span><span class="kw">count</span>(clean_license, <span class="dt">sort =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-3" title="3"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## Selecting by n</code></pre>
 <pre><code>## # A tibble: 10 x 2
 ##    clean_license      n
 ##    &lt;chr&gt;          &lt;int&gt;
-##  1 gpl2            6647
-##  2 gpl3            3372
-##  3 mit             1556
-##  4 gpl              525
-##  5 gpl2gpl3         301
-##  6 apachelicense2   176
-##  7 lgpl3            163
-##  8 cc0              133
-##  9 bsd3clause       118
-## 10 agpl3             95</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">db <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-2" title="2"><span class="st">  </span><span class="kw">count</span>(clean_license, <span class="dt">sort =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-3" title="3"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-4" title="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(clean_license, n), n )) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb28-5" title="5"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb28-6" title="6"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb28-7" title="7"><span class="st">  </span><span class="kw">labs</span>(</a>
-<a class="sourceLine" id="cb28-8" title="8">    <span class="dt">title =</span> <span class="st">&quot;10 most used licenses on the CRAN&quot;</span>,</a>
-<a class="sourceLine" id="cb28-9" title="9">    <span class="dt">substile =</span> glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;Made on the {Sys.Date()}&quot;</span>), </a>
-<a class="sourceLine" id="cb28-10" title="10">    <span class="dt">x =</span> <span class="st">&quot;License&quot;</span>, </a>
-<a class="sourceLine" id="cb28-11" title="11">    <span class="dt">y =</span> <span class="st">&quot;Volume&quot;</span></a>
-<a class="sourceLine" id="cb28-12" title="12">  ) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb28-13" title="13"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+##  1 gpl2            7206
+##  2 gpl3            3696
+##  3 mit             1644
+##  4 gpl              547
+##  5 artistic2        490
+##  6 gpl2gpl3         302
+##  7 lgpl3            196
+##  8 apachelicense2   184
+##  9 cc0              133
+## 10 bsd3clause       126</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">db <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="st">  </span><span class="kw">count</span>(clean_license, <span class="dt">sort =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">10</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-4" title="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(clean_license, n), n )) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-5" title="5"><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-6" title="6"><span class="st">  </span><span class="kw">coord_flip</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb34-7" title="7"><span class="st">  </span><span class="kw">labs</span>(</a>
+<a class="sourceLine" id="cb34-8" title="8">    <span class="dt">title =</span> <span class="st">&quot;10 most used licenses on the CRAN / Bioconductor&quot;</span>,</a>
+<a class="sourceLine" id="cb34-9" title="9">    <span class="dt">substile =</span> glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&quot;Made on the {Sys.Date()}&quot;</span>), </a>
+<a class="sourceLine" id="cb34-10" title="10">    <span class="dt">x =</span> <span class="st">&quot;License&quot;</span>, </a>
+<a class="sourceLine" id="cb34-11" title="11">    <span class="dt">y =</span> <span class="st">&quot;Volume&quot;</span></a>
+<a class="sourceLine" id="cb34-12" title="12">  ) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-13" title="13"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <pre><code>## Selecting by n</code></pre>
-<p><img src="licensing-r_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-</div>
-<div id="bioconductor" class="section level2">
-<h2><span class="header-section-number">2.2</span> Bioconductor</h2>
-<blockquote>
-<p>To Do</p>
-</blockquote>
-</div>
-<div id="github" class="section level2">
-<h2><span class="header-section-number">2.3</span> GitHub</h2>
-<blockquote>
-<p>Maybe search the top 1000 ?</p>
-</blockquote>
+<p><img src="licensing-r_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 
 </div>
 </div>

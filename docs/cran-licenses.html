@@ -134,9 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#what-is-this-book-about"><i class="fa fa-check"></i><b>1.2</b> What is this book about</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#diving-into-the-cran-database"><i class="fa fa-check"></i><b>2.1</b> Diving into the CRAN database</a></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#bioconductor"><i class="fa fa-check"></i><b>2.2</b> Bioconductor</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#github"><i class="fa fa-check"></i><b>2.3</b> GitHub</a></li>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#diving-into-the-cran-bioconductor-database"><i class="fa fa-check"></i><b>2.1</b> Diving into the CRAN &amp; BioConductor database</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="what-is-a-license-and-why-you-should-care.html"><a href="what-is-a-license-and-why-you-should-care.html"><i class="fa fa-check"></i><b>3</b> What is a license (and why you should care)</a><ul>
 <li class="chapter" data-level="3.1" data-path="what-is-a-license-and-why-you-should-care.html"><a href="what-is-a-license-and-why-you-should-care.html#definition"><i class="fa fa-check"></i><b>3.1</b> Definition</a><ul>
@@ -222,7 +220,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="about-r-license" class="section level2">
 <h2><span class="header-section-number">4.2</span> About R license</h2>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">licence</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">licence</span>()</a></code></pre></div>
 <pre><code>## 
 ## This software is distributed under the terms of the GNU General
 ## Public License, either Version 2, June 1991 or Version 3, June 2007.
@@ -271,23 +269,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="the-ten-most-used" class="section level2">
 <h2><span class="header-section-number">4.3</span> The ten most used</h2>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">db <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb32-2" title="2"><span class="st">  </span><span class="kw">count</span>(license, <span class="dt">sort =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb32-3" title="3"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">db <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="st">  </span><span class="kw">count</span>(license, <span class="dt">sort =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-3" title="3"><span class="st">  </span><span class="kw">top_n</span>(<span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## Selecting by n</code></pre>
 <pre><code>## # A tibble: 10 x 2
 ##    license                  n
 ##    &lt;chr&gt;                &lt;int&gt;
-##  1 GPL (&gt;= 2)            3985
-##  2 GPL-3                 2478
-##  3 GPL-2                 2403
-##  4 MIT + file LICENSE    1530
-##  5 GPL (&gt;= 3)             674
-##  6 GPL                    521
-##  7 GPL-2 | GPL-3          300
-##  8 GPL-3 | file LICENSE   134
-##  9 CC0                    133
-## 10 LGPL-3                 116</code></pre>
+##  1 GPL (&gt;= 2)            4291
+##  2 GPL-3                 2719
+##  3 GPL-2                 2633
+##  4 MIT + file LICENSE    1612
+##  5 GPL (&gt;= 3)             729
+##  6 GPL                    543
+##  7 Artistic-2.0           482
+##  8 GPL-2 | GPL-3          301
+##  9 GPL-3 | file LICENSE   143
+## 10 LGPL-3                 141</code></pre>
 <div id="agpl" class="section level4">
 <h4><span class="header-section-number">4.3.0.1</span> AGPL</h4>
 <ul>
@@ -319,29 +317,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="region-based-licenses" class="section level2">
 <h2><span class="header-section-number">4.4</span> Region-based licenses</h2>
 <p>Example: CeCILL - <a href="http://www.cecill.info/" class="uri">http://www.cecill.info/</a></p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">db<span class="op">$</span>clean_license <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-2" title="2"><span class="st">  </span><span class="kw">grep</span>(<span class="dt">pattern =</span> <span class="st">&quot;cecill&quot;</span>, <span class="dt">x =</span> ., <span class="dt">value =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-3" title="3"><span class="st">  </span><span class="kw">length</span>()</a></code></pre></div>
-<pre><code>## [1] 19</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">db<span class="op">$</span>clean_license <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb41-2" title="2"><span class="st">  </span><span class="kw">grep</span>(<span class="dt">pattern =</span> <span class="st">&quot;cecill&quot;</span>, <span class="dt">x =</span> ., <span class="dt">value =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb41-3" title="3"><span class="st">  </span><span class="kw">length</span>()</a></code></pre></div>
+<pre><code>## [1] 22</code></pre>
 </div>
 <div id="restrictive-licenses" class="section level2">
 <h2><span class="header-section-number">4.5</span> Restrictive licenses</h2>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">db <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span><span class="kw">filter</span>(license_restricts_use <span class="op">==</span><span class="st"> &quot;yes&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-3" title="3"><span class="st">  </span><span class="kw">select</span>(package, license)</a></code></pre></div>
-<pre><code>##                 package            license
-## 1                 akima ACM | file LICENSE
-## 2             alphahull       file LICENSE
-## 3                asypow ACM | file LICENSE
-## 4                gpclib       file LICENSE
-## 5                  momr       Artistic-2.0
-## 6  PredictiveRegression       file LICENSE
-## 7               regtest       file LICENSE
-## 8                rindex       file LICENSE
-## 9          rngwell19937       file LICENSE
-## 10                sfdct    CC BY-NC-SA 4.0
-## 11                sigQC       file LICENSE
-## 12              tripack ACM | file LICENSE</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">db <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb43-2" title="2"><span class="st">  </span><span class="kw">filter</span>(license_restricts_use <span class="op">==</span><span class="st"> &quot;yes&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-3" title="3"><span class="st">  </span><span class="kw">select</span>(package, license)</a></code></pre></div>
+<pre><code>##                 package                     license
+## 1                 akima          ACM | file LICENSE
+## 2             alphahull                file LICENSE
+## 3                asypow          ACM | file LICENSE
+## 4                gpclib                file LICENSE
+## 5                  momr                Artistic-2.0
+## 6  PredictiveRegression                file LICENSE
+## 7               regtest                file LICENSE
+## 8                rindex                file LICENSE
+## 9          rngwell19937                file LICENSE
+## 10                sfdct             CC BY-NC-SA 4.0
+## 11                sigQC                file LICENSE
+## 12              tripack          ACM | file LICENSE
+## 13                 CNEr        GPL-2 | file LICENSE
+## 14             genArise                file LICENSE
+## 15       GraphAlignment                file LICENSE
+## 16              MotifDb Artistic-2.0 | file LICENSE
+## 17             RankProd                file LICENSE
+## 18                 SPIA                file LICENSE</code></pre>
 <ul>
 <li><p>ACM</p></li>
 <li><p>CC BY-NC-SA 4.0</p></li>

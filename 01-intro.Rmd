@@ -1,24 +1,33 @@
 # Introduction {#intro}
 
-## Diving into the CRAN database
+## Diving into the CRAN & BioConductor database
 
-- Getting all the database 
+```{r}
+library(tidyverse)
+```
+
+- Getting all the packages 
 
 ```{r}
 # Done on
 Sys.time()
 # Getting the DB
-db <- tools::CRAN_package_db()
+cran_db <- tools::CRAN_package_db() %>% thinkr::clean_names()
+
+bioc_db <- read.dcf(url("https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES")) %>% as.data.frame() %>% thinkr::clean_names()
+```
+
+ 
+```{r}
+cran_small <- cran_db %>% 
+  select(package, contains("license")) %>%
+  mutate(src = "cran")
+bioc_small <- bioc_db %>% 
+  select(package, contains("license")) %>%
+  mutate(src = "bioc")
+db <- rbind(cran_small, bioc_small)
 ```
  
-Doing a little bit of cleaning
-
-```{r}
-library(tidyverse)
-
-# Cleaning the colnames 
-db <- thinkr::clean_names(db)
-```
 
 How many different licenses?
 
@@ -44,6 +53,11 @@ Counting the `license_is_foss`:
 # Not that much information
 db %>% 
   count(license_is_foss)
+```
+
+```{r}
+db %>%
+  filter(license_is_foss == "no")
 ```
 
 How many package have a license with restrictive use?
@@ -88,7 +102,7 @@ How many GPL related licenses?
 ```{r}
 # How many GPL based licenses ? 
 n_gpl <- str_detect(db$clean_license, "gpl") %>%
-  sum()
+  sum(na.rm = TRUE)
 n_gpl
 
 (n_gpl / nrow(db)) * 100
@@ -119,20 +133,10 @@ db %>%
   geom_col() + 
   coord_flip() +
   labs(
-    title = "10 most used licenses on the CRAN",
+    title = "10 most used licenses on the CRAN / Bioconductor",
     substile = glue::glue("Made on the {Sys.Date()}"), 
     x = "License", 
     y = "Volume"
   ) + 
   theme_minimal()
 ```
-
-## Bioconductor 
-
-> To Do
-
-## GitHub
-
-> Maybe search the top 1000 ? 
-  
-
