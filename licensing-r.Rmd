@@ -1,0 +1,188 @@
+--- 
+title: "Licensing R"
+author: "Colin Fay"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Documenting current state of licensing in the R world."
+---
+
+# Licensing R 
+
+Placeholder
+
+
+## Disclaimer
+## What is this book about 
+## Special Thanks 
+
+<!--chapter:end:index.Rmd-->
+
+
+# Introduction {#intro}
+
+Placeholder
+
+
+## Diving into the CRAN & BioConductor database
+
+<!--chapter:end:01-intro.Rmd-->
+
+
+# What is a license (and why you should care)
+
+Placeholder
+
+
+## Definition 
+### License
+### Distribute
+### Free software
+### Copyleft
+## Classification 
+## Implication
+## License compatibility
+
+<!--chapter:end:02-what-is-license.Rmd-->
+
+
+# Licenses in the real world
+
+Placeholder
+
+
+## R license 
+### GPL 2 & 3
+#### GPL 2
+#### GPL 3
+### LGPL 2.1 or later
+#### LGPL
+## Package Licenses
+### "Officially Authorized" Licenses
+### From Bioconductor 
+### The ten most used in packages
+#### MIT
+### CC0
+### Apache License 2
+### BSD3 clause
+## "Non-standard"
+### Region-based licenses
+## Restrictive licenses
+
+<!--chapter:end:03-authorized.Rmd-->
+
+
+# Licensing R code
+
+Placeholder
+
+
+## R-package 
+### Code 
+#### Defining your code reusability
+#### Contribution 
+### Dependancies
+### Data Package
+### Library wrappers
+#### Including non R code (JavaScript, C++, CSS...)
+## Documentation 
+### Software documentation 
+### Publication 
+
+<!--chapter:end:04-r-license.Rmd-->
+
+# Conclusion & Future work
+
+## Current state of the licenses in the R world 
+
+## Next steps
+
+<!--chapter:end:05-summary.Rmd-->
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:06-references.Rmd-->
+
+# Appendix 
+
+## The “GNU Affero General Public License” version 3
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/AGPL-3"))
+```
+
+## The “Artistic License” version 2.0
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/Artistic-2.0"))
+```
+
+
+## The “BSD 2-clause License”
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/BSD_2_clause"))
+```
+
+
+## The “BSD 3-clause License”
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/BSD_3_clause"))
+```
+
+
+## The “GNU General Public License” version 2
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/GPL-2"))
+```
+
+
+## The “GNU General Public License” version 3
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("hhttps://www.r-project.org/Licenses/GPL-3"))
+```
+
+
+## The “GNU Library General Public License” version 2
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/LGPL-2"))
+```
+
+
+## The “GNU Lesser General Public License” version 2.1
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/LGPL-2.1"))
+```
+
+
+## The “GNU Lesser General Public License” version 3
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/LGPL-3"))
+```
+
+
+## The “MIT License”
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/MIT"))
+```
+
+## The “Creative Commons Attribution-ShareAlike International License” version 4.0
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/CC-BY-SA-4.0"))
+```
+
+<!--chapter:end:07-appendix.Rmd-->
+

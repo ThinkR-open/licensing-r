@@ -134,9 +134,40 @@ db %>%
   coord_flip() +
   labs(
     title = "10 most used licenses on the CRAN / Bioconductor",
-    substile = glue::glue("Made on the {Sys.Date()}"), 
+    subtitle = glue::glue("Made on the {Sys.Date()}"), 
     x = "License", 
     y = "Volume"
   ) + 
   theme_minimal()
+
+db %>%
+  filter(src == "cran") %>% 
+  count(clean_license, sort = TRUE) %>%
+  top_n(10) %>%
+  ggplot(aes(reorder(clean_license, n), n )) + 
+  geom_col() + 
+  coord_flip() +
+  labs(
+    title = "10 most used licenses on the CRAN",
+    subtitle = glue::glue("Made on the {Sys.Date()}"), 
+    x = "License", 
+    y = "Volume"
+  ) + 
+  theme_minimal()
+
+db %>%
+  filter(src == "bioc") %>% 
+  count(clean_license, sort = TRUE) %>%
+  top_n(10) %>%
+  ggplot(aes(reorder(clean_license, n), n )) + 
+  geom_col() + 
+  coord_flip() +
+  labs(
+    title = "10 most used licenses on Bioconductor",
+    subtitle = glue::glue("Made on the {Sys.Date()}"), 
+    x = "License", 
+    y = "Volume"
+  ) + 
+  theme_minimal()
+
 ```

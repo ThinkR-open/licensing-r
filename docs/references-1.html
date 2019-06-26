@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 5 Licensing R code | Licensing R</title>
+  <title>References | Licensing R</title>
   <meta name="description" content="Documenting current state of licensing in the R world.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 5 Licensing R code | Licensing R" />
+  <meta property="og:title" content="References | Licensing R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Licensing R code | Licensing R" />
+  <meta name="twitter:title" content="References | Licensing R" />
   
   <meta name="twitter:description" content="Documenting current state of licensing in the R world." />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="licenses-in-the-real-world.html">
-<link rel="next" href="conclusion-future-work.html">
+<link rel="prev" href="references.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2" data-path="conclusion-future-work.html"><a href="conclusion-future-work.html#next-steps"><i class="fa fa-check"></i><b>6.2</b> Next steps</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -205,79 +205,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="licensing-r-code" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Licensing R code</h1>
-<p><em>Checklist about what to think about when defining your R code license</em>.</p>
-<div id="r-package" class="section level2">
-<h2><span class="header-section-number">5.1</span> R-package</h2>
-<div id="code" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> Code</h3>
-<div id="defining-your-code-reusability" class="section level4">
-<h4><span class="header-section-number">5.1.1.1</span> Defining your code reusability</h4>
-<p>Reminder here about how the license you choose impact the way people can reuse your code.</p>
-</div>
-<div id="contribution" class="section level4">
-<h4><span class="header-section-number">5.1.1.2</span> Contribution</h4>
-<p>Discussion here about contribution to your package.</p>
-<p>-asking people to sign a CLA - <a href="https://github.com/ropensci/unconf17/issues/32#issuecomment-294038058" class="uri">https://github.com/ropensci/unconf17/issues/32#issuecomment-294038058</a></p>
-<ul>
-<li>implication for changing license ({covr} example)</li>
-</ul>
-</div>
-</div>
-<div id="dependancies" class="section level3">
-<h3><span class="header-section-number">5.1.2</span> Dependancies</h3>
-<p>License compatibility questions when it comes to using dependencies in a package.</p>
-</div>
-<div id="data-package" class="section level3">
-<h3><span class="header-section-number">5.1.3</span> Data Package</h3>
-<p>How to license a data package?</p>
-<ul>
-<li><p><a href="https://github.com/ropensci/unconf17/issues/61" class="uri">https://github.com/ropensci/unconf17/issues/61</a></p></li>
-<li><p><a href="https://github.com/ropenscilabs/data-packages" class="uri">https://github.com/ropenscilabs/data-packages</a></p></li>
-</ul>
-<p>Examples:</p>
-<ul>
-<li><a href="https://github.com/igraph/igraphdata" class="uri">https://github.com/igraph/igraphdata</a> :</li>
-</ul>
-<p>{igraphdata} has a file LICENSE with each licenses listed : <a href="https://github.com/igraph/igraphdata/blob/master/LICENSE" class="uri">https://github.com/igraph/igraphdata/blob/master/LICENSE</a></p>
-</div>
-<div id="library-wrappers" class="section level3">
-<h3><span class="header-section-number">5.1.4</span> Library wrappers</h3>
-<div id="including-non-r-code-javascript-c-css" class="section level4">
-<h4><span class="header-section-number">5.1.4.1</span> Including non R code (JavaScript, C++, CSS…)</h4>
-<p>How should a code wrapper be licensed?</p>
-<p>Exemple: include others as <code>role=&quot;ctb&quot;</code> with <code>LICENSE.note</code>: see for example <code>{leaflet}</code> <a href="https://github.com/rstudio/leaflet" class="uri">https://github.com/rstudio/leaflet</a> / <a href="https://github.com/rstudio/crosstalk" class="uri">https://github.com/rstudio/crosstalk</a></p>
-</div>
-</div>
-</div>
-<div id="documentation" class="section level2">
-<h2><span class="header-section-number">5.2</span> Documentation</h2>
-<div id="software-documentation" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Software documentation</h3>
-<p>Discussion about code documentation (vignette, bookdown, blog articles…)</p>
-</div>
-<div id="publication" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> Publication</h3>
-<p>Overview of license requirements (if any) for publication in journals.</p>
-<p>Example: JSS</p>
-<blockquote>
-<p>“Code needs to include the GNU General Public Licence (GPL), versions GPL-2 or GPL-3, or a GPL-compatible license for publication in JSS.”</p>
-</blockquote>
-<blockquote>
-<p><a href="https://www.jstatsoft.org/pages/view/authors" class="uri">https://www.jstatsoft.org/pages/view/authors</a></p>
-</blockquote>
+<div id="references-1" class="section level1 unnumbered">
+<h1>References</h1>
 
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="licenses-in-the-real-world.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conclusion-future-work.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="references.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

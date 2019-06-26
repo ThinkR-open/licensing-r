@@ -1,6 +1,71 @@
-# CRAN licenses
+# Licenses in the real world
 
-## "Officially Authorized" Licenses
++ Permissive 
++ Weakly Permissive 
++ Strongly Protective 
++ Network Protective 
+
+![](https://dwheeler.com/essays/floss-license-slide-image.png)
+
+> https://dwheeler.com/essays/floss-license-slide.html
+
++ Permissions
++ Conditions
++ Limitations
+
+## R license 
+
+```{r}
+licence()
+```
+
+### GPL 2 & 3
+
+#### GPL 2
+
+- https://www.r-project.org/Licenses/GPL-2
+
++ Permissions
++ Conditions
++ Limitations
+
+#### GPL 3
+
+- https://www.r-project.org/Licenses/GPL-3
+
++ Permissions
+
+ + Commercial use
+ + Distribution
+ + Modification
+ + Patent use
+ + Private use
+ 
++ Conditions
++ Limitations
+
+
+### LGPL 2.1 or later
+
++ Permissions
++ Conditions
++ Limitations
+
+#### LGPL
+
+- https://www.r-project.org/Licenses/LGPL-2
+
+- https://www.r-project.org/Licenses/LGPL-2.1
+
+- https://www.r-project.org/Licenses/LGPL-3
+
++ Permissions
++ Conditions
++ Limitations
+
+## Package Licenses
+
+### "Officially Authorized" Licenses
 
 From [R Licenses](https://www.r-project.org/Licenses/).
 
@@ -16,60 +81,79 @@ From [R Licenses](https://www.r-project.org/Licenses/).
 + The “MIT License”
 + The “Creative Commons Attribution-ShareAlike International License” version 4.0
 
-## About R license 
+### From Bioconductor 
 
-```{r}
-licence()
-```
+> "Core Bioconductor packages are typically licensed under Artistic-2.0"
 
-### GPL 2 & 3
+[BioConductor Package Guidelines](https://www.bioconductor.org/developers/package-guidelines/)
 
-#### GPL 2
-
-- https://www.r-project.org/Licenses/GPL-2
-
-#### GPL 3
-
-- https://www.r-project.org/Licenses/GPL-3
-
-
-### LGPL 2.1 or later
-
-#### LGPL
-
-- https://www.r-project.org/Licenses/LGPL-2
-
-- https://www.r-project.org/Licenses/LGPL-2.1
-
-- https://www.r-project.org/Licenses/LGPL-3
-
-## The ten most used 
+### The ten most used in packages
 
 ```{r}
 db %>%
-  count(license, sort = TRUE) %>%
+  count(clean_license, sort = TRUE) %>%
   top_n(10)
 ```
 
-#### AGPL
-
-- https://www.r-project.org/Licenses/AGPL-3
-
-### MIT
+#### MIT
 
 - https://www.r-project.org/Licenses/MIT
+
++ Can
+
+/ Commercial Use 
+/ Modify 
+/ Distribute 
+/ Sublicense 
+/ Private Use
+
+
++ Can't
+
+/ Can't hold liable
+
++ Must
+
+/ Include Copyright
+/ Include Licence
+
+Don't forget : 
+
+Entry of the form:
+```
+YEAR:
+COPYRIGHT HOLDER: 
+```
+
+```{r eval = FALSE}
+usethis::use_mit_license("NAME")
+```
 
 ### CC0
 
 - https://creativecommons.org/publicdomain/zero/1.0/
 
-### Apache License
++ Permissions
++ Conditions
++ Limitations
+
+### Apache License 2
+
++ Permissions
++ Conditions
++ Limitations
 
 ### BSD3 clause
 
 - https://www.r-project.org/Licenses/BSD_3_clause
 
-## Region-based licenses
++ Permissions
++ Conditions
++ Limitations
+
+## "Non-standard"
+
+### Region-based licenses
 
 Example: CeCILL - http://www.cecill.info/
 
@@ -92,3 +176,4 @@ db %>%
 - CC BY-NC-SA 4.0
 
 - Artistic-2.0
+

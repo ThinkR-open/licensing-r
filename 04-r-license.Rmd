@@ -4,6 +4,12 @@ _Checklist about what to think about when defining your R code license_.
 
 ## R-package 
 
+### Examples of R licence files 
+
+#### Simple 
+
+
+
 ### Code 
 
 #### Defining your code reusability

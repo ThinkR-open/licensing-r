@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chapter 5 Licensing R code | Licensing R</title>
+  <title>Chapter 4 Licenses in the real world | Licensing R</title>
   <meta name="description" content="Documenting current state of licensing in the R world.">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Chapter 5 Licensing R code | Licensing R" />
+  <meta property="og:title" content="Chapter 4 Licenses in the real world | Licensing R" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Licensing R code | Licensing R" />
+  <meta name="twitter:title" content="Chapter 4 Licenses in the real world | Licensing R" />
   
   <meta name="twitter:description" content="Documenting current state of licensing in the R world." />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="licenses-in-the-real-world.html">
-<link rel="next" href="conclusion-future-work.html">
+<link rel="prev" href="what-is-a-license-and-why-you-should-care.html">
+<link rel="next" href="licensing-r-code.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -205,70 +205,165 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="licensing-r-code" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Licensing R code</h1>
-<p><em>Checklist about what to think about when defining your R code license</em>.</p>
-<div id="r-package" class="section level2">
-<h2><span class="header-section-number">5.1</span> R-package</h2>
-<div id="code" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> Code</h3>
-<div id="defining-your-code-reusability" class="section level4">
-<h4><span class="header-section-number">5.1.1.1</span> Defining your code reusability</h4>
-<p>Reminder here about how the license you choose impact the way people can reuse your code.</p>
-</div>
-<div id="contribution" class="section level4">
-<h4><span class="header-section-number">5.1.1.2</span> Contribution</h4>
-<p>Discussion here about contribution to your package.</p>
-<p>-asking people to sign a CLA - <a href="https://github.com/ropensci/unconf17/issues/32#issuecomment-294038058" class="uri">https://github.com/ropensci/unconf17/issues/32#issuecomment-294038058</a></p>
+<div id="licenses-in-the-real-world" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Licenses in the real world</h1>
+<div id="r-license" class="section level2">
+<h2><span class="header-section-number">4.1</span> R license</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">licence</span>()</code></pre>
+<pre><code>## 
+## This software is distributed under the terms of the GNU General
+## Public License, either Version 2, June 1991 or Version 3, June 2007.
+## The terms of version 2 of the license are in a file called COPYING
+## which you should have received with
+## this software and which can be displayed by RShowDoc(&quot;COPYING&quot;).
+## Version 3 of the license can be displayed by RShowDoc(&quot;GPL-3&quot;).
+## 
+## Copies of both versions 2 and 3 of the license can be found
+## at https://www.R-project.org/Licenses/.
+## 
+## A small number of files (the API header files listed in
+## R_DOC_DIR/COPYRIGHTS) are distributed under the
+## LESSER GNU GENERAL PUBLIC LICENSE, version 2.1 or later.
+## This can be displayed by RShowDoc(&quot;LGPL-2.1&quot;),
+## or obtained at the URI given.
+## Version 3 of the license can be displayed by RShowDoc(&quot;LGPL-3&quot;).
+## 
+## &#39;Share and Enjoy.&#39;</code></pre>
+<div id="gpl-2-3" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> GPL 2 &amp; 3</h3>
+<div id="gpl-2" class="section level4">
+<h4><span class="header-section-number">4.1.1.1</span> GPL 2</h4>
 <ul>
-<li>implication for changing license ({covr} example)</li>
+<li><a href="https://www.r-project.org/Licenses/GPL-2" class="uri">https://www.r-project.org/Licenses/GPL-2</a></li>
+</ul>
+</div>
+<div id="gpl-3" class="section level4">
+<h4><span class="header-section-number">4.1.1.2</span> GPL 3</h4>
+<ul>
+<li><a href="https://www.r-project.org/Licenses/GPL-3" class="uri">https://www.r-project.org/Licenses/GPL-3</a></li>
 </ul>
 </div>
 </div>
-<div id="dependancies" class="section level3">
-<h3><span class="header-section-number">5.1.2</span> Dependancies</h3>
-<p>License compatibility questions when it comes to using dependencies in a package.</p>
-</div>
-<div id="data-package" class="section level3">
-<h3><span class="header-section-number">5.1.3</span> Data Package</h3>
-<p>How to license a data package?</p>
+<div id="lgpl-2.1-or-later" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> LGPL 2.1 or later</h3>
+<div id="lgpl" class="section level4">
+<h4><span class="header-section-number">4.1.2.1</span> LGPL</h4>
 <ul>
-<li><p><a href="https://github.com/ropensci/unconf17/issues/61" class="uri">https://github.com/ropensci/unconf17/issues/61</a></p></li>
-<li><p><a href="https://github.com/ropenscilabs/data-packages" class="uri">https://github.com/ropenscilabs/data-packages</a></p></li>
+<li><p><a href="https://www.r-project.org/Licenses/LGPL-2" class="uri">https://www.r-project.org/Licenses/LGPL-2</a></p></li>
+<li><p><a href="https://www.r-project.org/Licenses/LGPL-2.1" class="uri">https://www.r-project.org/Licenses/LGPL-2.1</a></p></li>
+<li><p><a href="https://www.r-project.org/Licenses/LGPL-3" class="uri">https://www.r-project.org/Licenses/LGPL-3</a></p></li>
 </ul>
-<p>Examples:</p>
+</div>
+</div>
+</div>
+<div id="package-licenses" class="section level2">
+<h2><span class="header-section-number">4.2</span> Package Licenses</h2>
+<div id="officially-authorized-licenses" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> “Officially Authorized” Licenses</h3>
+<p>From <a href="https://www.r-project.org/Licenses/">R Licenses</a>.</p>
 <ul>
-<li><a href="https://github.com/igraph/igraphdata" class="uri">https://github.com/igraph/igraphdata</a> :</li>
+<li>The “GNU Affero General Public License” version 3</li>
+<li>The “Artistic License” version 2.0</li>
+<li>The “BSD 2-clause License”</li>
+<li>The “BSD 3-clause License”</li>
+<li>The “GNU General Public License” version 2</li>
+<li>The “GNU General Public License” version 3</li>
+<li>The “GNU Library General Public License” version 2</li>
+<li>The “GNU Lesser General Public License” version 2.1</li>
+<li>The “GNU Lesser General Public License” version 3</li>
+<li>The “MIT License”</li>
+<li>The “Creative Commons Attribution-ShareAlike International License” version 4.0</li>
 </ul>
-<p>{igraphdata} has a file LICENSE with each licenses listed : <a href="https://github.com/igraph/igraphdata/blob/master/LICENSE" class="uri">https://github.com/igraph/igraphdata/blob/master/LICENSE</a></p>
 </div>
-<div id="library-wrappers" class="section level3">
-<h3><span class="header-section-number">5.1.4</span> Library wrappers</h3>
-<div id="including-non-r-code-javascript-c-css" class="section level4">
-<h4><span class="header-section-number">5.1.4.1</span> Including non R code (JavaScript, C++, CSS…)</h4>
-<p>How should a code wrapper be licensed?</p>
-<p>Exemple: include others as <code>role=&quot;ctb&quot;</code> with <code>LICENSE.note</code>: see for example <code>{leaflet}</code> <a href="https://github.com/rstudio/leaflet" class="uri">https://github.com/rstudio/leaflet</a> / <a href="https://github.com/rstudio/crosstalk" class="uri">https://github.com/rstudio/crosstalk</a></p>
-</div>
-</div>
-</div>
-<div id="documentation" class="section level2">
-<h2><span class="header-section-number">5.2</span> Documentation</h2>
-<div id="software-documentation" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Software documentation</h3>
-<p>Discussion about code documentation (vignette, bookdown, blog articles…)</p>
-</div>
-<div id="publication" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> Publication</h3>
-<p>Overview of license requirements (if any) for publication in journals.</p>
-<p>Example: JSS</p>
+<div id="from-bioconductor" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> From Bioconductor</h3>
 <blockquote>
-<p>“Code needs to include the GNU General Public Licence (GPL), versions GPL-2 or GPL-3, or a GPL-compatible license for publication in JSS.”</p>
+<p>“Core Bioconductor packages are typically licensed under Artistic-2.0”</p>
 </blockquote>
-<blockquote>
-<p><a href="https://www.jstatsoft.org/pages/view/authors" class="uri">https://www.jstatsoft.org/pages/view/authors</a></p>
-</blockquote>
+<p><a href="https://www.bioconductor.org/developers/package-guidelines/">BioConductor Package Guidelines</a></p>
+</div>
+<div id="the-ten-most-used-in-packages" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> The ten most used in packages</h3>
+<pre class="sourceCode r"><code class="sourceCode r">db <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">count</span>(clean_license, <span class="dt">sort =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">top_n</span>(<span class="dv">10</span>)</code></pre>
+<pre><code>## Selecting by n</code></pre>
+<pre><code>## # A tibble: 10 x 2
+##    clean_license      n
+##    &lt;chr&gt;          &lt;int&gt;
+##  1 gpl2            7221
+##  2 gpl3            3771
+##  3 mit             1681
+##  4 gpl              551
+##  5 artistic2        490
+##  6 gpl2gpl3         299
+##  7 lgpl3            198
+##  8 apachelicense2   190
+##  9 cc0              134
+## 10 bsd3clause       126</code></pre>
+<div id="mit" class="section level4">
+<h4><span class="header-section-number">4.2.3.1</span> MIT</h4>
+<ul>
+<li><a href="https://www.r-project.org/Licenses/MIT" class="uri">https://www.r-project.org/Licenses/MIT</a></li>
+</ul>
+</div>
+</div>
+<div id="cc0" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> CC0</h3>
+<ul>
+<li><a href="https://creativecommons.org/publicdomain/zero/1.0/" class="uri">https://creativecommons.org/publicdomain/zero/1.0/</a></li>
+</ul>
+</div>
+<div id="apache-license-2" class="section level3">
+<h3><span class="header-section-number">4.2.5</span> Apache License 2</h3>
+</div>
+<div id="bsd3-clause" class="section level3">
+<h3><span class="header-section-number">4.2.6</span> BSD3 clause</h3>
+<ul>
+<li><a href="https://www.r-project.org/Licenses/BSD_3_clause" class="uri">https://www.r-project.org/Licenses/BSD_3_clause</a></li>
+</ul>
+</div>
+</div>
+<div id="non-standard" class="section level2">
+<h2><span class="header-section-number">4.3</span> “Non-standard”</h2>
+<div id="region-based-licenses" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Region-based licenses</h3>
+<p>Example: CeCILL - <a href="http://www.cecill.info/" class="uri">http://www.cecill.info/</a></p>
+<pre class="sourceCode r"><code class="sourceCode r">db<span class="op">$</span>clean_license <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">grep</span>(<span class="dt">pattern =</span> <span class="st">&quot;cecill&quot;</span>, <span class="dt">x =</span> ., <span class="dt">value =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">length</span>()</code></pre>
+<pre><code>## [1] 22</code></pre>
+</div>
+</div>
+<div id="restrictive-licenses" class="section level2">
+<h2><span class="header-section-number">4.4</span> Restrictive licenses</h2>
+<pre class="sourceCode r"><code class="sourceCode r">db <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(license_restricts_use <span class="op">==</span><span class="st"> &quot;yes&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(package, license)</code></pre>
+<pre><code>##                 package                     license
+## 1                 akima          ACM | file LICENSE
+## 2             alphahull                file LICENSE
+## 3                asypow          ACM | file LICENSE
+## 4                gpclib                file LICENSE
+## 5                  momr                Artistic-2.0
+## 6  PredictiveRegression                file LICENSE
+## 7               regtest                file LICENSE
+## 8          rngwell19937                file LICENSE
+## 9                 sfdct             CC BY-NC-SA 4.0
+## 10                sigQC                file LICENSE
+## 11              tripack          ACM | file LICENSE
+## 12                 CNEr        GPL-2 | file LICENSE
+## 13             genArise                file LICENSE
+## 14       GraphAlignment                file LICENSE
+## 15              MotifDb Artistic-2.0 | file LICENSE
+## 16             RankProd                file LICENSE
+## 17                 SPIA                file LICENSE</code></pre>
+<ul>
+<li><p>ACM</p></li>
+<li><p>CC BY-NC-SA 4.0</p></li>
+<li><p>Artistic-2.0</p></li>
+</ul>
 
-</div>
 </div>
 </div>
             </section>
@@ -276,8 +371,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="licenses-in-the-real-world.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conclusion-future-work.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="what-is-a-license-and-why-you-should-care.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="licensing-r-code.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

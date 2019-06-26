@@ -1,0 +1,26 @@
+[Understanding Open Source and Free Software Licensing - Andrew M. St. Laurent](https://www.oreilly.com/library/view/understanding-open-source/0596005814/)
+
+> Copyright law does not protect any particular idea. Rather, copyright protects only the expression of that idea. 
+
+> Works that are created “for hire” are still subject to copyright protection, under the same terms as described above, but the copyright belongs to the employer of the creator, or the person who commissioned the work, not the creator. 
+
+> The fundamental purpose of open source licensing is to deny anybody the right to exclusively exploit a work.
+
+> As a result, each program that is created presents two distinct types of value. 
+
+- The first is its formal purpose as a database or another application. 
+
+- The second is a potential source of code for use in performing other functions.
+
+> "shrinkwrap license". User is bound:
+
+- not to copy the work (beyond the single copy made for her own use)
+- not to make derivative works based on the work
+- not to authorize anyone else to do either of these two things
+
+The elimination of these three restrictions is the foundation of open source licensing.
+
+Open source users: 
+-  can freely distribute (in exchange for payment or not) copies of the work because of the “open distribution” principle.
+- can freely modify the work and distribute those derivative works (again, whether in exchange for payment or not), because of the “open modification” principle. 
+- The only substantial limitation upon her exercise of these rights that an open source license is likely to impose is that the copies of the work that she distributes, whether the original work or her own derivative work, be themselves licensed in a manner consistent with the original license.

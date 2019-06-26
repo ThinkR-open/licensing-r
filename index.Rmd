@@ -14,11 +14,17 @@ description: "Documenting current state of licensing in the R world."
 
 # Licensing R 
 
+> Licensing for a package which might be distributed is an important but potentially complex subject.
+
+[Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Licensing)
+
 ## Disclaimer
 
 This book is by no mean a legal book and should not be used as such. 
 
 This book aims at helping you decipher the complexity of open source licenses, but if you have legal concerns and questions about open source licenses, please refer to a professional lawyer.
+
+If you think there is a mistake somewhere, or if you want to contribute, please [open an issue](https://github.com/ThinkR-open/licensing-r/issues).
 
 ## What is this book about 
 
@@ -26,7 +32,14 @@ This book aims at two things:
 
 - Documenting the current state of licensing in the R world
 
-- Summarize and explain technical terms specific to open source license.
+- Helping developers make strategic choices about the license they apply to their R packages by summarizing and explaining licenses and technical terms specific to open source licensing.
+
+
+## Special Thanks 
+
+- This book is sponsored by an RConsortium ISC grant. Many thanks to them for supporting the project. 
+
+- A special thank to [Miles McBain](https://milesmcbain.xyz/), who inspired this project.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
