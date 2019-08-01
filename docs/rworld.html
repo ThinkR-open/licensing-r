@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Licenses in the R World | Licensing R</title>
+  <meta name="description" content="Documenting current state of licensing in the R world." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Licenses in the R World | Licensing R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Documenting current state of licensing in the R world." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Licenses in the R World | Licensing R" />
+  
+  <meta name="twitter:description" content="Documenting current state of licensing in the R world." />
+  
+
+<meta name="author" content="Colin Fay" />
+
+
+<meta name="date" content="2019-07-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="whatis.html">
+<link rel="next" href="rlicense.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Licensing R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Licensing R</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#disclaimer"><i class="fa fa-check"></i>Disclaimer</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#what-is-this-book-about"><i class="fa fa-check"></i>What is this book about</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#content"><i class="fa fa-check"></i>Content</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#special-thanks"><i class="fa fa-check"></i>Special Thanks</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#diving-into-the-cran-bioconductor-database"><i class="fa fa-check"></i><b>1.1</b> Diving into the CRAN &amp; BioConductor database</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#get-all-the-packages"><i class="fa fa-check"></i><b>1.1.1</b> Get all the packages</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#data-cleansing"><i class="fa fa-check"></i><b>1.1.2</b> Data cleansing</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#extracting-information"><i class="fa fa-check"></i><b>1.2</b> Extracting information</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#counting-the-licenses"><i class="fa fa-check"></i><b>1.2.1</b> Counting the licenses</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#packages-with-non-foss-restrictive-use-licenses"><i class="fa fa-check"></i><b>1.2.2</b> Packages with non-foss / restrictive-use licenses</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#getting-a-more-global-idea"><i class="fa fa-check"></i><b>1.3</b> Getting a more global idea</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#how-many-gpl-related-licenses"><i class="fa fa-check"></i><b>1.3.1</b> How many GPL related licenses?</a></li>
+<li class="chapter" data-level="1.3.2" data-path="intro.html"><a href="intro.html#the-10-most-frequent-licenses"><i class="fa fa-check"></i><b>1.3.2</b> The 10 most frequent licenses?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#a-visual-representation-of-the-licenses"><i class="fa fa-check"></i><b>1.4</b> A visual representation of the licenses</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="whatis.html"><a href="whatis.html"><i class="fa fa-check"></i><b>2</b> What is a license (and why you should care)</a><ul>
+<li class="chapter" data-level="2.1" data-path="whatis.html"><a href="whatis.html#copyright-is-everywhere"><i class="fa fa-check"></i><b>2.1</b> Copyright is everywhere</a></li>
+<li class="chapter" data-level="2.2" data-path="whatis.html"><a href="whatis.html#key-terms-of-licensing"><i class="fa fa-check"></i><b>2.2</b> Key terms of licensing</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="whatis.html"><a href="whatis.html#use-and-reuse"><i class="fa fa-check"></i><b>2.2.1</b> Use and reuse</a></li>
+<li class="chapter" data-level="2.2.2" data-path="whatis.html"><a href="whatis.html#source-code-package"><i class="fa fa-check"></i><b>2.2.2</b> Source code &amp; package</a></li>
+<li class="chapter" data-level="2.2.3" data-path="whatis.html"><a href="whatis.html#standard-modified-versions"><i class="fa fa-check"></i><b>2.2.3</b> Standard &amp; Modified versions</a></li>
+<li class="chapter" data-level="2.2.4" data-path="whatis.html"><a href="whatis.html#distribute-convey"><i class="fa fa-check"></i><b>2.2.4</b> Distribute &amp; Convey</a></li>
+<li class="chapter" data-level="2.2.5" data-path="whatis.html"><a href="whatis.html#distribute-use-privately"><i class="fa fa-check"></i><b>2.2.5</b> Distribute &amp; use privately</a></li>
+<li class="chapter" data-level="2.2.6" data-path="whatis.html"><a href="whatis.html#link-to"><i class="fa fa-check"></i><b>2.2.6</b> Link to</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="whatis.html"><a href="whatis.html#warranties"><i class="fa fa-check"></i><b>2.3</b> Warranties</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rworld.html"><a href="rworld.html"><i class="fa fa-check"></i><b>3</b> Licenses in the R World</a><ul>
+<li class="chapter" data-level="3.1" data-path="rworld.html"><a href="rworld.html#r-license"><i class="fa fa-check"></i><b>3.1</b> R license</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="rworld.html"><a href="rworld.html#what-does-that-license-imply"><i class="fa fa-check"></i><b>3.1.1</b> What does that license imply?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="rworld.html"><a href="rworld.html#is-an-r-extension-linking"><i class="fa fa-check"></i><b>3.1.2</b> Is an R extension linking?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="rworld.html"><a href="rworld.html#package-licenses"><i class="fa fa-check"></i><b>3.2</b> Package Licenses</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="rworld.html"><a href="rworld.html#officially-authorized-licenses"><i class="fa fa-check"></i><b>3.2.1</b> “Officially Authorized” Licenses</a></li>
+<li class="chapter" data-level="3.2.2" data-path="rworld.html"><a href="rworld.html#from-bioconductor"><i class="fa fa-check"></i><b>3.2.2</b> From Bioconductor</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="rworld.html"><a href="rworld.html#classifying-the-11-official-licenses"><i class="fa fa-check"></i><b>3.3</b> Classifying the 11 “official” licenses</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="rworld.html"><a href="rworld.html#by-degrees-of-permissiveness"><i class="fa fa-check"></i><b>3.3.1</b> By degrees of “permissiveness”</a></li>
+<li class="chapter" data-level="3.3.2" data-path="rworld.html"><a href="rworld.html#section"><i class="fa fa-check"></i><b>3.3.2</b> </a></li>
+<li class="chapter" data-level="3.3.3" data-path="rworld.html"><a href="rworld.html#by-permission"><i class="fa fa-check"></i><b>3.3.3</b> By permission</a></li>
+<li class="chapter" data-level="3.3.4" data-path="rworld.html"><a href="rworld.html#by-obligation"><i class="fa fa-check"></i><b>3.3.4</b> By obligation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="rworld.html"><a href="rworld.html#non-standard"><i class="fa fa-check"></i><b>3.4</b> “Non-standard”</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="rworld.html"><a href="rworld.html#region-based-licenses"><i class="fa fa-check"></i><b>3.4.1</b> Region-based licenses</a></li>
+<li class="chapter" data-level="3.4.2" data-path="rworld.html"><a href="rworld.html#restrictive-licenses"><i class="fa fa-check"></i><b>3.4.2</b> Restrictive licenses</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rlicense.html"><a href="rlicense.html"><i class="fa fa-check"></i><b>4</b> Common patterns for licensing R</a><ul>
+<li class="chapter" data-level="4.1" data-path="rlicense.html"><a href="rlicense.html#r-package"><i class="fa fa-check"></i><b>4.1</b> R-package</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="rlicense.html"><a href="rlicense.html#r-base"><i class="fa fa-check"></i><b>4.1.1</b> R &amp; <code>{base}</code></a></li>
+<li class="chapter" data-level="4.1.2" data-path="rlicense.html"><a href="rlicense.html#dependencies-in-description"><i class="fa fa-check"></i><b>4.1.2</b> Dependencies in DESCRIPTION</a></li>
+<li class="chapter" data-level="4.1.3" data-path="rlicense.html"><a href="rlicense.html#including-someone-elses-code"><i class="fa fa-check"></i><b>4.1.3</b> Including someone else’s code</a></li>
+<li class="chapter" data-level="4.1.4" data-path="rlicense.html"><a href="rlicense.html#data-package"><i class="fa fa-check"></i><b>4.1.4</b> Data package</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="rlicense.html"><a href="rlicense.html#shiny-apps"><i class="fa fa-check"></i><b>4.2</b> Shiny Apps</a></li>
+<li class="chapter" data-level="4.3" data-path="rlicense.html"><a href="rlicense.html#about-contribution"><i class="fa fa-check"></i><b>4.3</b> About contribution</a></li>
+<li class="chapter" data-level="4.4" data-path="rlicense.html"><a href="rlicense.html#documentation"><i class="fa fa-check"></i><b>4.4</b> Documentation</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="rlicense.html"><a href="rlicense.html#software-documentation"><i class="fa fa-check"></i><b>4.4.1</b> Software documentation</a></li>
+<li class="chapter" data-level="4.4.2" data-path="rlicense.html"><a href="rlicense.html#publication"><i class="fa fa-check"></i><b>4.4.2</b> Publication</a></li>
+<li class="chapter" data-level="4.4.3" data-path="rlicense.html"><a href="rlicense.html#online-content"><i class="fa fa-check"></i><b>4.4.3</b> Online content</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="practical.html"><a href="practical.html"><i class="fa fa-check"></i><b>5</b> A Practical Guide</a><ul>
+<li class="chapter" data-level="5.1" data-path="practical.html"><a href="practical.html#usethis"><i class="fa fa-check"></i><b>5.1</b> {usethis}</a></li>
+<li class="chapter" data-level="5.2" data-path="practical.html"><a href="practical.html#dependency-graph"><i class="fa fa-check"></i><b>5.2</b> dependency graph</a></li>
+<li class="chapter" data-level="5.3" data-path="practical.html"><a href="practical.html#function-to-parse-license-info"><i class="fa fa-check"></i><b>5.3</b> Function to parse license info</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>6</b> Conclusion &amp; Future work</a><ul>
+<li class="chapter" data-level="6.1" data-path="summary.html"><a href="summary.html#current-state-of-the-licenses-in-the-r-world"><i class="fa fa-check"></i><b>6.1</b> Current state of the licenses in the R world</a></li>
+<li class="chapter" data-level="6.2" data-path="summary.html"><a href="summary.html#next-steps"><i class="fa fa-check"></i><b>6.2</b> Next steps</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="7" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>7</b> Appendix</a><ul>
+<li class="chapter" data-level="7.1" data-path="appendix.html"><a href="appendix.html#AGPL3"><i class="fa fa-check"></i><b>7.1</b> The “GNU Affero General Public License” version 3</a></li>
+<li class="chapter" data-level="7.2" data-path="appendix.html"><a href="appendix.html#Artistic2"><i class="fa fa-check"></i><b>7.2</b> The “Artistic License” version 2.0</a></li>
+<li class="chapter" data-level="7.3" data-path="appendix.html"><a href="appendix.html#BSD2"><i class="fa fa-check"></i><b>7.3</b> The “BSD 2-clause License”</a></li>
+<li class="chapter" data-level="7.4" data-path="appendix.html"><a href="appendix.html#BSD3"><i class="fa fa-check"></i><b>7.4</b> The “BSD 3-clause License”</a></li>
+<li class="chapter" data-level="7.5" data-path="appendix.html"><a href="appendix.html#GPL2"><i class="fa fa-check"></i><b>7.5</b> The “GNU General Public License” version 2</a></li>
+<li class="chapter" data-level="7.6" data-path="appendix.html"><a href="appendix.html#GPL3"><i class="fa fa-check"></i><b>7.6</b> The “GNU General Public License” version 3</a></li>
+<li class="chapter" data-level="7.7" data-path="appendix.html"><a href="appendix.html#GLPL2"><i class="fa fa-check"></i><b>7.7</b> The “GNU Library General Public License” version 2</a></li>
+<li class="chapter" data-level="7.8" data-path="appendix.html"><a href="appendix.html#GLPL21"><i class="fa fa-check"></i><b>7.8</b> The “GNU Lesser General Public License” version 2.1</a></li>
+<li class="chapter" data-level="7.9" data-path="appendix.html"><a href="appendix.html#GLPL3"><i class="fa fa-check"></i><b>7.9</b> The “GNU Lesser General Public License” version 3</a></li>
+<li class="chapter" data-level="7.10" data-path="appendix.html"><a href="appendix.html#MIT"><i class="fa fa-check"></i><b>7.10</b> The “MIT License”</a></li>
+<li class="chapter" data-level="7.11" data-path="appendix.html"><a href="appendix.html#CCBYSA"><i class="fa fa-check"></i><b>7.11</b> The “Creative Commons Attribution-ShareAlike International License” version 4.0</a><ul>
+<li class="chapter" data-level="7.11.1" data-path="appendix.html"><a href="appendix.html#GPLcompatible"><i class="fa fa-check"></i><b>7.11.1</b> GPL-compatible licenses</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Licensing R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rworld" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Licenses in the R World</h1>
+<p>Disclaimer: <strong>This book is by no mean a legal book and should not be used as such.</strong> This book aims at helping you decipher the complexity of open source licenses, but if you have legal concerns and questions about open source licenses, <strong>please refer to a professional lawyer</strong>.</p>
+
+<div class "right" align = "right">
+      <button class="favorite styled" type="button" 
+      onclick = "$('.sourceCode').toggle()">
+      Show / Hide all code
+      </button>
+    </div>
+    
+<div id="r-license" class="section level2">
+<h2><span class="header-section-number">3.1</span> R license</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">licence</span>()</code></pre>
+<pre><code>## 
+## This software is distributed under the terms of the GNU General
+## Public License, either Version 2, June 1991 or Version 3, June 2007.
+## The terms of version 2 of the license are in a file called COPYING
+## which you should have received with
+## this software and which can be displayed by RShowDoc(&quot;COPYING&quot;).
+## Version 3 of the license can be displayed by RShowDoc(&quot;GPL-3&quot;).
+## 
+## Copies of both versions 2 and 3 of the license can be found
+## at https://www.R-project.org/Licenses/.
+## 
+## A small number of files (the API header files listed in
+## R_DOC_DIR/COPYRIGHTS) are distributed under the
+## LESSER GNU GENERAL PUBLIC LICENSE, version 2.1 or later.
+## This can be displayed by RShowDoc(&quot;LGPL-2.1&quot;),
+## or obtained at the URI given.
+## Version 3 of the license can be displayed by RShowDoc(&quot;LGPL-3&quot;).
+## 
+## &#39;Share and Enjoy.&#39;</code></pre>
+<div id="what-does-that-license-imply" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> What does that license imply?</h3>
+<p>From <a href="https://www.gnu.org/licenses/gpl-faq.en.html#GPLStaticVsDynamic">the GNU GPL FAQ</a>:</p>
+<blockquote>
+<p>Does the GPL have different requirements for statically vs dynamically linked modules with a covered work? (#GPLStaticVsDynamic)</p>
+</blockquote>
+<blockquote>
+<p>No. Linking a GPL <span class="tooltip">
+covered work
+<span class="tooltiptext">A 'covered work' means either the unmodified Program or a work based on the Program. (GPL-3 license)</span>
+</span> statically or dynamically with other modules is making a combined work based on the GPL covered work. Thus, the terms and conditions of the GNU General Public License cover the whole combination.</p>
+</blockquote>
+<p>As we can see in this part of the GPL FAQ, <strong>“Linking a GPL covered work statically or dynamically with other modules is making a combined work based on the GPL covered work”</strong>. That would mean that, as R is GPL, any work linking dynamically or statically to R would have to be GPL-based also.</p>
+</div>
+<div id="is-an-r-extension-linking" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Is an R extension linking?</h3>
+<p>Most of the time, when we are creating R-extensions, we’re building packages. Packages enhance R in the sense that they are extention to R, and they add functionnalities in an R runtime, not to R itself. Which seems to match the definition of a plug-in:</p>
+<blockquote>
+<p>In computing, a plug-in (or plugin, add-in, addin, add-on, or addon) is a software component that adds a specific feature to an existing computer program. When a program supports plug-ins, it enables customization.</p>
+</blockquote>
+<div class="right">
+<p><a href="https://en.wikipedia.org/wiki/Plug-in_(computing)" class="uri">https://en.wikipedia.org/wiki/Plug-in_(computing)</a></p>
+</div>
+<p>The R Core team uses a quite similar term (“add-on”) to describe R packages: packages are named “add-on” packages in the <a href="https://cran.r-project.org/doc/manuals/r-release/R-admin.html#Add_002don-packages">R Installation and Administration</a> manuals.</p>
+<p>As said before, this book is not legal advice but aims at providing elements to understand how lincensing works. Here are elements from the GPL FAQ that provide information about the status of an R package, regarding wether or not R license impacts the choice of a package license</p>
+<p>According to <span class="tooltip">
+FSF
+<span class="tooltiptext">Free Software Foundation</span>
+</span>, any derivative work of GPL licensed work is to be licensed under GPL-compatible license.</p>
+<p>In the <a href="https://www.gnu.org/licenses/gpl-faq.en.html#GPLPlugins">GPL FAQ</a>, “When is a program and its plug-ins considered a single combined program?”, the FSF states that :</p>
+<blockquote>
+<p>It depends on how the main program invokes its plug-ins. If the main program uses fork and exec to invoke plug-ins, and they establish intimate communication by sharing complex data structures, or shipping complex data structures back and forth, that can make them one single combined program. A main program that uses simple fork and exec to invoke plug-ins and does not establish intimate communication between them results in the plug-ins being a separate program.</p>
+</blockquote>
+<blockquote>
+<p>If the main program dynamically links plug-ins, and they make function calls to each other and share data structures, we believe they form a single combined program, which must be treated as an extension of both the main program and the plug-ins. <strong>If the main program dynamically links plug-ins, but the communication between them is limited to invoking the ‘main’ function of the plug-in with some options and waiting for it to return, that is a borderline case.</strong></p>
+</blockquote>
+<p>In the <a href="https://www.gnu.org/licenses/gpl-faq.en.html#GPLPluginsInNF">GPL FAQ</a>, “If I write a plug-in to use with a GPL-covered program, what requirements does that impose on the licenses I can use for distributing my plug-in?”, the FSF states that :</p>
+<blockquote>
+<p>If the main program and the plugins are a single combined program then this means you must license the plug-in under the GPL or a GPL-compatible free software license and distribute it with source code in a GPL-compliant way. <strong>A main program that is separate from its plug-ins makes no requirements for the plug-ins</strong>.</p>
+</blockquote>
+<p>In the <a href="https://www.gnu.org/licenses/gpl-faq.en.html#GPLPluginsInNF">GPL FAQ</a>, “Can I apply the GPL when writing a plug-in for a nonfree program?”, the FSF states that :</p>
+<blockquote>
+<p>If the main program and the plugins are a single combined program then this means you must license the plug-in under the GPL or a GPL-compatible free software license and distribute it with source code in a GPL-compliant way. <strong>A main program that is separate from its plug-ins makes no requirements for the plug-ins</strong>.</p>
+</blockquote>
+<p>We’ll leave to the reader the appreciation about wether or not an R package can be considered as an addin which is separate from R as a program.</p>
+</div>
+</div>
+<div id="package-licenses" class="section level2">
+<h2><span class="header-section-number">3.2</span> Package Licenses</h2>
+<p>Most of the time, when you are talking about R extensions, we are talking about R packages, which are to be “officially” distributed through CRAN and / or Bioconductor.</p>
+<div id="officially-authorized-licenses" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> “Officially Authorized” Licenses</h3>
+<p>From <a href="https://www.r-project.org/Licenses/">R Licenses</a>.</p>
+<ul>
+<li>The “GNU Affero General Public License” version 3 (AGPL)</li>
+<li>The “Artistic License” version 2.0</li>
+<li>The “BSD 2-clause License”</li>
+<li>The “BSD 3-clause License”</li>
+<li>The “GNU General Public License” version 2 (GPLv2)</li>
+<li>The “GNU General Public License” version 3 (GPLv3)</li>
+<li>The “GNU Library General Public License” version 2 (LGPLv2)</li>
+<li>The “GNU Lesser General Public License” version 2.1 (LGPLv2.1)</li>
+<li>The “GNU Lesser General Public License” version 3 (LGPLv3)</li>
+<li>The “MIT License”</li>
+<li>The “Creative Commons Attribution-ShareAlike International License” version 4.0 (CC BY-SA 4)</li>
+</ul>
+<p>Note that all these licenses are found in <a href="appendix.html#GPLcompatible">the list of GPL compatible licenses</a>, with the exception of CC BY-SA, which is :</p>
+<blockquote>
+<p>one-way compatible with the GNU GPL version 3: this means you may license your modified versions of CC BY-SA 4.0 materials under GNU GPL version 3, but you may not relicense GPL 3 licensed works under CC BY-SA 4.0.</p>
+</blockquote>
+<div class="right">
+<p><a href="https://www.gnu.org/licenses/license-list.en.html#ccbysa" class="uri">https://www.gnu.org/licenses/license-list.en.html#ccbysa</a></p>
+</div>
+<p>You’ll also find on the <a href="https://creativecommons.org/share-your-work/licensing-considerations/compatible-licenses">Creative Common compatibility list</a> that CC BY-SA version 4.0 is compatible with GPL, version 3 only, and also one-way compatible.</p>
+</div>
+<div id="from-bioconductor" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> From Bioconductor</h3>
+<blockquote>
+<p>“License:” field: should preferably refer to a standard license (…) using one of <strong>R’s standard specifications</strong>. Be specific about any version that applies (e.g., GPL-2). Core Bioconductor packages are typically licensed under Artistic-2.0. To specify a non-standard license, include a file named LICENSE in your package (containing the full terms of your license) and use the string “file LICENSE” (without the double quotes) in this “License:” field. The package should contain only code that can be redistributed according to the package license. <strong>Be aware of the licensing agreements for packages you are depending on in your package. Not all packages are open source even if they are publicly available</strong>.</p>
+</blockquote>
+<p><a href="https://www.bioconductor.org/developers/package-guidelines/">BioConductor Package Guidelines</a></p>
+<hr />
+</div>
+</div>
+<div id="classifying-the-11-official-licenses" class="section level2">
+<h2><span class="header-section-number">3.3</span> Classifying the 11 “official” licenses</h2>
+<p>Now that we have seen these 11 “official” licenses, how can you choose one? Let’s gather here some information from the web about what you can / can’t do with these</p>
+<div id="by-degrees-of-permissiveness" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> By degrees of “permissiveness”</h3>
+<p>From <a href="https://dwheeler.com/essays/floss-license-slide.html">The Free-Libre / Open Source Software (FLOSS) License Slide</a></p>
+<p><img src="https://dwheeler.com/essays/floss-license-slide-image.png" /></p>
+</div>
+<div id="section" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> </h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
+url &lt;-<span class="st"> </span><span class="kw">read_html</span>(<span class="st">&quot;https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses&quot;</span>)
+tbl &lt;-<span class="st"> </span>url <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">html_node</span>(<span class="st">&quot;table&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">html_table</span>()
+tbl &lt;-<span class="st"> </span>tbl <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(License <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(
+    <span class="st">&quot;GNU Affero General Public License&quot;</span>, <span class="st">&quot;Artistic License&quot;</span>, <span class="st">&quot;BSD License&quot;</span>, 
+    <span class="st">&quot;GNU General Public License&quot;</span>, <span class="st">&quot;GNU Lesser General Public License&quot;</span>, 
+    <span class="st">&quot;MIT license / X11 license&quot;</span>, <span class="st">&quot;CC-BY-SA&quot;</span>
+  )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate_all</span>(<span class="op">~</span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">[[0-9]*</span><span class="ch">\\</span><span class="st">]&quot;</span>, <span class="st">&quot;&quot;</span>, .x))
+tbl <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(License, Linking, Distribution, Modification, <span class="st">`</span><span class="dt">Patent grant</span><span class="st">`</span>,<span class="st">`</span><span class="dt">Private use</span><span class="st">`</span>,Sublicensing, <span class="st">`</span><span class="dt">TM grant</span><span class="st">`</span>)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["License"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Linking"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Distribution"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Modification"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Patent grant"],"name":[5],"type":["chr"],"align":["left"]},{"label":["Private use"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Sublicensing"],"name":[7],"type":["chr"],"align":["left"]},{"label":["TM grant"],"name":[8],"type":["chr"],"align":["left"]}],"data":[{"1":"Artistic License","2":"With restrictions","3":"With restrictions","4":"With restrictions","5":"No","6":"Permissive","7":"With restrictions","8":"No"},{"1":"BSD License","2":"Permissive","3":"Permissive","4":"Permissive","5":"Manually","6":"Yes","7":"Permissive","8":"Manually"},{"1":"CC-BY-SA","2":"Copylefted","3":"Copylefted","4":"Copylefted","5":"No","6":"Yes","7":"No","8":"?"},{"1":"GNU Affero General Public License","2":"GNU GPLv3 only","3":"Copylefted","4":"Copylefted","5":"Yes","6":"No network usage","7":"Copylefted","8":"Yes"},{"1":"GNU General Public License","2":"GPLv3 compatible only","3":"Copylefted","4":"Copylefted","5":"Yes","6":"Yes","7":"Copylefted","8":"Yes"},{"1":"GNU Lesser General Public License","2":"With restrictions","3":"Copylefted","4":"Copylefted","5":"Yes","6":"Yes","7":"Copylefted","8":"Yes"},{"1":"MIT license / X11 license","2":"Permissive","3":"Permissive","4":"Permissive","5":"Manually","6":"Yes","7":"Permissive","8":"Manually"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ul>
+<li><strong>Linking</strong> - linking of the licensed code with code licensed under a different license (e.g. when the code is provided as a library)</li>
+<li><strong>Distribution</strong> - distribution of the code to third parties</li>
+<li><strong>Modification</strong> - modification of the code by a licensee</li>
+<li><strong>Patent grant</strong> - protection of licensees from patent claims made by code contributors regarding their contribution, and protection of contributors from patent claims made by licensees</li>
+<li><strong>Private use</strong> - whether modification to the code must be shared with the community or may be used privately (e.g. internal use by a corporation)</li>
+<li><strong>Sublicensing</strong> - whether modified code may be licensed under a different license (for example a copyright) or must retain the same license under which it was provided</li>
+<li><strong>Trademark grant</strong> - use of trademarks associated with the licensed code or its contributors by a licensee</li>
+</ul>
+<!--SHINY.SINGLETON[f965fedaf8018f87d7b1b26ffc985f270e938821]-->
+<style>.right{ text-align: right;}</style>
+<!--/SHINY.SINGLETON[f965fedaf8018f87d7b1b26ffc985f270e938821]-->
+<div class="right">
+<a href="https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses">Comparison of free and open-source software licenses</a>
+</div>
+</div>
+<div id="by-permission" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> By permission</h3>
+<p>Adapted from <a href="https://tldrlegal.com">TL;DR Legal</a></p>
+<table>
+<colgroup>
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right"></th>
+<th align="right">Commercial Use</th>
+<th align="right">Modify</th>
+<th align="right">Distribute</th>
+<th align="right">Sublicense</th>
+<th align="right">Private Use</th>
+<th align="right">Hold Liable</th>
+<th align="right">Place Warranty</th>
+<th align="right">Use Trademark</th>
+<th align="right">Use Patent Claims</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">AGPLv3</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Cannot</td>
+<td align="right">NA</td>
+<td align="right">Cannot</td>
+<td align="right">Can</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="even">
+<td align="right">Artistic 2</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Cannot</td>
+<td align="right">-</td>
+<td align="right">Cannot</td>
+<td align="right">-</td>
+</tr>
+<tr class="odd">
+<td align="right">BSD 2-clause</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">Cannot</td>
+<td align="right">Can</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="even">
+<td align="right">BSD 3-clause</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">Cannot</td>
+<td align="right">–:</td>
+<td align="right">Cannot</td>
+<td align="right">-</td>
+</tr>
+<tr class="odd">
+<td align="right">GPLv2</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Cannot</td>
+<td align="right">-</td>
+<td align="right">Cannot</td>
+<td align="right">Can</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="even">
+<td align="right">GPLv3</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Cannot</td>
+<td align="right">-</td>
+<td align="right">Cannot</td>
+<td align="right">Can</td>
+<td align="right">-</td>
+<td align="right">Can</td>
+</tr>
+<tr class="odd">
+<td align="right">LGPLv2</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="even">
+<td align="right">LGPLv2.1</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Cannot</td>
+<td align="right">-</td>
+<td align="right">Cannot</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="odd">
+<td align="right">LGPLv3</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Cannot</td>
+<td align="right">-</td>
+<td align="right">Cannot</td>
+<td align="right">Can</td>
+<td align="right">-</td>
+<td align="right">Can</td>
+</tr>
+<tr class="even">
+<td align="right">MIT</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Cannot</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="odd">
+<td align="right">CC BY-SA 4</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Can</td>
+<td align="right">Cannot</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="by-obligation" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> By obligation</h3>
+<p>Adapted from <a href="https://tldrlegal.com">TL;DR Legal</a></p>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="14%" />
+<col width="3%" />
+<col width="3%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right"></th>
+<th align="right">Include Copyright</th>
+<th align="right">Include License</th>
+<th align="right">Include Original</th>
+<th align="right">State Changes</th>
+<th align="right">Disclose source</th>
+<th align="right">Include install instruction</th>
+<th align="right">Rename</th>
+<th>Include Notice</th>
+<th>Give Credit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">AGPLv3</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">NA</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td align="right">Artistic 2</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">-</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td align="right">BSD 2-clause</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td align="right">BSD 3-clause</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td align="right">GPLv2</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td align="right">GPLv3</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td align="right">LGPLv2</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td align="right">LGPLv2.1</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td>yes</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td align="right">LGPLv3</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td align="right">MIT</td>
+<td align="right">yes</td>
+<td align="right">yes</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td align="right">CC BY-SA 4</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td>-</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="non-standard" class="section level2">
+<h2><span class="header-section-number">3.4</span> “Non-standard”</h2>
+<div id="region-based-licenses" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Region-based licenses</h3>
+<p>Example: CeCILL - <a href="http://www.cecill.info/" class="uri">http://www.cecill.info/</a></p>
+<pre class="sourceCode r"><code class="sourceCode r">cecill &lt;-<span class="st"> </span>full_db <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(license, <span class="st">&quot;CeCILL&quot;</span>))
+cecill <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(package, <span class="kw">contains</span>(<span class="st">&quot;license&quot;</span>))</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["package"],"name":[1],"type":["chr"],"align":["left"]},{"label":["license"],"name":[2],"type":["chr"],"align":["left"]},{"label":["license_is_foss"],"name":[3],"type":["chr"],"align":["left"]},{"label":["license_restricts_use"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"AnthropMMD","2":"CeCILL-2 | file LICENSE","3":"NA","4":"NA"},{"1":"blackbox","2":"CeCILL-2","3":"NA","4":"NA"},{"1":"cvmgof","2":"CeCILL","3":"NA","4":"NA"},{"1":"FisPro","2":"CeCILL","3":"NA","4":"NA"},{"1":"genepop","2":"CeCILL-2","3":"NA","4":"NA"},{"1":"GPoM","2":"CeCILL-2","3":"NA","4":"NA"},{"1":"iDynoR","2":"CeCILL","3":"NA","4":"NA"},{"1":"Infusion","2":"CeCILL-2","3":"NA","4":"NA"},{"1":"kappalab","2":"CeCILL","3":"NA","4":"NA"},{"1":"mistral","2":"CeCILL","3":"NA","4":"NA"},{"1":"multisensi","2":"CeCILL-2","3":"NA","4":"NA"},{"1":"n1qn1","2":"CeCILL-2","3":"NA","4":"NA"},{"1":"neldermead","2":"CeCILL-2","3":"NA","4":"NA"},{"1":"optimbase","2":"CeCILL-2","3":"NA","4":"NA"},{"1":"optimsimplex","2":"CeCILL-2","3":"NA","4":"NA"},{"1":"osmose","2":"CeCILL","3":"NA","4":"NA"},{"1":"PELVIS","2":"CeCILL-2 | file LICENSE","3":"NA","4":"NA"},{"1":"prevR","2":"CeCILL","3":"NA","4":"NA"},{"1":"RXMCDA","2":"CeCILL-2","3":"NA","4":"NA"},{"1":"SCGLR","2":"CeCILL-2 | GPL-2","3":"NA","4":"NA"},{"1":"spaMM","2":"CeCILL-2","3":"NA","4":"NA"},{"1":"biosigner","2":"CeCILL","3":"NA","4":"NA"},{"1":"proFIA","2":"CeCILL","3":"NA","4":"NA"},{"1":"ropls","2":"CeCILL","3":"NA","4":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>24 packages have chosen a CeCILL-based license, which is a French licence for open source software.</p>
+<p>Let’s just for the sake of exploration have a look at the domain part of the emails from the maintainers:</p>
+<pre class="sourceCode r"><code class="sourceCode r">cecill<span class="op">$</span>maintainer <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">str_match_all</span>(<span class="st">&quot;@([^&gt;]*)&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">map_chr</span>(<span class="dv">2</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">table</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">as_tibble</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["."],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"gmail.com","2":"5"},{"1":"umontpellier.fr","2":"4"},{"1":"ird.fr","2":"2"},{"1":"u-bordeaux.fr","2":"2"},{"1":"cesbio.cnes.fr","2":"1"},{"1":"cirad.fr","2":"1"},{"1":"inra.fr","2":"1"},{"1":"inria.fr","2":"1"},{"1":"irstea.fr","2":"1"},{"1":"telecom-bretagne.eu","2":"1"},{"1":"univ-pau.fr","2":"1"},{"1":"yahoo.fr","2":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Has you can see, these are mostly (we can’t tell for the gmail and yahoo part) french entities emails: “umontpellier.fr” is the university of Montpellier, IRD is a French research institute, u-bordeaux.fr is the university of Bordeaux, etc.</p>
+<p>What is CeCILL? CeCILL is a French, GPL-Compatible license that comes in three flavors: CeCILL (version 1, 2, and 2.1), CeCILL-B and CeCILL-C. The idea behind this new license was to create “a license which is compatible with French laws and with the principles from anglo-saxon open source licenses.” (our translation from French).</p>
+<!--SHINY.SINGLETON[f965fedaf8018f87d7b1b26ffc985f270e938821]-->
+<style>.right{ text-align: right;}</style>
+<!--/SHINY.SINGLETON[f965fedaf8018f87d7b1b26ffc985f270e938821]-->
+<div class="right">
+<a href="http://www.cecill.info/objectifs.fr.html">CeCILL - Objectifs</a>
+</div>
+<p>Note that CeCILL-B &amp; CeCILL-C are <a href="https://www.gnu.org/licenses/license-list.en.html#GPLIncompatibleLicenses">non GPL-compatible</a></p>
+</div>
+<div id="restrictive-licenses" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Restrictive licenses</h3>
+<p>Let’s now have a look at the licenses which the author(s) choose to list as “restricts uses”:</p>
+<pre class="sourceCode r"><code class="sourceCode r">ru &lt;-<span class="st"> </span>db <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(license_restricts_use <span class="op">==</span><span class="st"> &quot;yes&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(package, license, src)
+ru</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["package"],"name":[1],"type":["chr"],"align":["left"]},{"label":["license"],"name":[2],"type":["chr"],"align":["left"]},{"label":["src"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"akima","2":"ACM | file LICENSE","3":"cran"},{"1":"alphahull","2":"file LICENSE","3":"cran"},{"1":"asypow","2":"ACM | file LICENSE","3":"cran"},{"1":"gpclib","2":"file LICENSE","3":"cran"},{"1":"momr","2":"Artistic-2.0","3":"cran"},{"1":"PredictiveRegression","2":"file LICENSE","3":"cran"},{"1":"regtest","2":"file LICENSE","3":"cran"},{"1":"rngwell19937","2":"file LICENSE","3":"cran"},{"1":"sfdct","2":"CC BY-NC-SA 4.0","3":"cran"},{"1":"sigQC","2":"file LICENSE","3":"cran"},{"1":"tripack","2":"ACM | file LICENSE","3":"cran"},{"1":"CNEr","2":"GPL-2 | file LICENSE","3":"bioc"},{"1":"genArise","2":"file LICENSE","3":"bioc"},{"1":"GraphAlignment","2":"file LICENSE","3":"bioc"},{"1":"MotifDb","2":"Artistic-2.0 | file LICENSE","3":"bioc"},{"1":"RankProd","2":"file LICENSE","3":"bioc"},{"1":"SPIA","2":"file LICENSE","3":"bioc"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>What is a “restrictive use” of a package?</p>
+<p>According to GNU,</p>
+<blockquote>
+<p>A program is free software if the program’s users have the four essential freedoms:</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>The freedom to run the program as you wish, for any purpose (freedom 0).</li>
+<li>The freedom to study how the program works, and change it so it does your computing as you wish (freedom 1). Access to the source code is a precondition for this.</li>
+<li>The freedom to redistribute copies so you can help others (freedom 2).</li>
+<li>The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.</li>
+</ul>
+</blockquote>
+<!--SHINY.SINGLETON[f965fedaf8018f87d7b1b26ffc985f270e938821]-->
+<style>.right{ text-align: right;}</style>
+<!--/SHINY.SINGLETON[f965fedaf8018f87d7b1b26ffc985f270e938821]-->
+<div class="right">
+<a href="https://www.gnu.org/philosophy/free-sw.en.html">What is free software?</a>
+</div>
+<p>So how can a package be “restrictive” in the sense of the GNU definition of Free Software? It can for exemple:</p>
+<ul>
+<li>Prohibit from commercial use, which is restrictive in the sense of freedom 0. This is for example what you can find in:</li>
+</ul>
+<p><code>{gpclib}</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">readLines</span>(
+  <span class="kw">system.file</span>(<span class="st">&quot;LICENSE&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;gpclib&quot;</span>)
+) <span class="op">%&gt;%</span><span class="st"> </span>glue<span class="op">::</span><span class="kw">as_glue</span>()</code></pre>
+<pre><code>## Free for non-commercial use; commercial use prohibited (see the files
+## `gpc.c&#39; and `gpc.h&#39; for details)</code></pre>
+<p><code>{rngwell19937}</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">readLines</span>(
+  <span class="kw">system.file</span>(<span class="st">&quot;LICENSE&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;rngwell19937&quot;</span>)
+  
+) <span class="op">%&gt;%</span><span class="st"> </span>glue<span class="op">::</span><span class="kw">as_glue</span>()</code></pre>
+<pre><code>## This code can be used freely for personal, academic, or non-commercial purposes.
+## 
+## For commercial purposes, see the conditions formulated in file rngwell19937/src/WELL19937a.c.</code></pre>
+<p>What is interesting in both these package is that the “non-commercial” use is defined by internal files <code>gpc.c</code> / <code>gpc.h</code> / <code>rngwell19937/src/WELL19937a.c</code>.</p>
+<p>Head of <code>gpc.c</code> :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;https://cran.r-project.org/src/contrib/gpclib_1.5-5.tar.gz&quot;</span>, <span class="st">&quot;gpclib.tar.gz&quot;</span>) 
+<span class="kw">untar</span>(<span class="st">&quot;gpclib.tar.gz&quot;</span>)
+<span class="kw">readLines</span>(
+  <span class="st">&quot;gpclib/src/gpc.c&quot;</span>
+)[<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>] <span class="op">%&gt;%</span><span class="st"> </span>glue<span class="op">::</span><span class="kw">as_glue</span>()</code></pre>
+<pre><code>## /*
+## ===========================================================================
+## 
+## Project:   Generic Polygon Clipper
+## 
+##            A new algorithm for calculating the difference, intersection,
+##            exclusive-or or union of arbitrary polygon sets.
+## 
+## File:      gpc.c
+## Author:    Alan Murta (email: gpc@cs.man.ac.uk)
+## Version:   2.32
+## Date:      17th December 2004
+## 
+## Copyright: (C) 1997-2004, Advanced Interfaces Group,
+##            University of Manchester.
+## 
+##            This software is free for non-commercial use. It may be copied,
+##            modified, and redistributed provided that this copyright notice
+##            is preserved on all copies. The intellectual property rights of
+##            the algorithms used reside with the University of Manchester
+##            Advanced Interfaces Group.
+## 
+##            You may not use this software, in whole or in part, in support
+##            of any commercial product without the express consent of the
+##            author.
+## 
+##            There is no warranty or other guarantee of fitness of this
+##            software for any purpose. It is provided solely &quot;as is&quot;.
+## 
+## ===========================================================================</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unlink</span>(<span class="st">&quot;gpclib.tar.gz&quot;</span>)
+<span class="kw">unlink</span>(<span class="st">&quot;gpclib&quot;</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>)</code></pre>
+<p>Head of <code>rngwell19937/src/WELL19937a.c</code> :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;https://cran.r-project.org/src/contrib/rngwell19937_0.6-0.tar.gz&quot;</span>, <span class="st">&quot;rngwell19937.tar.gz&quot;</span>) 
+<span class="kw">untar</span>(<span class="st">&quot;rngwell19937.tar.gz&quot;</span>)
+<span class="kw">readLines</span>(
+  <span class="st">&quot;rngwell19937/src/WELL19937a.c&quot;</span>
+)[<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>] <span class="op">%&gt;%</span><span class="st"> </span>glue<span class="op">::</span><span class="kw">as_glue</span>()</code></pre>
+<pre><code>## /* ***************************************************************************** */
+## /* Copyright:      Francois Panneton and Pierre L&#39;Ecuyer, University of Montreal */
+## /*                 Makoto Matsumoto, Hiroshima University                        */
+## /* Notice:         This code can be used freely for personal, academic,          */
+## /*                 or non-commercial purposes. For commercial purposes,          */
+## /*                 please contact P. L&#39;Ecuyer at: lecuyer@iro.UMontreal.ca       */
+## /* ***************************************************************************** */</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unlink</span>(<span class="st">&quot;rngwell19937.tar.gz&quot;</span>)
+<span class="kw">unlink</span>(<span class="st">&quot;rngwell19937&quot;</span>)</code></pre>
+<p>As you can see, both these packages uses internal C files which have an explicit copyright prevent from any commercial use. Hence, as these packages are doing <code>static linking</code> of code that is under this copyright, there is a restriction notive in the <code>LICENSE</code> file.</p>
+<p>Same goes for <code>{tripack}</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">readLines</span>(
+  <span class="kw">system.file</span>(<span class="st">&quot;LICENSE&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;tripack&quot;</span>)
+) <span class="op">%&gt;%</span><span class="st"> </span>glue<span class="op">::</span><span class="kw">as_glue</span>()</code></pre>
+<pre><code>## 
+## 
+## 1.  Fortran code: 
+## 
+## Copyrighted and Licensed by ACM, 
+## see http://www.acm.org/publications/policies/software-copyright-notice
+## 
+## 
+## 2. R interface and extensions related to Voronoi mosaics
+## (src/voronoi.f, src/left.f): 
+## 
+## The R interface code has been developed as work based on the 
+## ACM licensed code, hence it is also ACM licensed, copyright 
+## is by A. Gebhardt &lt;albrecht.gebhardt@aau.at&gt;. 
+## 
+## In order to fulfill the ACM copyright and license noted above, 
+## it is stated here that this work contains modified ACM material, 
+## and to fulfill this, the modified work including the R interface 
+## is available free to secondary users, and no charge is associated 
+## with such copies.
+## 
+## 3. Helper functions taken from SLATEC (src/dsos.f src/func.f):
+## 
+## Public domain (according to http://en.wikipedia.org/wiki/Netlib)</code></pre>
+<p>which contains a piece of Fortran code licensed under the ACM license.</p>
+<div id="acm" class="section level4">
+<h4><span class="header-section-number">3.4.2.1</span> ACM</h4>
+<p>The ACM, for Association for Computing Machinery, license does not allow to commercially reuse pieces of code under this license:</p>
+<blockquote>
+<p>Noncommercial Use</p>
+</blockquote>
+<blockquote>
+<p>The ACM grants to you (hereafter, User) a royalty-free, nonexclusive right to execute, copy, modify and distribute both the binary and source code solely for academic, research and other similar <strong>noncommercial uses</strong>.</p>
+</blockquote>
+<blockquote>
+<p>Commercial Use</p>
+</blockquote>
+<blockquote>
+<p>Any User wishing to make a commercial use of the Software must contact ACM at <a href="mailto:permissions@acm.org" class="email">permissions@acm.org</a> to arrange an appropriate license. Commercial use includes (1) integrating or incorporating all or part of the source code into a product for sale or license by, or on behalf of, User to third parties, or (2) distribution of the binary or source code to third parties for use with a commercial product sold or licensed by, or on behalf of, User.</p>
+</blockquote>
+<!--SHINY.SINGLETON[f965fedaf8018f87d7b1b26ffc985f270e938821]-->
+<style>.right{ text-align: right;}</style>
+<!--/SHINY.SINGLETON[f965fedaf8018f87d7b1b26ffc985f270e938821]-->
+<div class="right">
+<a href="https://www.acm.org/publications/policies/software-copyright-notice">Software Copyright Notice</a>
+</div>
+<pre class="sourceCode r"><code class="sourceCode r">acm &lt;-<span class="st"> </span>db <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(clean_license, <span class="st">&quot;acm&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(package, license)
+acm</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["package"],"name":[1],"type":["chr"],"align":["left"]},{"label":["license"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"akima","2":"ACM | file LICENSE"},{"1":"asypow","2":"ACM | file LICENSE"},{"1":"molaR","2":"ACM"},{"1":"rangeBuilder","2":"ACM"},{"1":"SLICER","2":"ACM"},{"1":"tripack","2":"ACM | file LICENSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>6 licenses are explicitely listed as ACM. As some packages in the whole just have “file LICENSE”, it’s possible that it’s more.</p>
+</div>
+<div id="cc-by-nc-sa-4.0" class="section level4">
+<h4><span class="header-section-number">3.4.2.2</span> CC BY-NC-SA 4.0</h4>
+<p>Just as ACM, with the CC BY-NC-SA 4.0 license, user can’t reuse code in a commercial context.</p>
+<pre class="sourceCode r"><code class="sourceCode r">ccbysa &lt;-<span class="st"> </span>db <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(clean_license, <span class="st">&quot;ccbysa&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(package, license)
+ccbysa</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["package"],"name":[1],"type":["chr"],"align":["left"]},{"label":["license"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"agridat","2":"CC BY-SA 4.0"},{"1":"alakazam","2":"CC BY-SA 4.0"},{"1":"anyLib","2":"CC BY-SA 4.0"},{"1":"apercu","2":"CC BY-SA 4.0"},{"1":"arnie","2":"CC BY-SA 4.0"},{"1":"cetcolor","2":"CC BY-SA 4.0"},{"1":"diverse","2":"CC BY-SA 4.0"},{"1":"igraphdata","2":"CC BY-SA 4.0 + file LICENSE"},{"1":"inspectr","2":"CC BY-SA 4.0"},{"1":"install.load","2":"CC BY-SA 4.0"},{"1":"piecepackr","2":"CC BY-SA 4.0"},{"1":"rabhit","2":"CC BY-SA 4.0"},{"1":"rdi","2":"CC BY-SA 4.0"},{"1":"scoper","2":"CC BY-SA 4.0"},{"1":"shazam","2":"CC BY-SA 4.0"},{"1":"stackoverflow","2":"CC BY-SA 4.0"},{"1":"stationery","2":"CC BY-SA 4.0"},{"1":"tigger","2":"CC BY-SA 4.0"},{"1":"unikn","2":"CC BY-SA 4.0"},{"1":"webex","2":"CC BY-SA 4.0"},{"1":"zipcode","2":"CC BY-SA 2.0 + file LICENSE"},{"1":"brainImageR","2":"CC BY-SA 4.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>22 licenses are explicitely listed as CC BY-NC-SA 4.0. As some packages in the whole just have “file LICENSE”, it’s possible that it’s more.</p>
+</div>
+<div id="gpl-2-qa" class="section level4">
+<h4><span class="header-section-number">3.4.2.3</span> GPL-2-QA</h4>
+<p>There is one instance of the <code>GPL-2-QA</code> license, which seems to be only used in the <code>{regtest}</code> package:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">readLines</span>(
+  <span class="kw">system.file</span>(<span class="st">&quot;LICENSE&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;regtest&quot;</span>)
+) <span class="op">%&gt;%</span><span class="st"> </span>glue<span class="op">::</span><span class="kw">as_glue</span>()</code></pre>
+<pre><code>## GPL-2-QA
+## 
+## This software is distributed under the GPL-2-QA license.
+## 
+## Motivation for the QA add-on:
+## This license intends to promote quality assurance with the R project.
+## 
+## Why not the standard GPL?
+## The standard GPL does not promote quality assurance. The standard GPL 
+## - does impose some restrictions on software distributors: the obligation to include the license and the source code
+## - but does not impose any restrictions on software users, however, support of beneficiaries is needed for quality assurance
+## 
+## This license requires the following differences from GPL-2 for users and distributors:
+## - users are granted a free right to use the software if and only if they reasonably support R quality assurance once this is defined by the R development team. 
+## - distributors must distribute this licence add-on together with GPL-2 and source code.
+## 
+## What this means:
+## - distibutors are as free to modify and distribute as before, they just have to also distribute the QA license add-on
+## - for users there is no difference today, however, in the future they may have to &#39;pay&#39; for usage by participating in automated distributed regression testing. 
+## 
+## What is distributed regression testing?
+## There is no way software developers can guarantee the software works correctly in all possible circumstances. The number of &#39;possible circumstances&#39; easily explodes in a function that has several input parameters and can run in several environments (hardware, OS, OS version, R version etc.). Therefore the R development team might develop some kind of automated mechanism, which distributes small shares of the necessary combinations to each user of the software and the user contributes the test results to the R project.
+## 
+## What is &#39;reasonable support&#39;?
+## Support is reasonable if QA
+## - does not ask for the users time beyond triggering if/when to donate regression testing
+## - does not ask for more than 1% of the users CPU time (used for R)
+## - does not ask for huge bandwidth (only transmission of test parameters and results, no transmission of code, no transmission without the users agreement)
+## - does not impose security threads to the user, especially
+## - - the user must not be forced to disclose his identity
+## - - regression tests must be completely transparent (open source and already part of the package, not transferred at test time)
+## - - the transfer of test parameters and test results must be completely transparent (no encryption, e.g. plain html)
+## 
+## Copyright 2007 Jens Oehlschl&lt;e4&gt;gel</code></pre>
+<script>$('.sourceCode').hide()</script>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="whatis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rlicense.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["licensing-r.pdf", "licensing-r.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

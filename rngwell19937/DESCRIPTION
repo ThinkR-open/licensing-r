@@ -1,0 +1,25 @@
+Package: rngwell19937
+Title: Random number generator WELL19937a with 53 or 32 bit output
+Version: 0.6-0
+Date: 2014-11-30
+Author: Petr Savicky <savicky@cs.cas.cz>
+Maintainer: Petr Savicky <savicky@cs.cas.cz>
+Description: Long period linear random number generator WELL19937a by
+        F. Panneton, P. L'Ecuyer and M. Matsumoto. The initialization
+        algorithm allows to seed the generator with a
+        numeric vector of an arbitrary length and uses MRG32k5a by
+        P. L'Ecuyer to achieve good quality of the initialization. The
+        output function may be set to provide numbers from the interval
+        (0,1) with 53 (the default) or 32 random bits. WELL19937a is of
+        similar type as Mersenne Twister and has the same period.
+        WELL19937a is slightly slower than Mersenne Twister, but has
+        better equidistribution and "bit-mixing" properties and faster
+        recovery from states with prevailing zeros than Mersenne
+        Twister. All WELL generators with orders 512, 1024, 19937 and
+        44497 can be found in randtoolbox package.
+License: file LICENSE
+Packaged: 2014-11-30 11:34:50 UTC; petr
+NeedsCompilation: yes
+License_restricts_use: yes
+Repository: CRAN
+Date/Publication: 2014-11-30 17:11:25

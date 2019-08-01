@@ -1,16 +1,234 @@
-# Licensing R code
+# Common patterns for licensing R {#rlicense}
 
-_Checklist about what to think about when defining your R code license_.
+`r disclaimer()`
+
+`r button_code()`
+
+Before examining in more depth the link between your package and it environment, let's remind that chosing a license is crucial in defining how your package / code can be used and reused. For example, MIT allows to do almost anything with your code (including copying and pasting your code in a paid, commercial, non-open software), while other licenses are less permissive. 
 
 ## R-package 
 
-### Code 
+In this first part, we'll be talking about lincensing R packages. 
+Here are the several cases: 
 
-#### Defining your code reusability
++ All packages need R / I'm making a package that only depends on base
 
-Reminder here about how the license you choose impact the way people can reuse your code.
++ I'm creating a package that has dependencies listed in the DESCRIPTION file, that might be installed at the same time as my package
 
-#### Contribution 
++ I'm creating a package that has dependencies on internal files that are fully copied and pasted
+
++ I'm creating a package designed to access data
+
+
+### R & `{base}`
+
+_All packages need R / I'm making a package that only depends on base_
+
++ Do you need to have a GPL-compatible license? 
+
+That's a question your law department should answer, but here is the part from the GNU FAQ that might help you get an answer. 
+
+In the [GPL FAQ](https://www.gnu.org/licenses/gpl-faq.en.html#GPLPluginsInNF), "Can I apply the GPL when writing a plug-in for a nonfree program?", the FSF states that : 
+
+> If the main program and the plugins are a single combined program then this means you must license the plug-in under the GPL or a GPL-compatible free software license and distribute it with source code in a GPL-compliant way. __A main program that is separate from its plug-ins makes no requirements for the plug-ins__.
+
+Note also that CRAN allows packages that are licensed under a non GPL-compatible license: for example, [Artistic License 1.0](https://www.gnu.org/licenses/license-list.en.html#ArtisticLicense) or [Common Public License Version 1.0](https://www.gnu.org/licenses/license-list.en.html#CommonPublicLicense10), or the [Lucent Public License](https://www.gnu.org/licenses/license-list.en.html#lucent102)
+
+```{r}
+full_db %>%
+  filter(str_detect(license, "Artistic-1")) %>%
+  select(package, license)
+full_db %>%
+  filter(str_detect(license, "Common Public License Version 1.0")) %>%
+  select(package, license)
+full_db %>%
+  filter(str_detect(license, "Lucent")) %>%
+  select(package, license)
+```
+
+The CRAN policies states: 
+
+> Packages with licenses not listed at https://svn.r-project.org/R/trunk/share/licenses/license.db will generally not be accepted.
+
+Here is the list of these licenses: 
+
+```{r}
+download.file("https://svn.r-project.org/R/trunk/share/licenses/license.db", "licenses.dcf")
+cran_l <- read.dcf("licenses.dcf") %>% 
+  as_tibble() %>% 
+  select(Name, Abbrev, Version)
+unlink("licenses.dcf")
+```
+
+Note that these `r nrow(cran_l)` licenses are more than the 11 licenses officially listed on the [r-project](https://www.r-project.org/Licenses/), and that some of these are not GPL-Compatible (for example [Artistic License 1.0](https://www.gnu.org/licenses/license-list.en.html#ArtisticLicense) or [European Union Public License (EUPL) version 1.1 ](https://www.gnu.org/licenses/license-list.en.html#EUPL-1.1))
+
+Some other licenses are accepted, for example the "Unlimited" license:
+
+```{r}
+full_db %>%
+  filter(str_detect(license, "Unlimited")) %>%
+  select(package, license)
+```
+
+We can also find this restriction concerning licensing of package in the CRAN policies: 
+
+> The package’s license must give the right for CRAN to distribute the package in perpetuity. 
+
+`r right_link("CRAN Repository Policy", "https://cran.r-project.org/web/packages/policies.html")`
+
+### Dependencies in DESCRIPTION
+
+There are three ways you can list package dependencies in the DESCRIPTION: 
+
+- `Depends`: the package is installed at the same time as your package, and it is loaded (attached to your search path) when you load your package. For example, the `{ggraph}` package has listed in `Depends` the `{ggplot2}` package, so when you do `library(ggraph)`, it also attach `{ggplot2}` to the searchPath. 
+- `Imports`: the package is installed at the same time as your package, and it is not loaded (attached to your search path) when you load your package. Yet you can use the functions from the package you've listed in your NAMESPACE. For example, the `{ggraph}` package has listed in `Depends` the `{Rcpp}` package. But when you do `library(ggraph)`, `{Rcpp}` is not attached to your searchPath. Note that here, both `{Rcpp}` and `{ggplot2}` are installed when you install `{ggraph}`.
+- `Suggests`: the package is not installed at the same time as your package, and it is not loaded (attached to your search path) when you load your package. For example, the `{ggraph}` package has listed in `Suggests` the `{network}` package.
+
+We will not classify each of this behavior, but be aware of these three behaviors, and wether or not they classify as one or two programs, or wether or not your package us a modified work of the dependencies is very much subject to interpretation and of the level of interactions between the packages. 
+
+That being said, we can assume that at least `Depends` and `Imports` do dynamic linking, as defined as 
+
+> the `r with_tooltip("executable", "The executable here being the package")` code still contains undefined symbols, plus a list of objects or libraries that will provide definitions for these. Loading the program will load these objects/libraries as well, and perform a final linking. 
+
+<div class = "right">
+https://en.wikipedia.org/wiki/Linker_(computing)#Dynamic_linking)
+</div>
+
+And remember that this is the statement from the GPL FAQ about dynamic linking:
+
+> Linking a GPL covered work", statically or dynamically with other modules is making a combined work based on the GPL covered work. Thus, the terms and conditions of the GNU General Public License cover the whole combination. 
+
+On a more pragmatic level, let's think for a minute about using a dependency which has restrictions, like one with the ACM license, preventing from any commercial use without explicit consent from the author. If one of these packages is listed in `Depends` or `Imports`, it will be installed with your package, and elements of the `NAMESPACE` of this package will be used when your package is used. So this kind of dependency mught be problematic if you choose to go for a more lax license. For example, MIT allows to make commercial use of your code. And it might be understood that allowing your code to be used anywhere would contradict the restriction imposed by one of the needed dependencies. 
+
+### Including someone else's code
+
+_I'm creating a package that has dependencies on internal files that are fully copied and pasted_
+
+Including someone else's code can cover several things: 
+
+- adding a C file which is compiled with the package 
+- adding a piece of R code from another package
+- adding code in another language 
+
+It's a little bit more clear that you are doing __static linking__ therre:
+
+> Static linking is the result of the linker copying all library routines used in the program into the executable image. 
+
+<div class = "right">
+https://en.wikipedia.org/wiki/Linker_(computing)#Static_linking)
+</div>
+
+As you are copying and pasting code from one work into yours, it's more clear that you are doing static linking. Here, you should respect the license under which the code you're using is licensed. For example, MIT allows to freely reused the code 
+
+> Where code is copied (or derived) from the work of others (including from R itself), care must be taken that any copyright/license statements are preserved and authorship is not misrepresented.
+
+`r right_link("CRAN Repository Policy", "https://cran.r-project.org/web/packages/policies.html")`
+
+__Be careful__: the constant in almost every open source licenses is that you should add the disclaimer of non liability in the code you're using. So if ever you are using another library, don't forget to add in your license file what library you are using, and what the license of this specific piece of code is.
+
+#### Bundling JavaScript files
+
+These files are used at running time, they are not compiled when the package is installed.
+
++ the `{leaflet}` package: https://github.com/rstudio/leaflet
+
+This package, designed to do interactive cartography, bundles a series of JavaScript files inside it, not written by the author of the R package. The license of the package is GPL-3, and it is combined with a `LICENSE.note` [file](), which starts as such:
+
+```
+The leaflet package as a whole is distributed under GPL-3 (GNU GENERAL PUBLIC LICENSE version 3).
+
+The leaflet package includes other open source software components. The following is a list of these components (full copies of the license agreements used by these components are included below):
+```
+
+And then you'll find a list of all the licenses for the various elements to be found in the package. 
+
+Also, the list of all authors from the various external elements is to be found in the `DESCRIPTION`
+
+```{r}
+cat(packageDescription("leaflet")[["Author"]])
+```
+
+#### Bundling C / C++ / Fortran files
+
+This format of file is a little bit different as it compiles the files when the package is installed. In other word, they are not "external calls", they become a core of the resulting R package. 
+
+This is for example what we've seen with the `{rngwell19937}` package in the previous chapter:
+
+```{r}
+readLines(
+  system.file("LICENSE", package = "rngwell19937")
+) %>% glue::as_glue()
+```
+
+This `.c` file starting with:
+
+```{r}
+download.file("https://cran.r-project.org/src/contrib/gpclib_1.5-5.tar.gz", "gpclib.tar.gz") 
+untar("gpclib.tar.gz")
+readLines(
+  "gpclib/src/gpc.c"
+)[1:30] %>% glue::as_glue()
+unlink("gpclib.tar.gz")
+unlink("gpclib", recursive = TRUE)
+```
+
+### Data package
+
+How to license a data package? In [this GitHub issue](https://github.com/ropensci/unconf17/issues/61), we can find three common patterns for building a data package: data bundled inside the package, data accessed through an API, data access for files that are online but not through an API. 
+
+#### Data bundled inside the package
+
+This kind of behavior is close to the one from package bundling code written by someone else: if you're packing data inside a package, then the global package should be compatible with the license of the dataset. Including a dataset inside a package that has a non compatible license can create breaking changes where you have to either remove the dataset from the package, or switch the package license. 
+This is for example what happened with the [`{tidytext}`](https://cran.r-project.org/web/packages/tidytext/index.html) package - when first writting the package, Julia Silge and David Robinson included several datasets, and released the package as MIT. 
+
+> We used the knowledge we had at the time and followed the practices we saw other OSS packages for text analysis following. However, it turns out that this was not the right approach from a licensing standpoint, because the lexicon licenses were not the same as the package’s license
+
+`r right_link("Fixing your Mistakes: Sentiment Analysis Edition", "https://juliasilge.com/blog/sentiment-lexicons/")`
+
+So what to do next? As Julia describes in her blogpost, she reached out to every dataset author to get there authorization (or not) to use the dataset in an MIT licensed package : 
+
+> So, where does that leave us?
+
+> + The sentiment lexicon of Bing Liu and collaborators is still a dataset within tidytext, as he has explicitly given permission for us to include it there. If you need a sentiment lexicon to use in another R package, this is the easiest one to use.
+> + The AFINN lexicon is available through textdata, under an OSS license different from tidytext’s license.
+> + The sentiment lexicon of Loughran and McDonald for financial documents is available through textdata for research purposes, but you must obtain a license from the creators for commercial use.
+> + The NRC lexicon is currently not available through any package I am involved in.
+
+`r right_link("Fixing your Mistakes: Sentiment Analysis Edition", "https://juliasilge.com/blog/sentiment-lexicons/")`
+
+So to sum up, two datasets have switched to the `{textdata}` package (see next section), one is still in `{tidytext}` as the author has explicitely given the authorization to do so, and one is not available. 
+
+Another example, the [`{igraphdata}`](https://github.com/igraph/igraphdata), which is released under XX and has a file LICENSE with each licenses for each dataset listed:
+
+```{r}
+readLines(
+  system.file("LICENSE", package = "igraphdata")
+) %>% glue::as_glue()
+```
+
+
+- https://github.com/ropensci/unconf17/issues/61
+
+- https://github.com/ropenscilabs/data-packages
+
+#### Data access for files that are online
+
+A way to be able to serve data in a package is to choose a strategy used in the [`{textdata}`]() package. The package by itself doesn't include any dataset, yet whenever you want to use one of this dataset, you are prompted to accept the license of each dataset. 
+
+<img src = "https://github.com/EmilHvitfeldt/textdata/raw/master/man/figures/textdata_demo.gif"></img>
+
+- https://github.com/ropensci/unconf17/issues/61
+
+- https://github.com/ropenscilabs/data-packages
+
+
+#### Data accessed through an API
+
+It's reasonable to think that accessing data through an API enters covers the same pattern as `{textdata}` does: the package does not carry the data, but it allows to connect to it and to transfer it. 
+
+Althought, even if you don't get the data with the package, using these data is covered by the 
+
+## About contribution 
 
 Discussion here about contribution to your package. 
 
@@ -18,31 +236,8 @@ Discussion here about contribution to your package.
 
 - implication for changing license ({covr} example)
 
-### Dependancies
 
-License compatibility questions when it comes to using dependencies in a package.
 
-### Data Package
-
-How to license a data package?
-
-- https://github.com/ropensci/unconf17/issues/61
-
-- https://github.com/ropenscilabs/data-packages
-
-Examples: 
-
-- https://github.com/igraph/igraphdata : 
-
-{igraphdata} has a file LICENSE with each licenses listed : https://github.com/igraph/igraphdata/blob/master/LICENSE
-
-### Library wrappers
-
-#### Including non R code (JavaScript, C++, CSS...)
-
-How should a code wrapper be licensed? 
-
-Exemple: include others as `role="ctb"` with `LICENSE.note`: see for example `{leaflet}` https://github.com/rstudio/leaflet / https://github.com/rstudio/crosstalk 
 
 ## Documentation 
 
@@ -59,3 +254,9 @@ Example: JSS
 > "Code needs to include the GNU General Public Licence (GPL), versions GPL-2 or GPL-3, or a GPL-compatible license for publication in JSS."
 
 > https://www.jstatsoft.org/pages/view/authors
+
+### Online content 
+
+https://stackoverflow.com/help/licensing
+
+`r hide_code()`

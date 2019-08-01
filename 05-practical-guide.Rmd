@@ -1,0 +1,20 @@
+# A Practical Guide {#practical}
+
+`r disclaimer()`
+
+## {usethis}
+
+MIT
+
+```
+YEAR:
+COPYRIGHT HOLDER: 
+```
+
+```{r eval = FALSE}
+usethis::use_mit_license("NAME")
+```
+
+## dependency graph
+
+## Function to parse license info

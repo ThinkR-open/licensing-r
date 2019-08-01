@@ -1,5 +1,0 @@
-# Conclusion & Future work
-
-## Current state of the licenses in the R world 
-
-## Next steps

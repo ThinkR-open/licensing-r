@@ -1,49 +1,192 @@
-# What is a license (and why you should care)
+# What is a license (and why you should care) {#whatis}
 
-Intro:
+`r disclaimer()`
 
-- why is license important? Potential pitfalls: commercial reuse, license incompatibility, potential issues with changing licenses.
+`r button_code()`
 
-Exemples : 
+## Copyright is everywhere
 
-- Bootstrap: https://github.com/twbs/bootstrap/issues/2054)
+Licensing is an hard but essential part of any software project: it defines what others can and cannot do with the piece of code you've written... 
 
--  `{covr}`: https://github.com/ropensci/unconf17/issues/32
+> "It is very important that you include license information! Otherwise, it may not even be legally correct for others to distribute copies of the package, let alone use it." 
+
+<div class = "right">
+[Writting R Extension](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Licensing)
+</div>
+
+And, it's everywhere: 
+
+> [C]opyright is automatically attached to every novel expression of an idea, whether through text, sounds, or imagery. (...) the words in this paragraph are protected by copyright as soon as they are written.
+
+<div class = "right">
+[Understanding Open Source and Free Software Licensing - Andrew M. St. Laurent](https://www.oreilly.com/library/view/understanding-open-source/0596005814/)
+</div>
+
+So any kind of newly created piece of code is protected by copyright as soon as it's written down. Which means that if a software developer doesn't attach a license to their code, or a too restrictive license, it can be hard (or even impossible) to (re)use the software. 
+
+Let's have a look for example at the `bootstrap` library. In [this issue](https://github.com/twbs/bootstrap/issues/2054) from 2012, a user asked for a License change: [cweagans](https://github.com/cweagans) wants to include the bootstrap library inside a Drupal distribution, but Bootstrap's license at that time being `APLv2`, it was incompatible with `GPLv2`. After almost two years (and 213 comments on the issue), `Bootstrap` [switched to an MIT](https://github.com/twbs/bootstrap/issues/2054#issuecomment-30894685) license. And, as the comment on the issue relates, _"The remaining Apache-only commits were reverted by #11927 and replaced by rewritten, MIT-licensed commits in #11928"_, meaning that some code had to be rewritten to be complient with the new MIT license. 
+
+
+But this was not an easy task: if you decide to change from one license to another, you need to get the permission from all the contributors. This was for example the case in Bootstrap ([_"The fun part of this effort will be getting every contributors explicit permission to make the change"_](https://github.com/twbs/bootstrap/issues/2054#issuecomment-9090952)): more than 530 people had contributed to the project (more than 1000 at the time of writting) at the time of the license change... The R package `{covr}` had the same mechanism, when Jim Hester wanted to switch [from MIT to GPL-3](https://github.com/r-lib/covr/issues/256). 
+
+> Licensors should read and understand the terms and conditions of the license they choose before applying it. 
+
+<div class = "right">
+[CC-BY-SA-4.0](https://www.r-project.org/Licenses/CC-BY-SA-4.0)
+</div>
+
+On the other hand, going for a license which is too permissive can allow anybody to reuse your code: for commercial purposes, and even for military purpose. This is for example the reason why some contributors to Bootstrap didn't want to change to the MIT: they had concern about patent and / or commercial reuse of the software. For example, the [MIT License](https://www.r-project.org/Licenses/MIT), which is very permissive, allows to do (almost) anything with the software licensed under it. 
+
+TODO : also, giving an open source license prevents from any liability on the code.
 
 But first, some definitions.
 
-## Definition 
+## Key terms of licensing 
 
-### License
+Licence is a document that defines how a piece of software, as a whole, can be __used, reused__, __modified__, __distributed__, and __linked to__. Let's start by gathering some definition about these terms. 
 
-Defining what is a license. 
+__Disclaimer__: there are disagreement about some definition of these terms. The definition below are gathered from various sources, and should be taken as guideline, not as legal advices.  
 
-### Distribute
+### Use and reuse
 
-What does "distributing a software" means?
+As defined in [Artistic-2.0](https://www.r-project.org/Licenses/Artistic-2.0), 
 
-=> Code you bundle (distribute) VS code you depend on.
+> You are permitted to use the Standard Version and create and use Modified Versions for any purpose without restriction, provided that you do not Distribute the Modified Version.
 
-### Free software
+GPL:
 
-Defining what is a free software (free beer vs free speech, https://www.gnu.org/philosophy/free-sw.en.html )
+=> Can use the modified version "privately" without any necessity to redistribute.
+
+### Source code & package
+
+As defined in [AGPL-3](https://www.r-project.org/Licenses/AGPL-3), 
+
+> The "source code" for a work means the preferred form of the work for making modifications to it.
+
+As defined in [Artistic-2.0](https://www.r-project.org/Licenses/Artistic-2.0), 
+
+> "Package" means the collection of files distributed by the Copyright Holder, and derivatives of that collection and/or of those files.  A given Package may consist of either the Standard Version, or a Modified Version.
+
+As defined in [GNU FAQ](https://www.gnu.org/licenses/gpl-faq.en.html#MereAggregation), 
+
+> An “aggregate” consists of a number of separate programs, distributed together on the same CD-ROM or other media. The GPL permits you to create and distribute an aggregate, even when the licenses of the other software are nonfree or GPL-incompatible. The only condition is that you cannot release the aggregate under a license that prohibits users from exercising rights that each program's individual license would grant them.
 
 
-### Copyleft
 
-https://www.gnu.org/licenses/licenses.en.html
+### Standard & Modified versions 
 
+As defined in [AGPL-3](https://www.r-project.org/Licenses/AGPL-3), 
 
-## Classification 
+> To “modify” a work means to copy from or adapt all or part of the work in a fashion requiring copyright permission, other than the making of an exact copy. The resulting work is called a “modified version” of the earlier work or a work “based on” the earlier work.
 
-Find a good way to classify licenses, maybe inspired by: https://www.gnu.org/licenses/license-list.en.html#Introduction
+As defined in [Artistic-2.0](https://www.r-project.org/Licenses/Artistic-2.0), 
 
+> "Standard Version" refers to the Package if it has not been modified, or has been modified only in ways explicitly requested by the Copyright Holder.
 
-## Implication
+> "Modified Version" means the Package, if it has been changed, and such changes were not explicitly requested by the Copyright Holder.
 
-What are the implications of choosing a license? 
+As defined in [CC-BY-SA-4.0](https://www.r-project.org/Licenses/CC-BY-SA-4.0), 
 
-## License compatibility
+> Adapted Material means material subject to Copyright and Similar Rights that is derived from or based upon the Licensed Material and in which the Licensed Material is translated, altered, arranged, transformed, or otherwise modified in a manner requiring permission under the Copyright and Similar Rights held by the Licensor
 
-Not all licenses are compatible, see for example Apache & GPL which have a one way compatibility: http://www.apache.org/licenses/GPL-compatibility.html
+### Distribute & Convey
 
+As defined in [Artistic-2.0](https://www.r-project.org/Licenses/Artistic-2.0), 
+
+> "Distribute" means providing a copy of the Package or making it accessible to anyone else, or in the case of a company or organization, to others outside of your company or organization.
+
+selling or giving away
+
+Distribution == share the source code in files ? 
+
+Putting AGPL on a server == distribute (Network Protective licenses).
+
+As defined in [AGPL-3](https://www.r-project.org/Licenses/AGPL-3), 
+
+>   To "propagate" a work means to do anything with it that, without permission, would make you directly or secondarily liable for infringement under applicable copyright law, except executing it on a computer or modifying a private copy.  Propagation includes copying, distribution (with or without modification), making available to the public, and in some countries other activities as well.
+
+>   To "convey" a work means any kind of propagation that enables other parties to make or receive copies.  Mere interaction with a user through a computer network, with no transfer of a copy, is not conveying.
+
+### Distribute & use privately
+
+### Link to
+
++ Static linking: the code is bundled withing the package. 
+
+> Static linking is the result of the linker copying all library routines used in the program into the executable image. 
+
+<div class = "right">
+https://en.wikipedia.org/wiki/Linker_(computing)#Static_linking)
+</div>
+
+As defined in [Artistic-2.0](https://www.r-project.org/Licenses/Artistic-2.0), 
+
+> You may aggregate the Package (either the Standard Version or Modified Version) with other packages and Distribute the resulting aggregation provided that you do not charge a licensing fee for the Package. 
+
+Example: 
+
++ `{shiny}` : https://github.com/rstudio/shiny/tree/master/inst/www/shared
+
++ Dynamic linking: loading the shared library at run time. 
+
+> the executable code still contains undefined symbols, plus a list of objects or libraries that will provide definitions for these. Loading the program will load these objects/libraries as well, and perform a final linking. 
+
+<div class = "right">
+https://en.wikipedia.org/wiki/Linker_(computing)#Dynamic_linking)
+</div>
+
+As defined in [Artistic-2.0](https://www.r-project.org/Licenses/Artistic-2.0), 
+
+> Works (including, but not limited to, modules and scripts) that
+merely extend or make use of the Package, do not, by themselves, cause
+the Package to be a Modified Version.  In addition, such works are not
+considered parts of the Package itself, and are not subject to the terms
+of this license.
+
++ Package dependencies for R package, and for R itself. When releasing a package, you're not bundling R inside the package, the package has to be run on a machine that contains R. 
+
+## Warranties
+
+From []()
+
+```
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+```
+
+From [BSD_2_clause](https://www.r-project.org/Licenses/BSD_2_clause)
+
+```
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+
+From [Artistic-2.0](https://www.r-project.org/Licenses/Artistic-2.0)
+
+```
+THE PACKAGE IS PROVIDED BY THE COPYRIGHT
+HOLDER AND CONTRIBUTORS "AS IS' AND WITHOUT ANY EXPRESS OR IMPLIED
+WARRANTIES.  THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE, OR NON-INFRINGEMENT ARE DISCLAIMED TO THE EXTENT
+PERMITTED BY YOUR LOCAL LAW.  UNLESS REQUIRED BY LAW, NO COPYRIGHT
+HOLDER OR CONTRIBUTOR WILL BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE
+OF THE PACKAGE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+
+`r hide_code()`

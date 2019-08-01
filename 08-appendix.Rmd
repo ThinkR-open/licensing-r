@@ -1,0 +1,134 @@
+# Appendix 
+
+## The “GNU Affero General Public License” version 3 {#AGPL3}
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/AGPL-3"))
+```
+
+## The “Artistic License” version 2.0 {#Artistic2}
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/Artistic-2.0"))
+```
+
+
+## The “BSD 2-clause License” {#BSD2}
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/BSD_2_clause"))
+```
+
+
+## The “BSD 3-clause License” {#BSD3}
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/BSD_3_clause"))
+```
+
+
+## The “GNU General Public License” version 2 {#GPL2}
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/GPL-2"))
+```
+
+
+## The “GNU General Public License” version 3 {#GPL3}
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/GPL-3"))
+```
+
+
+## The “GNU Library General Public License” version 2 {#GLPL2}
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/LGPL-2"))
+```
+
+
+## The “GNU Lesser General Public License” version 2.1  {#GLPL21}
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/LGPL-2.1"))
+```
+
+
+## The “GNU Lesser General Public License” version 3 {#GLPL3}
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/LGPL-3"))
+```
+
+
+## The “MIT License” {#MIT}
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/MIT"))
+```
+
+## The “Creative Commons Attribution-ShareAlike International License” version 4.0 {#CCBYSA}
+
+```{r result = "asis", echo = FALSE}
+glue::as_glue(readLines("https://www.r-project.org/Licenses/CC-BY-SA-4.0"))
+```
+
+### GPL-compatible licenses {#GPLcompatible}
+
+https://www.gnu.org/licenses/license-list.en.html#GPLCompatibleLicenses
+
++ GNU General Public License (GPL) version 3
++ GNU General Public License (GPL) version 2 
++ GNU Lesser General Public License (LGPL) version 3 
++ GNU Lesser General Public License (LGPL) version 2.1
++ GNU Affero General Public License (AGPL) version 3
++ GNU All-Permissive License 
++ Apache License, Version 2.0 
++ Artistic License 2.0 
++ Clarified Artistic License
++ Berkeley Database License
++ Boost Software License
++ Modified BSD license
++ CeCILL version 2
++ The Clear BSD License
++ Cryptix General License
++ eCos license version 2.0
++ Educational Community License 2.0
++ Eiffel Forum License, version 2
++ EU DataGrid Software License
++ Expat License
++ FreeBSD license 
++ Freetype Project License 
++ Historical Permission Notice and Disclaimer
++ License of the iMatix Standard Function Library
++ License of imlib2
++ Independent JPEG Group License 
++ Informal license
++ Intel Open Source License
++ ISC License
++ Mozilla Public License (MPL) version 2.0 
++ NCSA/University of Illinois Open Source License
++ License of Netscape JavaScript
++ OpenLDAP License, Version 2.7
++ License of Perl 5 and below
++ Public Domain 
++ License of Python 2.0.1, 2.1.1, and newer versions
++ License of Python 1.6a2 and earlier versions
++ License of Ruby 
++ SGI Free Software License B, version 2.0
++ Standard ML of New Jersey Copyright License
++ Unicode, Inc. License Agreement for Data Files and Software
++ Universal Permissive License (UPL) 
++ The Unlicense 
++ License of Vim, Version 6.1 or later 
++ W3C Software Notice and License 
++ License of WebM
++ WTFPL, Version 2
++ WxWidgets Library License 
++ X11 License 
++ XFree86 1.1 License
++ License of ZLib
++ Zope Public License, versions 2.0 and 2.1
+
+
