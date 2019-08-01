@@ -101,7 +101,7 @@ license_is_foss <- db %>%
   drop_na()
 ```
 
-The `license_is_foss` (Free Open Source Software) column is not that much informative, as only `r sum(license_is_foss$n)` packages have provided it. But what can be interesting is the `r license_is_foss %>% filter(license_is_foss == "no") %>% pull(n)` package(s) that contains a non-foss license: 
+The `license_is_foss` (Free Open Source Software) column is not that much informative, as only `r sum(license_is_foss$n)` packages have provided it. But what can be interesting is the `r  dplyr::pull(dplyr::filter(license_is_foss, license_is_foss == "no"), n)` package(s) that contains a non-foss license: 
 
 ```{r}
 full_db %>%
