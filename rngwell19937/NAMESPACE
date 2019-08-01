@@ -1,0 +1,6 @@
+export(
+set.initialization,
+set.resolution,
+set.vector.seed,
+well19937.validate)
+

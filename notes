@@ -1,3 +1,9 @@
+> A few “standard” licenses are rather license templates which need additional information to be completed via ‘+ file LICENSE’.
+
+https://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file
+
+> Need to talk about the dual licensing
+
 [Understanding Open Source and Free Software Licensing - Andrew M. St. Laurent](https://www.oreilly.com/library/view/understanding-open-source/0596005814/)
 
 > Copyright law does not protect any particular idea. Rather, copyright protects only the expression of that idea. 

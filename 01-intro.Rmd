@@ -1,87 +1,176 @@
 # Introduction {#intro}
 
+`r disclaimer()` 
+
+`r button_code()`
+
 ## Diving into the CRAN & BioConductor database
+
+Before going deeper into the licenses, let's first have a look into the licenses currently used on CRAN & BioConductor. 
 
 ```{r}
 library(tidyverse)
+theme_set(theme_minimal())
 ```
 
-- Getting all the packages 
+_Note: this version has been compiled on :_
 
 ```{r}
-# Done on
 Sys.time()
+```
+
+
+### Get all the packages
+
+First, let's get a list of all the packages. 
+
+We'll extract the list of packages from CRAN using the `CRAN_package_db()` function from `{tools}`, and the ones from BioConductor by reading the file at `"https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES"`. These two datasets contain the metadata about the packages, as they are provdided in the DESCRIPTION file. 
+
+```{r warning = FALSE}
 # Getting the DB
-cran_db <- tools::CRAN_package_db() %>% thinkr::clean_names()
-
-bioc_db <- read.dcf(url("https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES")) %>% as.data.frame() %>% thinkr::clean_names()
-```
-
- 
-```{r}
-cran_small <- cran_db %>% 
-  select(package, contains("license")) %>%
+cran_db <- tools::CRAN_package_db() %>% 
+  thinkr::clean_names() %>%
   mutate(src = "cran")
-bioc_small <- bioc_db %>% 
-  select(package, contains("license")) %>%
+
+bioc_db <- read.dcf(url("https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES")) %>% 
+  as.data.frame() %>% 
+  thinkr::clean_names()  %>%
   mutate(src = "bioc")
-db <- rbind(cran_small, bioc_small)
+
+full_db <- bind_rows(cran_db, bioc_db)
 ```
+
+These two lists contain: 
+
+- `r nrow(cran_db)` packages from CRAN
+- `r nrow(bioc_db)` packages from BioConductor
+
+So a total of `r nrow(cran_db) + nrow(bioc_db)` packages.
+
+### Data cleansing
  
-
-How many different licenses?
+Let's now select the columns of interest: the ones containing the informations about licenses, and have a look at the 6 first rows of the result. 
 
 ```{r}
-db %>%
+db <- full_db %>% 
+  select(package, contains("license"), src) 
+head(db) 
+```
+
+## Extracting information
+
+### Counting the licenses
+
+```{r}
+# Number of licences
+n_licence <- db %>%
   distinct(license) %>% 
-  count()
+  count() %>% 
+  pull(n)
 ```
 
-Counting the number of package with a licence file:
+In our dataset, we can find `r n_licence` different licences.
 
 ```{r}
-db$has_file_licence <- str_detect(db$license, "file")
+# Number of licences with 'file'
+db <- db %>% 
+  mutate(has_file_license = str_detect(license, "file"))
+n_has_file_license <- db %>% 
+  count(has_file_license)
 
-# How many have a li
-db %>% 
-  count(has_file_licence)
+n_file <- n_has_file_license %>% 
+  filter(has_file_license) %>% 
+  pull(n)
 ```
 
-Counting the `license_is_foss`:
+Out of these `r nrow(db)` packages, `r n_file` contain a licence file — see [#TODO add ref]() for more info about adding licence files. 
+
+### Packages with non-foss / restrictive-use licenses
+
+The dataset also contains a column called `license_is_foss` and one called `License_restricts_use`.
+
+> Fields ‘License_is_FOSS’ and ‘License_restricts_use’ may be added by repositories where information cannot be computed from the name of the license. ‘License_is_FOSS: yes’ is used for licenses which are known to be FOSS, and ‘License_restricts_use’ can have values ‘yes’ or ‘no’ if the LICENSE file is known to restrict users or usage, or known not to.
+
+<div class = "right"> 
+[Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Licensing)
+</div>
 
 ```{r}
-# Not that much information
-db %>% 
-  count(license_is_foss)
+license_is_foss <- db %>% 
+  count(license_is_foss) %>%
+  drop_na()
 ```
 
+The `license_is_foss` (Free Open Source Software) column is not that much informative, as only `r sum(license_is_foss$n)` packages have provided it. But what can be interesting is the `r license_is_foss %>% filter(license_is_foss == "no") %>% pull(n)` package(s) that contains a non-foss license: 
+
 ```{r}
-db %>%
-  filter(license_is_foss == "no")
+full_db %>%
+  filter(license_is_foss == "no") %>% 
+  select(package, license, src)
 ```
 
-How many package have a license with restrictive use?
+We'll get back on this license in [#TODO add ref]().
 
 ```{r}
-db %>% 
-  count(license_restricts_use)
+license_restricts_use <- db %>% 
+  count(license_restricts_use) %>%
+  drop_na()
+```
 
+
+Let's now have a look at the `license_restricts_use` column from the dataset. Few packages (`r nrow(license_restricts_use)`) have this field filled in their `DESCRIPTION`. Just as before, it can be interested to have a look at the packages that have do restrict the use. 
+
++ All the packages with a licence that restricts the use
+
+```{r}
 db %>% 
   filter(license_restricts_use == "yes") %>%
-  select(package, license)
+  select(package, license, src)
+```
 
++ And if we want to have a look at the number of each of these licenses:
+
+```{r}
 db %>% 
   filter(license_restricts_use == "yes") %>%
   count(license, sort = TRUE)
 ```
 
-Cleaning the license name because to get a more global idea
+As we can see, the majority of packages with a licence that restricts the use are based on a license file. 
+
+```{r}
+system.file("LICENSE", package = "rngwell19937") %>% 
+  readLines() %>% 
+  glue::as_glue()
+```
+
+
+```{r}
+system.file("LICENSE", package = "gpclib") %>% 
+  readLines() %>% 
+  glue::as_glue()
+```
+
+We'll get back on this license in [#TODO add ref]().
+
+## Getting a more global idea
+
+There are several ways to insert a license : 
+
++ It can be restricted to precise version (e.g. `GPL-3`)
++ It can be "at least" a version (e.g. `GPL (>= 2)`)
++ It can be two licenses (e.g. `GPL-2 | GPL-3`)
++ It can be accompanied with a LICENSE file (e.g. `LGPL-3 | file LICENSE`)
+
+Also, the license number can be either a number or a number + a zero (e.g `GPL (>= 2.0)`). So far, we have counted the number of different licenses based on a strict match of characters. So `GPL (>= 2.0)` and `GPL (>= 2)` are counted as two different licenses. 
+
+In order to get a broader idea, we'll clean this column so that we can gather the licenses together. 
 
 ```{r}
 cleaner <- compose(
-  # Removing the file licence elements
+  # Removing the file license elements
   ~ gsub("filelicense", "", .x),
-  ~ gsub("filelicence", "", .x),
+  ~ gsub("filelicense", "", .x),
   # Removing empty spaces
   ~ gsub(" ", "", .x),
   # Removing all non-alpha numeric character
@@ -97,26 +186,26 @@ db %>%
   count(clean_license, sort = TRUE)
 ```
 
-How many GPL related licenses?
+As you can see, we now have `r length(unique(db$clean_license))`, while we originally had `r length(unique(db$license))` different licenses. 
+
+_Note: this process was designed to have a broad overview of the licenses, and gathered together the `GPL (>= 2.0)` and `GPL-2` for example. It's designed more as a tool for general overview._
+
+### How many GPL related licenses?
+
+Let's have a look at how many licenses are GPL realted, by detecting the `"gpl"` string in the license column.
 
 ```{r}
 # How many GPL based licenses ? 
 n_gpl <- str_detect(db$clean_license, "gpl") %>%
   sum(na.rm = TRUE)
-n_gpl
-
-(n_gpl / nrow(db)) * 100
 ```
 
-How may licenses are used just once? 
++ `r n_gpl` packages have a license which is a version of `GPL`
++ Which makes `r (n_gpl / nrow(db)) * 100`% of the packages.
 
-```{r}
-db %>%
-  count(clean_license) %>%
-  filter(n == 1)
-```
+### The 10 most frequent licenses?
 
-What are the 10 most frequent licenses?
+Let's see which are the 10 most frequent licenses: 
 
 ```{r}
 db %>%
@@ -124,11 +213,12 @@ db %>%
   top_n(10)
 ```
 
+## A visual representation of the licenses
 
 ```{r}
 db %>%
   count(clean_license, sort = TRUE) %>%
-  top_n(10) %>%
+  top_n(10, n) %>%
   ggplot(aes(reorder(clean_license, n), n )) + 
   geom_col() + 
   coord_flip() +
@@ -137,13 +227,13 @@ db %>%
     subtitle = glue::glue("Made on the {Sys.Date()}"), 
     x = "License", 
     y = "Volume"
-  ) + 
-  theme_minimal()
+  ) 
+  
 
 db %>%
   filter(src == "cran") %>% 
   count(clean_license, sort = TRUE) %>%
-  top_n(10) %>%
+  top_n(10, n) %>%
   ggplot(aes(reorder(clean_license, n), n )) + 
   geom_col() + 
   coord_flip() +
@@ -152,13 +242,12 @@ db %>%
     subtitle = glue::glue("Made on the {Sys.Date()}"), 
     x = "License", 
     y = "Volume"
-  ) + 
-  theme_minimal()
+  ) 
 
 db %>%
   filter(src == "bioc") %>% 
   count(clean_license, sort = TRUE) %>%
-  top_n(10) %>%
+  top_n(10, n) %>%
   ggplot(aes(reorder(clean_license, n), n )) + 
   geom_col() + 
   coord_flip() +
@@ -167,7 +256,8 @@ db %>%
     subtitle = glue::glue("Made on the {Sys.Date()}"), 
     x = "License", 
     y = "Volume"
-  ) + 
-  theme_minimal()
+  ) 
 
 ```
+
+`r hide_code()`

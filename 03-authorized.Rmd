@@ -1,17 +1,8 @@
-# Licenses in the real world
+# Licenses in the R World {#rworld}
 
-+ Permissive 
-+ Weakly Permissive 
-+ Strongly Protective 
-+ Network Protective 
+`r disclaimer()`
 
-![](https://dwheeler.com/essays/floss-license-slide-image.png)
-
-> https://dwheeler.com/essays/floss-license-slide.html
-
-+ Permissions
-+ Conditions
-+ Limitations
+`r button_code()`
 
 ## R license 
 
@@ -19,137 +10,164 @@
 licence()
 ```
 
-### GPL 2 & 3
+### What does that license imply?
 
-#### GPL 2
+From [the GNU GPL FAQ](https://www.gnu.org/licenses/gpl-faq.en.html#GPLStaticVsDynamic): 
 
-- https://www.r-project.org/Licenses/GPL-2
+> Does the GPL have different requirements for statically vs dynamically linked modules with a covered work? (#GPLStaticVsDynamic)
 
-+ Permissions
-+ Conditions
-+ Limitations
+> No. Linking a GPL `r with_tooltip("covered work", "A 'covered work' means either the unmodified Program or a work based on the Program. (GPL-3 license)")` statically or dynamically with other modules is making a combined work based on the GPL covered work. Thus, the terms and conditions of the GNU General Public License cover the whole combination. 
 
-#### GPL 3
+As we can see in this part of the GPL FAQ, __"Linking a GPL covered work statically or dynamically with other modules is making a combined work based on the GPL covered work"__. That would mean that, as R is GPL, any work linking dynamically or statically to R would have to be GPL-based also. 
 
-- https://www.r-project.org/Licenses/GPL-3
+### Is an R extension linking? 
 
-+ Permissions
+Most of the time, when we are creating R-extensions, we're building packages. Packages enhance R in the sense that they are extention to R, and they add functionnalities in an R runtime, not to R itself. Which seems to match the definition of a plug-in:
 
- + Commercial use
- + Distribution
- + Modification
- + Patent use
- + Private use
- 
-+ Conditions
-+ Limitations
+> In computing, a plug-in (or plugin, add-in, addin, add-on, or addon) is a software component that adds a specific feature to an existing computer program. When a program supports plug-ins, it enables customization.
 
+<div class="right">
+https://en.wikipedia.org/wiki/Plug-in_(computing)
+</div>
 
-### LGPL 2.1 or later
+The R Core team uses a quite similar term ("add-on") to describe R packages: packages are named "add-on" packages in the [R Installation and Administration](https://cran.r-project.org/doc/manuals/r-release/R-admin.html#Add_002don-packages) manuals.
 
-+ Permissions
-+ Conditions
-+ Limitations
+As said before, this book is not legal advice but aims at providing elements to understand how lincensing works. Here are elements from the GPL FAQ that provide information about the status of an R package, regarding wether or not R license impacts the choice of a package license
 
-#### LGPL
+According to `r with_tooltip("FSF", "Free Software Foundation")`, any derivative work of GPL licensed work is to be licensed under GPL-compatible license. 
 
-- https://www.r-project.org/Licenses/LGPL-2
+In the [GPL FAQ](https://www.gnu.org/licenses/gpl-faq.en.html#GPLPlugins), "When is a program and its plug-ins considered a single combined program?", the FSF states that : 
 
-- https://www.r-project.org/Licenses/LGPL-2.1
+> It depends on how the main program invokes its plug-ins. If the main program uses fork and exec to invoke plug-ins, and they establish intimate communication by sharing complex data structures, or shipping complex data structures back and forth, that can make them one single combined program. A main program that uses simple fork and exec to invoke plug-ins and does not establish intimate communication between them results in the plug-ins being a separate program.
 
-- https://www.r-project.org/Licenses/LGPL-3
+> If the main program dynamically links plug-ins, and they make function calls to each other and share data structures, we believe they form a single combined program, which must be treated as an extension of both the main program and the plug-ins. __If the main program dynamically links plug-ins, but the communication between them is limited to invoking the ‘main’ function of the plug-in with some options and waiting for it to return, that is a borderline case.__
 
-+ Permissions
-+ Conditions
-+ Limitations
+In the [GPL FAQ](https://www.gnu.org/licenses/gpl-faq.en.html#GPLPluginsInNF), "If I write a plug-in to use with a GPL-covered program, what requirements does that impose on the licenses I can use for distributing my plug-in?", the FSF states that : 
+
+> If the main program and the plugins are a single combined program then this means you must license the plug-in under the GPL or a GPL-compatible free software license and distribute it with source code in a GPL-compliant way. __A main program that is separate from its plug-ins makes no requirements for the plug-ins__.
+
+In the [GPL FAQ](https://www.gnu.org/licenses/gpl-faq.en.html#GPLPluginsInNF), "Can I apply the GPL when writing a plug-in for a nonfree program?", the FSF states that : 
+
+> If the main program and the plugins are a single combined program then this means you must license the plug-in under the GPL or a GPL-compatible free software license and distribute it with source code in a GPL-compliant way. __A main program that is separate from its plug-ins makes no requirements for the plug-ins__.
+
+We'll leave to the reader the appreciation about wether or not an R package can be considered as an addin which is separate from R as a program. 
 
 ## Package Licenses
+
+Most of the time, when you are talking about R extensions, we are talking about R packages, which are to be "officially" distributed through CRAN and / or Bioconductor. 
 
 ### "Officially Authorized" Licenses
 
 From [R Licenses](https://www.r-project.org/Licenses/).
 
-+ The “GNU Affero General Public License” version 3
-+ The “Artistic License” version 2.0
++ The “GNU Affero General Public License” version 3 (AGPL)
++ The “Artistic License” version 2.0 
 + The “BSD 2-clause License”
 + The “BSD 3-clause License”
-+ The “GNU General Public License” version 2
-+ The “GNU General Public License” version 3
-+ The “GNU Library General Public License” version 2
-+ The “GNU Lesser General Public License” version 2.1
-+ The “GNU Lesser General Public License” version 3
++ The “GNU General Public License” version 2 (GPLv2)
++ The “GNU General Public License” version 3 (GPLv3)
++ The “GNU Library General Public License” version 2 (LGPLv2)
++ The “GNU Lesser General Public License” version 2.1 (LGPLv2.1)
++ The “GNU Lesser General Public License” version 3 (LGPLv3)
 + The “MIT License”
-+ The “Creative Commons Attribution-ShareAlike International License” version 4.0
++ The “Creative Commons Attribution-ShareAlike International License” version 4.0 (CC BY-SA 4)
+
+Note that all these licenses are found in [the list of GPL compatible licenses](#GPLcompatible), with the exception of CC BY-SA, which is : 
+
+> one-way compatible with the GNU GPL version 3: this means you may license your modified versions of CC BY-SA 4.0 materials under GNU GPL version 3, but you may not relicense GPL 3 licensed works under CC BY-SA 4.0.
+
+<div class = "right">
+https://www.gnu.org/licenses/license-list.en.html#ccbysa
+</div>
+
+You'll also find on the [Creative Common compatibility list](https://creativecommons.org/share-your-work/licensing-considerations/compatible-licenses) that CC BY-SA version 4.0 is compatible with GPL, version 3 only, and also one-way compatible. 
 
 ### From Bioconductor 
 
-> "Core Bioconductor packages are typically licensed under Artistic-2.0"
+> "License:" field: should preferably refer to a standard license (...) using one of __R’s standard specifications__. Be specific about any version that applies (e.g., GPL-2). Core Bioconductor packages are typically licensed under Artistic-2.0. To specify a non-standard license, include a file named LICENSE in your package (containing the full terms of your license) and use the string “file LICENSE” (without the double quotes) in this “License:” field. The package should contain only code that can be redistributed according to the package license. __Be aware of the licensing agreements for packages you are depending on in your package. Not all packages are open source even if they are publicly available__.
 
 [BioConductor Package Guidelines](https://www.bioconductor.org/developers/package-guidelines/)
 
-### The ten most used in packages
+---
+
+## Classifying the 11 "official" licenses
+
+Now that we have seen these 11 "official" licenses, how can you choose one? Let's gather here some information from the web about what you can / can't do with these 
+
+### By degrees of "permissiveness"
+
+From [The Free-Libre / Open Source Software (FLOSS) License Slide](https://dwheeler.com/essays/floss-license-slide.html)
+
+
+![](https://dwheeler.com/essays/floss-license-slide-image.png)
+
+### 
 
 ```{r}
-db %>%
-  count(clean_license, sort = TRUE) %>%
-  top_n(10)
+library(rvest)
+url <- read_html("https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses")
+tbl <- url %>% 
+  html_node("table") %>% 
+  html_table()
+tbl <- tbl %>%
+  filter(License %in% c(
+    "GNU Affero General Public License", "Artistic License", "BSD License", 
+    "GNU General Public License", "GNU Lesser General Public License", 
+    "MIT license / X11 license", "CC-BY-SA"
+  )) %>% 
+  mutate_all(~gsub("\\[[0-9]*\\]", "", .x))
+tbl %>%
+  select(License, Linking, Distribution, Modification, `Patent grant`,`Private use`,Sublicensing, `TM grant`)
 ```
 
-#### MIT
 
-- https://www.r-project.org/Licenses/MIT
++ __Linking__ - linking of the licensed code with code licensed under a different license (e.g. when the code is provided as a library)
++ __Distribution__ - distribution of the code to third parties
++ __Modification__ - modification of the code by a licensee
++ __Patent grant__ - protection of licensees from patent claims made by code contributors regarding their contribution, and protection of contributors from patent claims made by licensees
++ __Private use__ - whether modification to the code must be shared with the community or may be used privately (e.g. internal use by a corporation)
++ __Sublicensing__ - whether modified code may be licensed under a different license (for example a copyright) or must retain the same license under which it was provided
++ __Trademark grant__ - use of trademarks associated with the licensed code or its contributors by a licensee
 
-+ Can
+`r right_link("Comparison of free and open-source software licenses", "https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses")`
 
-/ Commercial Use 
-/ Modify 
-/ Distribute 
-/ Sublicense 
-/ Private Use
+### By permission 
 
+Adapted from [TL;DR Legal](https://tldrlegal.com)
+ 
+|               |  Commercial Use |  Modify | Distribute | Sublicense | Private Use | Hold Liable | Place Warranty | Use Trademark | Use Patent Claims |
+|--:            |--:              |--:      |--:         |--:         |--:          |--:          |--:             |---:           |---:           |
+|  AGPLv3       |Can              |Can      |Can         |Cannot      | NA          |Cannot       |Can             |-              |-              |
+|  Artistic  2  |Can              |Can      |Can         |Can         |Can          |Cannot       |-                |Cannot         |-              |
+|  BSD 2-clause |Can              |Can      |Can         |-           |-           |Cannot        |Can             |-              |-              |
+|  BSD 3-clause |Can              |Can      |Can         |-           |-            |Cannot       |--:             |Cannot         |-              |
+|  GPLv2        |Can              |Can      |Can         |Cannot      |-            |Cannot       |Can             |-              |-              |
+|  GPLv3        |Can              |Can      |Can         |Cannot      |-            |Cannot       |Can             |-              |Can            |
+|  LGPLv2       |-                |-        |-           |-           |-            |-            |-               |-              |-              |
+|  LGPLv2.1     |Can              |Can      |Can         |Cannot      |-            |Cannot       |-               |-              |-              |
+|  LGPLv3       |Can              |Can      |Can         |Cannot      |-            |Cannot       |Can             |-              |Can            |
+|  MIT          |Can              |Can      |Can         |Can         |Can          |Cannot       |-               |-              |-              |
+|  CC BY-SA 4   |Can              |Can      |Can         |Cannot      |-            |-            |-               |-              |-              |
 
-+ Can't
+### By obligation
 
-/ Can't hold liable
+Adapted from [TL;DR Legal](https://tldrlegal.com)
 
-+ Must
+|               |  Include Copyright | Include License | Include Original  | State Changes | Disclose source | Include install instruction | Rename | Include Notice |Give Credit|
+|--:            |--:                 |--:              |--:                |--:            |--:              |--:                          |---:    |-       |-      |
+|  AGPLv3       |yes                 |yes              |NA                 |yes            |yes              |yes                          |-       |-       |-      |
+|  Artistic 2   |-                   |-                |yes                |yes            |-                |yes                          |yes     |-       |-      |
+|  BSD 2-clause |yes                 |yes              |-                 |-              |-                |-                             |-       |-       |-      |
+|  BSD 3-clause |yes                 |yes              |-                  |-              |-                |-                            |-       |-       |-      |
+|  GPLv2        |yes                 |yes              |yes                |yes            |yes              |-                            |-       |-       |-      |
+|  GPLv3        |yes                 |yes              |yes                |yes            |yes              |yes                          |-       |-       |-      |
+|  LGPLv2       |-                   |-                |-                  |-              |-                |-                            |-       |-       |-      |
+|  LGPLv2.1     |yes                 |yes              |yes                |yes            |yes              |-                            |-       | yes    |-      |
+|  LGPLv3       |yes                 |yes              |yes                |yes            |yes              |yes                          |-       |-       |-      |
+|  MIT          |yes                 |yes              |-                  |-              |-                |-                            |-       |-       |-      |
+|  CC BY-SA 4   |-                   |-                |-                  |-              |-                |-                            |-       |-       |yes    |
 
-/ Include Copyright
-/ Include Licence
-
-Don't forget : 
-
-Entry of the form:
-```
-YEAR:
-COPYRIGHT HOLDER: 
-```
-
-```{r eval = FALSE}
-usethis::use_mit_license("NAME")
-```
-
-### CC0
-
-- https://creativecommons.org/publicdomain/zero/1.0/
-
-+ Permissions
-+ Conditions
-+ Limitations
-
-### Apache License 2
-
-+ Permissions
-+ Conditions
-+ Limitations
-
-### BSD3 clause
-
-- https://www.r-project.org/Licenses/BSD_3_clause
-
-+ Permissions
-+ Conditions
-+ Limitations
+---
 
 ## "Non-standard"
 
@@ -158,22 +176,163 @@ usethis::use_mit_license("NAME")
 Example: CeCILL - http://www.cecill.info/
 
 ```{r}
-db$clean_license %>%
-  grep(pattern = "cecill", x = ., value = TRUE) %>%
-  length()
+cecill <- full_db %>%
+  filter(str_detect(license, "CeCILL"))
+cecill %>%
+  select(package, contains("license"))
 ```
 
-## Restrictive licenses
+`r nrow(cecill)` packages have chosen a CeCILL-based license, which is a French licence for open source software.  
+
+Let's just for the sake of exploration have a look at the domain part of the emails from the maintainers: 
 
 ```{r}
-db %>% 
-  filter(license_restricts_use == "yes") %>%
-  select(package, license)
+cecill$maintainer %>% 
+  str_match_all("@([^>]*)") %>% 
+  map_chr(2) %>%
+  table() %>% 
+  as_tibble() %>%
+  arrange(desc(n))
 ```
 
-- ACM 
+Has you can see, these are mostly (we can't tell for the gmail and yahoo part) french entities emails: "umontpellier.fr" is the university of Montpellier, IRD is a French research institute, u-bordeaux.fr is the university of Bordeaux, etc. 
 
-- CC BY-NC-SA 4.0
+What is CeCILL? CeCILL is a French, GPL-Compatible license that comes in three flavors: CeCILL (version 1, 2, and 2.1), CeCILL-B and CeCILL-C. The idea behind this new license was to create "a license which is compatible with French laws and with the principles from anglo-saxon open source licenses." (our translation from French).
 
-- Artistic-2.0
+`r right_link("CeCILL - Objectifs", "http://www.cecill.info/objectifs.fr.html")`
 
+Note that CeCILL-B & CeCILL-C are [non GPL-compatible](https://www.gnu.org/licenses/license-list.en.html#GPLIncompatibleLicenses)
+
+### Restrictive licenses
+
+Let's now have a look at the licenses which the author(s) choose to list as "restricts uses": 
+
+```{r}
+ru <- db %>% 
+  filter(license_restricts_use == "yes") %>%
+  select(package, license, src)
+ru
+```
+
+What is a "restrictive use" of a package? 
+
+According to GNU, 
+
+> A program is free software if the program's users have the four essential freedoms:
+
+> + The freedom to run the program as you wish, for any purpose (freedom 0).
+> + The freedom to study how the program works, and change it so it does your computing as you wish (freedom 1). Access to the source code is a precondition for this.
+> + The freedom to redistribute copies so you can help others (freedom 2).
+> + The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.
+
+`r right_link("What is free software?", "https://www.gnu.org/philosophy/free-sw.en.html")`
+
+So how can a package be "restrictive" in the sense of the GNU definition of Free Software? It can for exemple: 
+
++ Prohibit from commercial use, which is restrictive in the sense of freedom 0. This is for example what you can find in:
+
+`{gpclib}`
+
+```{r}
+readLines(
+  system.file("LICENSE", package = "gpclib")
+) %>% glue::as_glue()
+```
+
+`{rngwell19937}`
+
+```{r}
+readLines(
+  system.file("LICENSE", package = "rngwell19937")
+  
+) %>% glue::as_glue()
+```
+
+
+What is interesting in both these package is that the "non-commercial" use is defined by internal files `gpc.c` / `gpc.h` / `rngwell19937/src/WELL19937a.c`.
+
+Head of `gpc.c` : 
+
+```{r}
+download.file("https://cran.r-project.org/src/contrib/gpclib_1.5-5.tar.gz", "gpclib.tar.gz") 
+untar("gpclib.tar.gz")
+readLines(
+  "gpclib/src/gpc.c"
+)[1:30] %>% glue::as_glue()
+unlink("gpclib.tar.gz")
+unlink("gpclib", recursive = TRUE)
+```
+
+Head of `rngwell19937/src/WELL19937a.c` : 
+
+```{r}
+download.file("https://cran.r-project.org/src/contrib/rngwell19937_0.6-0.tar.gz", "rngwell19937.tar.gz") 
+untar("rngwell19937.tar.gz")
+readLines(
+  "rngwell19937/src/WELL19937a.c"
+)[1:8] %>% glue::as_glue()
+unlink("rngwell19937.tar.gz")
+unlink("rngwell19937")
+```
+
+As you can see, both these packages uses internal C files which have an explicit copyright prevent from any commercial use. Hence, as these packages are doing `static linking` of code that is under this copyright, there is a restriction notive in the `LICENSE` file.
+
+Same goes for `{tripack}`:
+
+```{r}
+readLines(
+  system.file("LICENSE", package = "tripack")
+) %>% glue::as_glue()
+```
+
+which contains a piece of Fortran code licensed under the ACM license.
+
+#### ACM 
+
+The ACM, for Association for Computing Machinery, license does not allow to commercially reuse pieces of code under this license:
+
+
+> Noncommercial Use
+
+> The ACM grants to you (hereafter, User) a royalty-free, nonexclusive right to execute, copy, modify and distribute both the binary and source code solely for academic, research and other similar __noncommercial uses__.
+
+> Commercial Use
+
+> Any User wishing to make a commercial use of the Software must contact ACM at permissions@acm.org to arrange an appropriate license. Commercial use includes (1) integrating or incorporating all or part of the source code into a product for sale or license by, or on behalf of, User to third parties, or (2) distribution of the binary or source code to third parties for use with a commercial product sold or licensed by, or on behalf of, User.
+
+`r right_link("Software Copyright Notice", "https://www.acm.org/publications/policies/software-copyright-notice")`
+
+```{r}
+acm <- db %>%
+  filter(str_detect(clean_license, "acm")) %>%
+  select(package, license)
+acm
+```
+
+`r nrow(acm)` licenses are explicitely listed as ACM. As some packages in the whole just have "file LICENSE", it's possible that it's more. 
+
+#### CC BY-NC-SA 4.0
+
+Just as ACM, with the CC BY-NC-SA 4.0 license, user can't reuse code in a commercial context.
+
+```{r}
+ccbysa <- db %>%
+  filter(str_detect(clean_license, "ccbysa")) %>%
+  select(package, license)
+ccbysa
+```
+
+`r nrow(ccbysa)` licenses are explicitely listed as CC BY-NC-SA 4.0. As some packages in the whole just have "file LICENSE", it's possible that it's more. 
+
+#### GPL-2-QA
+
+There is one instance of the `GPL-2-QA` license, which seems to be only used in the `{regtest}` package: 
+
+```{r}
+readLines(
+  system.file("LICENSE", package = "regtest")
+) %>% glue::as_glue()
+```
+
+
+`r hide_code()`

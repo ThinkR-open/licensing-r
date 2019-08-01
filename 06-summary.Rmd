@@ -1,0 +1,7 @@
+# Conclusion & Future work {#summary}
+
+`r disclaimer()`
+
+## Current state of the licenses in the R world 
+
+## Next steps
