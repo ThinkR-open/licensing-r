@@ -339,7 +339,7 @@ As defined by GitHub, gists are common repo, so they should be licensed as such.
 Though, it's rather unpractical to add a license file every time you write a gist. 
 Some users have chosen to add a license file that covers all the gists from their account:
 
-> "This license applies to all public gists @martinbuberl"
+> "This license applies to all public gists &#64;martinbuberl"
 
 https://gist.github.com/martinbuberl/c0de29e623a1e34d1cda7e817d18bafe
 
