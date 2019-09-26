@@ -4,18 +4,19 @@
 
 `r button_code()`
 
-Before examining in more depth the link between your package and it environment, let's remind that chosing a license is crucial in defining how your package / code can be used and reused. For example, MIT allows to do almost anything with your code (including copying and pasting your code in a paid, commercial, non-open software), while other licenses are less permissive. 
+Before examining in more depth the link between your package and it environment, let's remind that choosing a license is crucial in defining how your package / code can be used and reused. 
+For example, MIT allows to do almost anything with your code (including copying and pasting your code in a paid, commercial, non-open software), while other licenses are less permissive. 
 
 ## R-package 
 
-In this first part, we'll be talking about lincensing R packages. 
+In this first part, we'll be talking about licensing R packages. 
 Here are the several cases: 
 
-+ All packages need R / I'm making a package that only depends on base
++ All packages need R / I'm making a package that only depends on `{base}`
 
-+ I'm creating a package that has dependencies listed in the DESCRIPTION file, that might be installed at the same time as my package
++ I'm creating a package that has dependencies listed in the `DESCRIPTION` file, that might be installed at the same time as my package
 
-+ I'm creating a package that has dependencies on internal files that are fully copied and pasted
++ I'm creating a package that has dependencies on internal files that are fully copied
 
 + I'm creating a package designed to access data
 
@@ -28,7 +29,7 @@ _All packages need R / I'm making a package that only depends on base_
 
 That's a question your law department should answer, but here is the part from the GNU FAQ that might help you get an answer. 
 
-In the [GPL FAQ](https://www.gnu.org/licenses/gpl-faq.en.html#GPLPluginsInNF), "Can I apply the GPL when writing a plug-in for a nonfree program?", the FSF states that : 
+In the [GPL FAQ](https://www.gnu.org/licenses/gpl-faq.en.html#GPLPluginsInNF), "Can I apply the GPL when writing a plug-in for a non free program?", the FSF states that : 
 
 > If the main program and the plugins are a single combined program then this means you must license the plug-in under the GPL or a GPL-compatible free software license and distribute it with source code in a GPL-compliant way. __A main program that is separate from its plug-ins makes no requirements for the plug-ins__.
 
@@ -57,6 +58,7 @@ download.file("https://svn.r-project.org/R/trunk/share/licenses/license.db", "li
 cran_l <- read.dcf("licenses.dcf") %>% 
   as_tibble() %>% 
   select(Name, Abbrev, Version)
+cran_l
 unlink("licenses.dcf")
 ```
 
@@ -80,11 +82,18 @@ We can also find this restriction concerning licensing of package in the CRAN po
 
 There are three ways you can list package dependencies in the DESCRIPTION: 
 
-- `Depends`: the package is installed at the same time as your package, and it is loaded (attached to your search path) when you load your package. For example, the `{ggraph}` package has listed in `Depends` the `{ggplot2}` package, so when you do `library(ggraph)`, it also attach `{ggplot2}` to the searchPath. 
-- `Imports`: the package is installed at the same time as your package, and it is not loaded (attached to your search path) when you load your package. Yet you can use the functions from the package you've listed in your NAMESPACE. For example, the `{ggraph}` package has listed in `Depends` the `{Rcpp}` package. But when you do `library(ggraph)`, `{Rcpp}` is not attached to your searchPath. Note that here, both `{Rcpp}` and `{ggplot2}` are installed when you install `{ggraph}`.
-- `Suggests`: the package is not installed at the same time as your package, and it is not loaded (attached to your search path) when you load your package. For example, the `{ggraph}` package has listed in `Suggests` the `{network}` package.
+- `Depends`: the package is installed at the same time as your package, and it is loaded (attached to your search path) when you load your package. 
+For example, the `{ggraph}` package has listed in `Depends` the `{ggplot2}` package, so when you do `library(ggraph)`, it also attach `{ggplot2}` to the searchPath. 
+- `Imports`: the package is installed at the same time as your package, and it is not loaded (attached to your search path) when you load your package. 
+Yet you can use the functions from the package you've listed in your NAMESPACE. 
+For example, the `{ggraph}` package has listed in `Depends` the `{Rcpp}` package. 
+But when you do `library(ggraph)`, `{Rcpp}` is not attached to your searchPath. 
+Note that here, both `{Rcpp}` and `{ggplot2}` have to be installed when you install `{ggraph}`.
+- `Suggests`: the package is not installed at the same time as your package, and it is not loaded (attached to your search path) when you load your package. 
+For example, the `{ggraph}` package has listed in `Suggests` the `{network}` package.
 
-We will not classify each of this behavior, but be aware of these three behaviors, and wether or not they classify as one or two programs, or wether or not your package us a modified work of the dependencies is very much subject to interpretation and of the level of interactions between the packages. 
+We will not classify each of this behavior, but be aware of these three behaviors. 
+Whether or not they classify as one or two programs, or ether or not your package us a modified work of the dependencies is very much subject to interpretation and of the level of interactions between the packages. 
 
 That being said, we can assume that at least `Depends` and `Imports` do dynamic linking, as defined as 
 
@@ -94,23 +103,35 @@ That being said, we can assume that at least `Depends` and `Imports` do dynamic 
 https://en.wikipedia.org/wiki/Linker_(computing)#Dynamic_linking)
 </div>
 
-And remember that this is the statement from the GPL FAQ about dynamic linking:
+And remember this the statement from the GPL FAQ about dynamic linking:
 
 > Linking a GPL covered work", statically or dynamically with other modules is making a combined work based on the GPL covered work. Thus, the terms and conditions of the GNU General Public License cover the whole combination. 
 
-On a more pragmatic level, let's think for a minute about using a dependency which has restrictions, like one with the ACM license, preventing from any commercial use without explicit consent from the author. If one of these packages is listed in `Depends` or `Imports`, it will be installed with your package, and elements of the `NAMESPACE` of this package will be used when your package is used. So this kind of dependency mught be problematic if you choose to go for a more lax license. For example, MIT allows to make commercial use of your code. And it might be understood that allowing your code to be used anywhere would contradict the restriction imposed by one of the needed dependencies. 
+But package interactions might also enter in the "borderline case" from this very same FAQ: 
 
-### Including someone else's code
+> If the main program dynamically links plug-ins, but the communication between them is limited to invoking the ‘main’ function of the plug-in with some options and waiting for it to return, that is a borderline case.
 
-_I'm creating a package that has dependencies on internal files that are fully copied and pasted_
+On a more pragmatic level, let's think for a minute about using a dependency which has restrictions, like one with the ACM license, preventing from any commercial use without explicit consent from the author. 
+If one of these packages is listed in `Depends` or `Imports`, it will be installed with your package, and elements of the `NAMESPACE` of this package will be used when your package is used. 
+So this kind of dependency might be problematic if you choose to go for a more lax license. 
+For example, MIT allows to make commercial use of your code. 
+And it might be understood that allowing your code to be used anywhere would contradict the restriction imposed by one of the needed dependencies.
 
-Including someone else's code can cover several things: 
+In other word, if your package `{mine}` needs a restrictive package `{restrictivepkg}` to work, that means that when the end user will install `{mine}`, R will check if `{restrictivepkg}` is installed, and install it if necessary. 
+When the user will do `library(mine)` in a commercial context, they will also be using the `{restrictivepkg}` in a commercial context, even if not explicitly. 
+So if `{restrictivepkg}` doesn't allow commercial use while `{mine}` do, it will conflict. 
+
+### Including someone else code
+
+_I'm creating a package that has dependencies on internal files that are fully copied_
+
+Including someone ease's code can cover several things: 
 
 - adding a C file which is compiled with the package 
 - adding a piece of R code from another package
 - adding code in another language 
 
-It's a little bit more clear that you are doing __static linking__ therre:
+It's a little bit more clear that you are doing __static linking__ there:
 
 > Static linking is the result of the linker copying all library routines used in the program into the executable image. 
 
@@ -118,21 +139,26 @@ It's a little bit more clear that you are doing __static linking__ therre:
 https://en.wikipedia.org/wiki/Linker_(computing)#Static_linking)
 </div>
 
-As you are copying and pasting code from one work into yours, it's more clear that you are doing static linking. Here, you should respect the license under which the code you're using is licensed. For example, MIT allows to freely reused the code 
+As you are copying and pasting code from one work into yours, it's more clear that you are doing static linking. 
+Here, you should respect the license under which the code you're using is licensed. 
+For example, MIT allows to freely reused the code 
 
 > Where code is copied (or derived) from the work of others (including from R itself), care must be taken that any copyright/license statements are preserved and authorship is not misrepresented.
 
 `r right_link("CRAN Repository Policy", "https://cran.r-project.org/web/packages/policies.html")`
 
-__Be careful__: the constant in almost every open source licenses is that you should add the disclaimer of non liability in the code you're using. So if ever you are using another library, don't forget to add in your license file what library you are using, and what the license of this specific piece of code is.
+__Be careful__: the constant in almost every open source licenses is that you should add the disclaimer of non liability in the code you're using. 
+So if ever you are copying another library, don't forget to add in your license file what library you are using, and what the license of this specific piece of code is.
 
 #### Bundling JavaScript files
 
-These files are used at running time, they are not compiled when the package is installed.
+In these cases, the files are used at run time, they are not compiled when the package is installed.
+Here are some examples of this behavior:
 
 + the `{leaflet}` package: https://github.com/rstudio/leaflet
 
-This package, designed to do interactive cartography, bundles a series of JavaScript files inside it, not written by the author of the R package. The license of the package is GPL-3, and it is combined with a `LICENSE.note` [file](), which starts as such:
+This package, designed to do interactive cartography, bundles a series of JavaScript files inside it, not written by the author of the R package. 
+The license of the package is GPL-3, and it is combined with a `LICENSE.note` [file](), which starts as such:
 
 ```
 The leaflet package as a whole is distributed under GPL-3 (GNU GENERAL PUBLIC LICENSE version 3).
@@ -148,9 +174,10 @@ Also, the list of all authors from the various external elements is to be found 
 cat(packageDescription("leaflet")[["Author"]])
 ```
 
-#### Bundling C / C++ / Fortran files
+#### Bundling C / C++ / FORTRAN files
 
-This format of file is a little bit different as it compiles the files when the package is installed. In other word, they are not "external calls", they become a core of the resulting R package. 
+This format of file is a little bit different as it compiles the files when the package is installed. 
+In other word, they are not "external calls", they become a core of the resulting R package. 
 
 This is for example what we've seen with the `{rngwell19937}` package in the previous chapter:
 
@@ -174,18 +201,22 @@ unlink("gpclib", recursive = TRUE)
 
 ### Data package
 
-How to license a data package? In [this GitHub issue](https://github.com/ropensci/unconf17/issues/61), we can find three common patterns for building a data package: data bundled inside the package, data accessed through an API, data access for files that are online but not through an API. 
+How to license a data package? 
+In [this GitHub issue](https://github.com/ropensci/unconf17/issues/61), we can find three common patterns for building a data package: data bundled inside the package, data accessed through an API, data access for files that are online but not through an API. 
 
 #### Data bundled inside the package
 
-This kind of behavior is close to the one from package bundling code written by someone else: if you're packing data inside a package, then the global package should be compatible with the license of the dataset. Including a dataset inside a package that has a non compatible license can create breaking changes where you have to either remove the dataset from the package, or switch the package license. 
-This is for example what happened with the [`{tidytext}`](https://cran.r-project.org/web/packages/tidytext/index.html) package - when first writting the package, Julia Silge and David Robinson included several datasets, and released the package as MIT. 
+This kind of behavior is close to the one from package bundling code written by someone else: if you're packing data inside a package, then the global package should be compatible with the license of the dataset. 
+And keep in mind that including a dataset inside a package that has a non compatible license can create breaking changes on the long run, when you have to either remove the dataset from the package, or switch the package license. 
+This is for example what happened with the [`{tidytext}`](https://cran.r-project.org/web/packages/tidytext/index.html) package: when first writing the package, Julia Silge and David Robinson included several datasets, and released the package as MIT. 
+Later on, it turned out that some datasets included were not MIT-compatible.
 
 > We used the knowledge we had at the time and followed the practices we saw other OSS packages for text analysis following. However, it turns out that this was not the right approach from a licensing standpoint, because the lexicon licenses were not the same as the package’s license
 
 `r right_link("Fixing your Mistakes: Sentiment Analysis Edition", "https://juliasilge.com/blog/sentiment-lexicons/")`
 
-So what to do next? As Julia describes in her blogpost, she reached out to every dataset author to get there authorization (or not) to use the dataset in an MIT licensed package : 
+So what to do next? 
+As Julia describes in her blog post, she reached out to every dataset author to get there authorization (or not) to use the dataset in an MIT licensed package : 
 
 > So, where does that leave us?
 
@@ -196,7 +227,7 @@ So what to do next? As Julia describes in her blogpost, she reached out to every
 
 `r right_link("Fixing your Mistakes: Sentiment Analysis Edition", "https://juliasilge.com/blog/sentiment-lexicons/")`
 
-So to sum up, two datasets have switched to the `{textdata}` package (see next section), one is still in `{tidytext}` as the author has explicitely given the authorization to do so, and one is not available. 
+So to sum up, two datasets have switched to the `{textdata}` package (see next section), one is still in `{tidytext}` as the author has explicitly given the authorization to do so, and one is not available. 
 
 Another example, the [`{igraphdata}`](https://github.com/igraph/igraphdata), which is released under XX and has a file LICENSE with each licenses for each dataset listed:
 
@@ -206,57 +237,110 @@ readLines(
 ) %>% glue::as_glue()
 ```
 
-
-- https://github.com/ropensci/unconf17/issues/61
-
-- https://github.com/ropenscilabs/data-packages
-
 #### Data access for files that are online
 
-A way to be able to serve data in a package is to choose a strategy used in the [`{textdata}`]() package. The package by itself doesn't include any dataset, yet whenever you want to use one of this dataset, you are prompted to accept the license of each dataset. 
+A way to be able to serve data in a package is to choose a strategy used in the [`{textdata}`]() package. 
+The package by itself doesn't include any dataset, yet whenever you want to use one of this dataset, you are prompted to accept the license of each dataset. 
 
 <img src = "https://github.com/EmilHvitfeldt/textdata/raw/master/man/figures/textdata_demo.gif"></img>
-
-- https://github.com/ropensci/unconf17/issues/61
-
-- https://github.com/ropenscilabs/data-packages
-
 
 #### Data accessed through an API
 
 It's reasonable to think that accessing data through an API enters covers the same pattern as `{textdata}` does: the package does not carry the data, but it allows to connect to it and to transfer it. 
-
-Althought, even if you don't get the data with the package, using these data is covered by the 
+With this kind of package, you're creating a tool that is used to convey data from external source to the user's computer. 
+So even if the tool by itself can be released under a different license from the one of the datasets, it will be easier to release the package under the same license as the data, so that the user doesn't have to juggle between the two licenses when using your package.
 
 ## About contribution 
 
-Discussion here about contribution to your package. 
+If you are opening your package to contribution (for example by sharing the source code on GitHub), you need to keep in ming that if one day you need to change the license, you'll have to have the permission from all the contributors to the project. 
+Indeed, every person adding code to the code-base has the copyright of this piece of code, and when they contribute they accept to release this piece of code under the same license as the one from the package. 
+But this can become problematic when you have a large code-base and/or numerous contributors. 
+A good example is the one from Bootstrap which we described in the second chapter: when the team wanted to switch to MIT, the had to collect an agreement from everybody who has ever contributed code to the framework, which was something like more than 500 peoples. 
+That's a complicated task. 
 
--asking people to sign a CLA - https://github.com/ropensci/unconf17/issues/32#issuecomment-294038058
+And even more, as some piece of code were not MIT compatible or as the contributors didn't want to change their contribution to MIT, some part of the code-base had to be rewritten. In the R-world, the same situation was encountered when changing the [`{covr}`]() license (on a smaller scale of course).
 
-- implication for changing license ({covr} example)
+One of the way to prevent that is to make contributors sign a contributor agreement, as [`{shiny}`](https://github.com/rstudio/shiny/blob/master/CONTRIBUTING.md) does: when you contribute to the package, you assign the copyright of your contribution to the package author, preventing any future claim and leaving the package author the freedom to use the code you've contributed.
+
+## Licensing what you're writing
+
+### Online books & blogs
+
+Don't forget that everything you are writing is copyrighted under your name. 
+
+> [C]opyright is automatically attached to every novel expression of an idea, whether through text, sounds, or imagery. (...) the words in this paragraph are protected by copyright as soon as they are written.
+
+<div class = "right">
+[Understanding Open Source and Free Software Licensing - Andrew M. St. Laurent](https://www.oreilly.com/library/view/understanding-open-source/0596005814/)
+</div>
+
+That means that everything you are publishing online is copyrighted: blog post, online book, GitHub pages... 
+So as any other code-related work, your content should be licensed in a way that allows others to reuse (or not reuse) your work. 
+
+For example, the [r4ds](https://github.com/hadley/r4ds/blob/master/LICENSE) book is licensed under the `Creative Commons Attribution-NonCommercial-NoDerivs 3.0 United States License`. 
+This license allows to share and distribute copies of the work, but you mush give attribution, and you're not allowed to use it for commercial purpose nor to create any derivative work. 
+
+Some other books are listed under CC BY-NC-ND 3.0 US: [Text Mining with R](https://www.tidytextmining.com/), [rOpenSci Packages: Development, Maintenance, and Peer Review](https://devguide.ropensci.org/), and [Open Forensic Science in R](https://sctyner.github.io/OpenForSciR/).
+
+The [Advanced R](https://adv-r.hadley.nz/) book, on the other hand, is bi-licensed: 
+
+> This work, as a whole, is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+> The code contained in this book is simultaneously available under the MIT license; this means that you are free to use it in your own packages, as long as you cite the source.
+
+Some other books are listed under CC BY-NC-SA 4.0: [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/),  [Geocomputation with R](https://geocompr.robinlovelace.net/), [blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/), [Data Science at the Command Line](https://www.datascienceatthecommandline.com/), [Data Science Live Book](https://livebook.datascienceheroes.com/) and [Hands-On Programming with R](https://rstudio-education.github.io/hopr/).
+This license allows to share and adapt the original work, provided you give attribution, that you don't use the content for commercial purposes and that you share the content under the same license. 
+This is also the license under which this book is released.
+
+The same goes for blog posts: do add a license under your posts if you want visitors to be able to reuse the tips and tricks you're sharing online.
+Here are, for example, various licenses for blogs:
+
++ [rud.is](https://rud.is/b/) blog is released under CC-BY-SA-4.0
++ [colinfay.me](https://colinfay.me/) is released under CC-BY-SA-4.0 with the code sections under MIT
++ [masalmon.eu](https://masalmon.eu) is All rights reserved
+
+### Publishing an article
+
+When submitting an article to a journal, note that the code contained inside the article might be subject to specific license. 
+For example, the Journal of Statistical software requires this:
+
+> "Code needs to include the GNU General Public license (GPL), versions GPL-2 or GPL-3, or a GPL-compatible license for publication in JSS."
+
+`r right_link("Instructions for Authors", "https://www.jstatsoft.org/pages/view/authors")`
+
+Submitting to the Journal of Open Source Software also have requirements regarding the published content: 
+
+> Make your software available in an open repository (GitHub, Bitbucket, etc.) and include an OSI approved open source license.
+
+`r right_link("Submitting a paper to JOSS", "https://joss.readthedocs.io/en/latest/submitting.html#typical-paper-submission-flow")`
+
+And in the R Journal, the paper will be published in `CC-BY`
+
+>  I acknowledge that if accepted my article will be published with CC-BY license
+
+`r right_link("The R Journal: Submissions", "https://journal.r-project.org/submissions.html")`
 
 
+### Various online content 
 
+You might not know this but if you're publishing answers to Stackoverflow, you're releasing code in `CC BY-SA 3.0`:
 
-## Documentation 
+> As noted in the Stack Exchange Terms of Service and in the footer of every page, all user contributions are licensed under Creative Commons Attribution-Share Alike. Proper attribution is required if you republish any Stack Exchange content.
 
-### Software documentation 
+`r right_link("What is the license for the content I post?", "https://stackoverflow.com/help/licensing")`
 
-Discussion about code documentation (vignette, bookdown, blog articles...)
+In other word, you are free to reuse, share and adapt code from StackOverflow in your software (and let's admit that we all do...), provided you give attribution... and that you distribute the result under the same license as the original. 
 
-### Publication 
+It's also interesting to note that StackOverflow's Terms of Service come with a Disclaimer of Warranties. 
+See <https://stackoverflow.com/legal/terms-of-service/public>, section 7.
 
-Overview of license requirements (if any) for publication in journals. 
+One other place you can share code is GitHub gists platform. 
+As defined by GitHub, gists are common repo, so they should be licensed as such. 
+Though, it's rather unpractical to add a license file every time you write a gist. 
+Some users have chosen to add a license file that covers all the gists from their account:
 
-Example: JSS 
+> "This license applies to all public gists @martinbuberl"
 
-> "Code needs to include the GNU General Public Licence (GPL), versions GPL-2 or GPL-3, or a GPL-compatible license for publication in JSS."
-
-> https://www.jstatsoft.org/pages/view/authors
-
-### Online content 
-
-https://stackoverflow.com/help/licensing
+https://gist.github.com/martinbuberl/c0de29e623a1e34d1cda7e817d18bafe
 
 `r hide_code()`

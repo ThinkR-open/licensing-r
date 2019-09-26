@@ -4,4 +4,25 @@
 
 ## Current state of the licenses in the R world 
 
+Navigating through licensing in the R world is not an easy. 
+And to be honnest, it is the very same in the whole software world: open source license texts are subject to interpretation and to a lot of debate in the community. 
+Giving legal advice was not the purpose of this book, but we hope that it helped you see more clearly what licensing a piece of software implies, and how and when the various licenses can be used.
+
+It's hard to come with a straigth answer to the question "which license should I use": the answer to that is very specific to each project, be it for the financial and professional context of the development, or for the type of the project, and wether or not you're bundling someone else's code inside your project. 
+It might also be rather new to Shiny developers that there app is conveying code to the end user when publishing the app. 
+As shown in chapter 2, the server code stays, well, on the server, while the UI, shown in the browser, includes a series of JavaScript, CSS, and possibly other files which are available through the browser developer console. 
+So for example, using a package in a Shiny app which is under `AGPL` might enforce you to release the whole app under the same license. 
+This of course, depending on the way you read and understand the license text. 
+
 ## Next steps
+
+As said everywhere in the book, this work wasn't a legal book and no lawyer was consulted for this writing. 
+
+We hope that this book will receive complementary comments and suggestions about its content. 
+We would also be happy to heary any feedbacks, thoughts or ideas you might have about it. 
+For this, feel free to open an issue on the repo: https://github.com/ThinkR-open/licensing-r
+
+Futurer work might include consulting professional lawyer to get more information about the various licenses listed in this book. 
+If any professional comes by and wants to contribute, we'll be very happy to hear their voice.
+
+Thanks to the R-Consortium for funding this writing under an ISC grant. 

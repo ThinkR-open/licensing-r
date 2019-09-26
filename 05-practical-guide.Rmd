@@ -2,19 +2,119 @@
 
 `r disclaimer()`
 
-## {usethis}
+So now that you've got a good grasp of the different licenses, how do you add these information to your package / R code?
 
-MIT
+## Filling the `DESCRIPTION` file
+
+The most common way to share R code is to bundle it into a package. 
+A package is a collection of R function, that comes with a `DESCRIPTION` file. 
+This file contains the metadata about your package, which includes the license and the authors from the package.
+
+### Adding licenses with `{usethis}`
+
+If you are building a package, `{usethis}` comes handy when it comes to licenses: this package has a series of functions that help you add licenses, by adding the license name to the `DESCRIPTION`, but also by adding external file is necessary. 
+
+For example, the MIT license needs to come with a file `LICENSE`, that contains the following:
 
 ```
 YEAR:
 COPYRIGHT HOLDER: 
 ```
 
+You can add it with:
+
 ```{r eval = FALSE}
 usethis::use_mit_license("NAME")
 ```
 
-## dependency graph
+Note that if you want to add your name automatically, you can define `options(usethis.full_name = "My name")` in your `.Rprofile`. 
 
-## Function to parse license info
+For example, here's mine:
+
+```{r}
+readLines("~/.Rprofile") %>%
+  glue::as_glue()
+```
+
+Here are all the available licenses you can set with `{usethis}`:
+
+```{r}
+library(usethis)
+ ls( "package:usethis", pattern = "license")
+```
+
+### Adding external contributors
+
+If you are integrating someone else code inside your package, you need to state that in your package documentation. That's for example what is done in `{shiny}`:
+
+```{r}
+readLines(
+  system.file("LICENSE", package = "shiny")
+)[1:23] %>%
+  glue::as_glue()
+```
+
+A good practice is also to include the author from these external libraries to your list of `Authors@R` in your `DESCRIPTION`, in the following form: 
+
+```
+person("Name", "Last Name", 
+        role = c("ctb", "cph"),
+        comment = "Author of library XXX")
+```
+
+Like what is done in `{shiny}`:
+
+```{r}
+read.dcf(
+  system.file("DESCRIPTION", package = "shiny")
+)[5] %>%
+  glue::as_glue()
+```
+
+Other packages have a different, but still valid approach:
+```{r}
+read.dcf(
+  system.file("DESCRIPTION", package = "tripack")
+)[4] %>%
+  glue::as_glue()
+```
+
+## Dependencies exploration
+
+One thing you might want to do when building a package is analyse its dependencies and whether or not they might impact yours. 
+To do that, here is a little suggestion, based on `{pkgnet}`.
+
+1. Download the CRAN package database:
+
+```{r}
+pkgdb <- tools::CRAN_package_db()
+```
+
+2. Then, we'll use the `{pkgnet}` package to extract dependencies recursively.
+
+```{r}
+get_deps <- function(pkg){
+  DependencyReporter$new()$set_package(pkg)$nodes$node
+}
+
+gol <- get_deps("golem")
+
+extract_from_cran_db <- function(deps, pkgdb){
+  pkgdb %>%
+    as_tibble(.name_repair = "universal") %>%
+    filter(Package %in% deps) 
+}
+
+deps <- extract_from_cran_db(gol, pkgdb)
+
+deps %>%
+  count(
+    License
+  )
+
+deps %>%
+  summarize(
+    any(License_restricts_use, na.rm = TRUE)
+  )
+
+```

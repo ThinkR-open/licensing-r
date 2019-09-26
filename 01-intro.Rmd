@@ -6,14 +6,14 @@
 
 ## Diving into the CRAN & BioConductor database
 
-Before going deeper into the licenses, let's first have a look into the licenses currently used on CRAN & BioConductor. 
+Before going deeper into the definition of licenses, let's first have a look into the licenses currently used on CRAN & BioConductor. 
 
 ```{r}
 library(tidyverse)
 theme_set(theme_minimal())
 ```
 
-_Note: this version has been compiled on :_
+> Note: this version has been compiled on :
 
 ```{r}
 Sys.time()
@@ -24,7 +24,8 @@ Sys.time()
 
 First, let's get a list of all the packages. 
 
-We'll extract the list of packages from CRAN using the `CRAN_package_db()` function from `{tools}`, and the ones from BioConductor by reading the file at `"https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES"`. These two datasets contain the metadata about the packages, as they are provdided in the DESCRIPTION file. 
+We'll extract the list of packages from CRAN using the `CRAN_package_db()` function from `{tools}`, and the ones from BioConductor by reading the file at `"https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES"`. 
+These two datasets contain the metadata about the packages hosted there. The data are parsed from the DESCRIPTION file. 
 
 ```{r warning = FALSE}
 # Getting the DB
@@ -49,7 +50,7 @@ So a total of `r nrow(cran_db) + nrow(bioc_db)` packages.
 
 ### Data cleansing
  
-Let's now select the columns of interest: the ones containing the informations about licenses, and have a look at the 6 first rows of the result. 
+Let's now select the columns of interest: the ones containing the information about licenses, and have a look at the 6 first rows of the result. 
 
 ```{r}
 db <- full_db %>% 
@@ -62,17 +63,17 @@ head(db)
 ### Counting the licenses
 
 ```{r}
-# Number of licences
-n_licence <- db %>%
+# Number of licenses
+n_license <- db %>%
   distinct(license) %>% 
   count() %>% 
   pull(n)
 ```
 
-In our dataset, we can find `r n_licence` different licences.
+In our dataset, we can find `r n_license` different licenses.
 
 ```{r}
-# Number of licences with 'file'
+# Number of licenses with 'file'
 db <- db %>% 
   mutate(has_file_license = str_detect(license, "file"))
 n_has_file_license <- db %>% 
@@ -83,7 +84,7 @@ n_file <- n_has_file_license %>%
   pull(n)
 ```
 
-Out of these `r nrow(db)` packages, `r n_file` contain a licence file — see [#TODO add ref]() for more info about adding licence files. 
+Out of these `r nrow(db)` packages, `r n_file` contain a license file. 
 
 ### Packages with non-foss / restrictive-use licenses
 
@@ -101,7 +102,8 @@ license_is_foss <- db %>%
   drop_na()
 ```
 
-The `license_is_foss` (Free Open Source Software) column is not that much informative, as only `r sum(license_is_foss$n)` packages have provided it. But what can be interesting is the `r  dplyr::pull(dplyr::filter(license_is_foss, license_is_foss == "no"), n)` package(s) that contains a non-foss license: 
+The `license_is_foss` (Free Open Source Software) column is not that much informative, as only `r sum(license_is_foss$n)` packages have provided it. 
+But what can be interesting is the `r  dplyr::pull(dplyr::filter(license_is_foss, license_is_foss == "no"), n)` package(s) that contains a non-foss license: 
 
 ```{r}
 full_db %>%
@@ -118,9 +120,11 @@ license_restricts_use <- db %>%
 ```
 
 
-Let's now have a look at the `license_restricts_use` column from the dataset. Few packages (`r nrow(license_restricts_use)`) have this field filled in their `DESCRIPTION`. Just as before, it can be interested to have a look at the packages that have do restrict the use. 
+Let's now have a look at the `license_restricts_use` column from the dataset. 
+Few packages (`r nrow(license_restricts_use)`) have this field filled in their `DESCRIPTION`. 
+Just as before, it can be interested to have a look at the packages that have do restrict the use. 
 
-+ All the packages with a licence that restricts the use
++ All the packages with a license that restricts the use
 
 ```{r}
 db %>% 
@@ -136,7 +140,7 @@ db %>%
   count(license, sort = TRUE)
 ```
 
-As we can see, the majority of packages with a licence that restricts the use are based on a license file. 
+As we can see, the majority of packages with a license that restricts the use are based on a license file. 
 
 ```{r}
 system.file("LICENSE", package = "rngwell19937") %>% 
@@ -151,8 +155,6 @@ system.file("LICENSE", package = "gpclib") %>%
   glue::as_glue()
 ```
 
-We'll get back on this license in [#TODO add ref]().
-
 ## Getting a more global idea
 
 There are several ways to insert a license : 
@@ -162,7 +164,9 @@ There are several ways to insert a license :
 + It can be two licenses (e.g. `GPL-2 | GPL-3`)
 + It can be accompanied with a LICENSE file (e.g. `LGPL-3 | file LICENSE`)
 
-Also, the license number can be either a number or a number + a zero (e.g `GPL (>= 2.0)`). So far, we have counted the number of different licenses based on a strict match of characters. So `GPL (>= 2.0)` and `GPL (>= 2)` are counted as two different licenses. 
+Also, the license number can be either a number or a number + a zero (e.g `GPL (>= 2.0)`).
+So far, we have counted the number of different licenses based on a strict match of characters. 
+So `GPL (>= 2.0)` and `GPL (>= 2)` are counted as two different licenses. 
 
 In order to get a broader idea, we'll clean this column so that we can gather the licenses together. 
 
@@ -192,7 +196,7 @@ _Note: this process was designed to have a broad overview of the licenses, and g
 
 ### How many GPL related licenses?
 
-Let's have a look at how many licenses are GPL realted, by detecting the `"gpl"` string in the license column.
+Let's have a look at how many licenses are GPL related, by detecting the `"gpl"` string in the license column.
 
 ```{r}
 # How many GPL based licenses ? 

@@ -1,3 +1,37 @@
-`r if (knitr::is_html_output()) '
 # References {-}
-'`
+
+## Books and articles {-}
+
++ _Reconstructing the Software License_, Madison Michael J., 2017
++ _A Quick Guide to Software Licensing for the Scientist-Programmer_, Morin Andrew and Urban Jenifer, 2012
++ _Understanding Open Source and Free Software Licensing_, Andrew M. St. Laurent, 2004
++ _Writing R Extensions_, R Development Core Team, 2019
++ _R packages_, Wickham Hadley, 2015
++ _Free as in Freedom (2.0): Richard Stallman and the Free Software Revolution_, Williams Sam, 2010
++ _Open Source Licensing Software Freedom and Intellectual Property Law_, Rosen Lawrence, 2004
++ _The International Free and Open Source Software Law Book_, http://ifosslawbook.org/
++ _ _, 
+
+## Website {-}
+
+## Others
+
++ https://libraries.io/ 
+
++ https://discuss.ropensci.org/t/best-practice-guidelines-for-copyright-and-licencing/1171 
+
++ https://discuss.ropensci.org/t/copyright-practices-for-analysis-code/1424/3
+
++ https://opensource.org/licenses
+
++ https://choosealicense.com/ 
+
++ https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses
+
++ https://tldrlegal.com/
+
++ http://eolevent.eu/
+
++ https://help.github.com/en/articles/licensing-a-repository#disclaimer
+
++ https://opensource.guide/legal/

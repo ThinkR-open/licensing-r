@@ -7,9 +7,8 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "Documenting current state of licensing in the R world."
+description: "Documenting the current state of licensing in the R world."
 ---
-[WORK IN PROGRESS]
 
 # Licensing R {-}
 
@@ -23,37 +22,53 @@ description: "Documenting current state of licensing in the R world."
 
 __This book is by no mean a legal book and should not be used as such. __
 
-This book aims at helping you decipher the complexity of open source licenses, but if you have legal concerns and questions about open source licenses, __please refer to a professional lawyer__.
+This book aims at helping you decipher the complexity of open source licenses, but if you have legal concerns and questions about open source licenses, __please refer to a professional lawyer__. 
+Legal implications about licenses might differ from one company to another, or from one country to another? 
 
+This book focuses on licensing R and R-related works. 
+Hence a focus is made on GPL-based licenses (which are the licenses under which R is released). 
 
-
-This book focuses on licensing R and R-related works. Hence a focus is made on GPL licenses (which are the licenses under which R is released). 
-
-If you think there is a mistake somewhere, or if you want to contribute, please [open an issue](https://github.com/ThinkR-open/licensing-r/issues).
+If you think there is a mistake somewhere, or if you want to contribute, please [open an issue on the GitHub repository](https://github.com/ThinkR-open/licensing-r/issues).
 
 ## What is this book about  {-}
 
 This book aims at two things: 
 
-- Documenting the current state of licensing in the R world
+- Documenting the current state of licensing in the R world, by exploring the CRAN and BioConductor databases.
 
-- Helping developers make strategic choices about the license they apply to their R packages by summarizing and explaining licenses and technical terms specific to open source licensing.
+- Helping developers make strategic choices about the license they apply to their R packages, by summarizing and explaining licenses and technical terms specific to open source licensing.
 
 ## Content  {-}
 
-+ [Chapter 1 - Introduction](#intro) explores the current state of Open Source licenses by the number, by downloading and exploring the data from CRAN and BioConductor databases.
++ [Chapter 1 - Introduction](#intro) explores the current state of Open Source licenses by the number. In this chapter, we'll download and explore the data from CRAN and BioConductor databases.
 + [Chapter 2 - What is a license (and why you should care)](#whatis) gives a series of definition about common terms you'll find while browsing software licenses.  
-+ [Chapter 3 - Licenses in the R World](#rworld) 
-+ [Chapter 4 - Common patterns for licensing R](#rlicense)
-+ [Chapter 5 - A Practical Guide](#practical) 
-+ [Chapter 6 - Summary](#summary) 
++ [Chapter 3 - Licenses in the R World](#rworld), will present "officially supported" licenses and will try to classify them
++ [Chapter 4 - Common patterns for licensing R](#rlicense) will get into examples of licensing and practices
++ [Chapter 5 - A Practical Guide](#practical) gives you a quick overview of some methods to automate license adding
++ [Chapter 6 - Conclusion](#summary) will conclude this book
 
 
 ## Special Thanks  {-}
 
-- This book is sponsored by an RConsortium ISC grant. Many thanks to them for supporting the project. 
+- This book is sponsored by an RConsortium ISC grant. 
+Many thanks to them for supporting the project. 
 
 - A special thank to [Miles McBain](https://milesmcbain.xyz/), who inspired this project.
+
+## License 
+
+This book is released under the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license. 
+
+You are free to:
+
++ Share this book
++ Adapt parts of the book 
+
+Provided that:
+
++ You give attribution 
++ You don't use this material for commercial purposes
++ You share any modification under the same license
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages

@@ -7,7 +7,7 @@
 ## R license 
 
 ```{r}
-licence()
+license()
 ```
 
 ### What does that license imply?
@@ -18,11 +18,14 @@ From [the GNU GPL FAQ](https://www.gnu.org/licenses/gpl-faq.en.html#GPLStaticVsD
 
 > No. Linking a GPL `r with_tooltip("covered work", "A 'covered work' means either the unmodified Program or a work based on the Program. (GPL-3 license)")` statically or dynamically with other modules is making a combined work based on the GPL covered work. Thus, the terms and conditions of the GNU General Public License cover the whole combination. 
 
-As we can see in this part of the GPL FAQ, __"Linking a GPL covered work statically or dynamically with other modules is making a combined work based on the GPL covered work"__. That would mean that, as R is GPL, any work linking dynamically or statically to R would have to be GPL-based also. 
+As we can see in this part of the GPL FAQ, __"Linking a GPL covered work statically or dynamically with other modules is making a combined work based on the GPL covered work"__. 
+That would mean that, as R is GPL, any work linking dynamically or statically to R would have to be GPL-based also. 
 
 ### Is an R extension linking? 
 
-Most of the time, when we are creating R-extensions, we're building packages. Packages enhance R in the sense that they are extention to R, and they add functionnalities in an R runtime, not to R itself. Which seems to match the definition of a plug-in:
+Most of the time, when we are creating R-extensions, we're building packages. 
+Packages enhance R in the sense that they are extension to R, and they add functionalities in an R run time, not to R itself. 
+Which seems to match the definition of a plug-in:
 
 > In computing, a plug-in (or plugin, add-in, addin, add-on, or addon) is a software component that adds a specific feature to an existing computer program. When a program supports plug-ins, it enables customization.
 
@@ -32,7 +35,8 @@ https://en.wikipedia.org/wiki/Plug-in_(computing)
 
 The R Core team uses a quite similar term ("add-on") to describe R packages: packages are named "add-on" packages in the [R Installation and Administration](https://cran.r-project.org/doc/manuals/r-release/R-admin.html#Add_002don-packages) manuals.
 
-As said before, this book is not legal advice but aims at providing elements to understand how lincensing works. Here are elements from the GPL FAQ that provide information about the status of an R package, regarding wether or not R license impacts the choice of a package license
+As said before, this book is not legal advice but aims at providing elements to understand how lincensing works. 
+Here are extracts from the GPL FAQ that provide information about the status of an R package, regarding whether or not R license impacts the choice of a package license
 
 According to `r with_tooltip("FSF", "Free Software Foundation")`, any derivative work of GPL licensed work is to be licensed under GPL-compatible license. 
 
@@ -46,11 +50,7 @@ In the [GPL FAQ](https://www.gnu.org/licenses/gpl-faq.en.html#GPLPluginsInNF), "
 
 > If the main program and the plugins are a single combined program then this means you must license the plug-in under the GPL or a GPL-compatible free software license and distribute it with source code in a GPL-compliant way. __A main program that is separate from its plug-ins makes no requirements for the plug-ins__.
 
-In the [GPL FAQ](https://www.gnu.org/licenses/gpl-faq.en.html#GPLPluginsInNF), "Can I apply the GPL when writing a plug-in for a nonfree program?", the FSF states that : 
-
-> If the main program and the plugins are a single combined program then this means you must license the plug-in under the GPL or a GPL-compatible free software license and distribute it with source code in a GPL-compliant way. __A main program that is separate from its plug-ins makes no requirements for the plug-ins__.
-
-We'll leave to the reader the appreciation about wether or not an R package can be considered as an addin which is separate from R as a program. 
+We'll leave to the reader the appreciation about whether or not an R package can be considered as an addin. 
 
 ## Package Licenses
 
@@ -94,15 +94,6 @@ You'll also find on the [Creative Common compatibility list](https://creativecom
 
 Now that we have seen these 11 "official" licenses, how can you choose one? Let's gather here some information from the web about what you can / can't do with these 
 
-### By degrees of "permissiveness"
-
-From [The Free-Libre / Open Source Software (FLOSS) License Slide](https://dwheeler.com/essays/floss-license-slide.html)
-
-
-![](https://dwheeler.com/essays/floss-license-slide-image.png)
-
-### 
-
 ```{r}
 library(rvest)
 url <- read_html("https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses")
@@ -123,19 +114,26 @@ tbl %>%
 
 + __Linking__ - linking of the licensed code with code licensed under a different license (e.g. when the code is provided as a library)
 + __Distribution__ - distribution of the code to third parties
-+ __Modification__ - modification of the code by a licensee
-+ __Patent grant__ - protection of licensees from patent claims made by code contributors regarding their contribution, and protection of contributors from patent claims made by licensees
++ __Modification__ - modification of the code by a icense
++ __Patent grant__ - protection of icenses from patent claims made by code contributors regarding their contribution, and protection of contributors from patent claims made by icenses
 + __Private use__ - whether modification to the code must be shared with the community or may be used privately (e.g. internal use by a corporation)
-+ __Sublicensing__ - whether modified code may be licensed under a different license (for example a copyright) or must retain the same license under which it was provided
-+ __Trademark grant__ - use of trademarks associated with the licensed code or its contributors by a licensee
++ __Sub-licensing__ - whether modified code may be licensed under a different license (for example a copyright) or must retain the same license under which it was provided
++ __Trademark grant__ - use of trademarks associated with the licensed code or its contributors by a icense
 
 `r right_link("Comparison of free and open-source software licenses", "https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses")`
+
+### By degrees of "permissiveness"
+
+From [The Free-Libre / Open Source Software (FLOSS) License Slide](https://dwheeler.com/essays/floss-license-slide.html)
+
+
+![](https://dwheeler.com/essays/floss-license-slide-image.png)
 
 ### By permission 
 
 Adapted from [TL;DR Legal](https://tldrlegal.com)
  
-|               |  Commercial Use |  Modify | Distribute | Sublicense | Private Use | Hold Liable | Place Warranty | Use Trademark | Use Patent Claims |
+|               |  Commercial Use |  Modify | Distribute | Sub-license | Private Use | Hold Liable | Place Warranty | Use Trademark | Use Patent Claims |
 |--:            |--:              |--:      |--:         |--:         |--:          |--:          |--:             |---:           |---:           |
 |  AGPLv3       |Can              |Can      |Can         |Cannot      | NA          |Cannot       |Can             |-              |-              |
 |  Artistic  2  |Can              |Can      |Can         |Can         |Can          |Cannot       |-                |Cannot         |-              |
@@ -171,9 +169,12 @@ Adapted from [TL;DR Legal](https://tldrlegal.com)
 
 ## "Non-standard"
 
+We can also find on CRAN some packages with icenses which are "non standard", in a sense that they are not listed in the 11 officially recognized licenses.
+
 ### Region-based licenses
 
-Example: CeCILL - http://www.cecill.info/
+Regional icenses are licenses which are relative to a specific part of the world. 
+For example, the [`CeCILL`](http://www.cecill.info/) license is issued by french academic organisations, and is designed to create an extension of the GPL in the European context. 
 
 ```{r}
 cecill <- full_db %>%
@@ -182,7 +183,7 @@ cecill %>%
   select(package, contains("license"))
 ```
 
-`r nrow(cecill)` packages have chosen a CeCILL-based license, which is a French licence for open source software.  
+`r nrow(cecill)` packages have chosen a CeCILL-based license, which is a French license for open source software.  
 
 Let's just for the sake of exploration have a look at the domain part of the emails from the maintainers: 
 
@@ -197,7 +198,9 @@ cecill$maintainer %>%
 
 Has you can see, these are mostly (we can't tell for the gmail and yahoo part) french entities emails: "umontpellier.fr" is the university of Montpellier, IRD is a French research institute, u-bordeaux.fr is the university of Bordeaux, etc. 
 
-What is CeCILL? CeCILL is a French, GPL-Compatible license that comes in three flavors: CeCILL (version 1, 2, and 2.1), CeCILL-B and CeCILL-C. The idea behind this new license was to create "a license which is compatible with French laws and with the principles from anglo-saxon open source licenses." (our translation from French).
+What is CeCILL? CeCILL is a French, GPL-Compatible license that comes in three flavors: CeCILL (version 1, 2, and 2.1), CeCILL-B and CeCILL-C. 
+The idea behind this new license was to create "a license which is compatible with French laws and with the principles from anglo-saxon open source licenses." 
+(our translation from French).
 
 `r right_link("CeCILL - Objectifs", "http://www.cecill.info/objectifs.fr.html")`
 
@@ -227,11 +230,13 @@ According to GNU,
 
 `r right_link("What is free software?", "https://www.gnu.org/philosophy/free-sw.en.html")`
 
-So how can a package be "restrictive" in the sense of the GNU definition of Free Software? It can for exemple: 
+So how can a package be "restrictive" in the sense of the GNU definition of Free Software? 
+It can for example: 
 
-+ Prohibit from commercial use, which is restrictive in the sense of freedom 0. This is for example what you can find in:
++ Prohibit from commercial use, which is restrictive in the sense of freedom 0. 
+This is for example what you can find in:
 
-`{gpclib}`
++ `{gpclib}`
 
 ```{r}
 readLines(
@@ -239,7 +244,7 @@ readLines(
 ) %>% glue::as_glue()
 ```
 
-`{rngwell19937}`
++ `{rngwell19937}`
 
 ```{r}
 readLines(
@@ -249,7 +254,7 @@ readLines(
 ```
 
 
-What is interesting in both these package is that the "non-commercial" use is defined by internal files `gpc.c` / `gpc.h` / `rngwell19937/src/WELL19937a.c`.
+What is interesting in both these package is that the "non-commercial" use is defined by internal files `gpc.c` / `gpc.h` / `rngwell19937/src/WELL19937a.c`, so in the code which is statically linked by the package (when you install these packages, the pieces of C code are bundled with it).
 
 Head of `gpc.c` : 
 
@@ -275,7 +280,8 @@ unlink("rngwell19937.tar.gz")
 unlink("rngwell19937")
 ```
 
-As you can see, both these packages uses internal C files which have an explicit copyright prevent from any commercial use. Hence, as these packages are doing `static linking` of code that is under this copyright, there is a restriction notive in the `LICENSE` file.
+As you can see, both these packages uses internal C files which have an explicit copyright prevent from any commercial use. 
+Hence, as these packages are doing `static linking` of code that is under this copyright, there is a restriction notice in the `LICENSE` file.
 
 Same goes for `{tripack}`:
 
@@ -285,7 +291,7 @@ readLines(
 ) %>% glue::as_glue()
 ```
 
-which contains a piece of Fortran code licensed under the ACM license.
+Which contains a piece of FORTRAN code licensed under the ACM license.
 
 #### ACM 
 
@@ -309,7 +315,7 @@ acm <- db %>%
 acm
 ```
 
-`r nrow(acm)` licenses are explicitely listed as ACM. As some packages in the whole just have "file LICENSE", it's possible that it's more. 
+`r nrow(acm)` licenses are explicitly listed as ACM, but as some packages in the whole just have "file LICENSE",there might be more. 
 
 #### CC BY-NC-SA 4.0
 
@@ -322,7 +328,7 @@ ccbysa <- db %>%
 ccbysa
 ```
 
-`r nrow(ccbysa)` licenses are explicitely listed as CC BY-NC-SA 4.0. As some packages in the whole just have "file LICENSE", it's possible that it's more. 
+`r nrow(ccbysa)` licenses are explicitly listed as CC BY-NC-SA 4.0, but (like with ACM) as some packages in the whole just have "file LICENSE",there might be more. 
 
 #### GPL-2-QA
 
