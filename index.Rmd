@@ -55,7 +55,7 @@ Many thanks to them for supporting the project.
 
 - A special thank to [Miles McBain](https://milesmcbain.xyz/), who inspired this project.
 
-## License 
+## License   {-}
 
 This book is released under the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license. 
 
