@@ -93,7 +93,7 @@ Note that here, both `{Rcpp}` and `{ggplot2}` have to be installed when you inst
 For example, the `{ggraph}` package has listed in `Suggests` the `{network}` package.
 
 We will not classify each of this behavior, but be aware of these three behaviors. 
-Whether or not they classify as one or two programs, or ether or not your package us a modified work of the dependencies is very much subject to interpretation and of the level of interactions between the packages. 
+Whether or not they classify as one or two programs, or whether or not your package use a modified work of the dependencies is very much subject to interpretation and of the level of interactions between the packages. 
 
 That being said, we can assume that at least `Depends` and `Imports` do dynamic linking, as defined as 
 
